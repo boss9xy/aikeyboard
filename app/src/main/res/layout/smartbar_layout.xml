@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/keyboard_background">
+
+    <!-- Container cho các tầng smartbar -->
+    <LinearLayout
+        android:id="@+id/smartbarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:id="@+id/smartbarTopScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/keyboard_background"
+            android:scrollbars="none"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <include
+                    android:id="@+id/languageButtonContainer"
+                    layout="@layout/language_button_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="2dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/language_switch_button"/>
+
+                <Spinner
+                    android:id="@+id/languageSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:popupBackground="@color/key_special_background"/>
+
+                <Spinner
+                    android:id="@+id/gptModelSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"
+                    android:popupBackground="@color/key_special_background"/>
+
+                <Spinner
+                    android:id="@+id/clipboardHistorySpinner"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"
+                    android:popupBackground="@color/key_special_background"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <HorizontalScrollView
+            android:id="@+id/smartbarMiddleScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/keyboard_background"
+            android:scrollbars="none"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <ImageButton
+                    android:id="@+id/btnSwitchKeyboard"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_globe"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:tint="@color/key_text_special"/>
+
+
+
+                <Button
+                    android:id="@+id/gptTranslateButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/gpt_translate_button_text"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/gptAskButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/gpt_ask_button_text"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/btnPasteAndRead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/paste_and_read_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/btnStopTts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/stop_tts_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/btnTinhToan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/calculator_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/assistantsGptButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/assistants_gpt_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/olamaAskButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/olama_ask_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"/>
+
+                <Button
+                    android:id="@+id/gptContinueButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="@string/gpt_continue_button"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="2dp"
+                    android:backgroundTint="@color/key_special_background"
+                    android:textColor="@color/key_text_special"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </LinearLayout>
+
+            <HorizontalScrollView
+            android:id="@+id/smartbarBottomScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/keyboard_background"
+            android:scrollbars="none"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="2dp">
+            
+            <!-- Nút Toggle Smartbar - đặt bên trái nút mic -->
+            <Button
+                android:id="@+id/btnToggleSmartbar"
+                android:layout_width="32dp"
+                android:layout_height="40dp"
+                android:text="▲"
+                android:textSize="12sp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"
+                android:layout_marginEnd="2dp"/>
+
+            <!-- Nút Toggle Dictionary Suggestions -->
+            <Button
+                android:id="@+id/btnToggleDictionary"
+                android:layout_width="32dp"
+                android:layout_height="40dp"
+                android:text="→"
+                android:textSize="12sp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"
+                android:layout_marginEnd="2dp"/>
+
+            <!-- Dictionary Suggestions Container -->
+            <LinearLayout
+                android:id="@+id/dictionarySuggestionsContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:orientation="horizontal"
+                android:background="@color/keyboard_background"
+                android:visibility="visible"
+                android:layout_marginEnd="4dp"
+                android:maxWidth="300dp">
+
+                <!-- Phần 1: Clipboard history -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:background="@color/keyboard_background"
+                    android:padding="2dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/singleWordRecyclerView"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:background="@color/keyboard_background"/>
+
+                </LinearLayout>
+
+                <!-- Divider dọc -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/key_special_background"/>
+
+                <!-- Phần 2: Gợi ý từ đôi -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:background="@color/keyboard_background"
+                    android:padding="2dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/phraseRecyclerView"
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:background="@color/keyboard_background"/>
+
+                </LinearLayout>
+
+                <!-- Divider dọc -->
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/key_special_background"/>
+
+                <!-- Phần 3: Gợi ý từ tiếp theo -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical"
+                    android:background="@color/keyboard_background"
+                    android:padding="2dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/nextWordRecyclerView"
+                        android:layout_width="160dp"
+                        android:layout_height="40dp"
+                        android:background="@color/keyboard_background"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btnMic"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_mic"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:tint="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/deepseekTranslateButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/deepseek_translate_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/stopGenerationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/stop_generation_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"
+                android:visibility="gone"/>
+        
+            <Button
+                android:id="@+id/btnVoiceToText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/voice_to_text_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/btnStopVoiceToText"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/stop_voice_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btnAskDeepSeek"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/ask_deepseek_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/btnGptSpellCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/gpt_spell_check_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/btnDeepSeekSpellCheck"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/deepseek_spell_check_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/gptSuggestButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/gpt_suggest_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/deepseekSuggestButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/deepseek_suggest_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/askButton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/ask_button_text"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+            <Button
+                android:id="@+id/btnOlamaTrans"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/olama_translate_button"
+                android:textSize="14sp"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:textColor="@color/key_text_special"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+</LinearLayout>

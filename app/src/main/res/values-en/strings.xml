@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">AI Keyboard</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek API Key</string>
+    <string name="deepseek_api_key_hint">Enter your DeepSeek API key</string>
+    <string name="gpt_api_key">GPT API Key</string>
+    <string name="gpt_api_key_hint">Enter your GPT API key</string>
+    <string name="gpt_assistants_id">GPT Assistants ID</string>
+    <string name="gpt_assistants_id_hint">Enter your GPT Assistants ID</string>
+    <string name="web_url">Web URL</string>
+    <string name="web_url_hint">Enter web URL</string>
+    <string name="save_api_keys">Save API Keys</string>
+    <string name="enable_keyboard">Enable Keyboard</string>
+    <string name="select_keyboard">Select Keyboard</string>
+    <string name="api_settings">API Settings</string>
+    <string name="keyboard_settings">Keyboard Settings</string>
+    <string name="enter_at_least_one_api_key">Please enter at least one API key</string>
+    <string name="settings_saved">Settings saved</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">Voice-to-Text Settings</string>
+    <string name="voice_language_hint">Recording language (leave empty=auto-detect)</string>
+    <string name="voice_using_gpt_api">Using GPT API key for Voice-to-Text</string>
+    <string name="auto_detect">Auto Detect</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">Vietnamese (vi)</string>
+    <string name="english">English (en)</string>
+    <string name="chinese">Chinese (zh)</string>
+    <string name="japanese">Japanese (ja)</string>
+    <string name="korean">Korean (ko)</string>
+    <string name="french">French (fr)</string>
+    <string name="german">German (de)</string>
+    <string name="spanish">Spanish (es)</string>
+    <string name="italian">Italian (it)</string>
+    <string name="russian">Russian (ru)</string>
+    <string name="arabic">Arabic (ar)</string>
+    <string name="thai">Thai (th)</string>
+    <string name="hindi">Hindi (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">Ask GPT</string>
+    <string name="btn_ask_deepseek">Ask DeepSeek</string>
+    <string name="btn_ask_olama">Ask Olama</string>
+    <string name="btn_translate">Translate</string>
+    <string name="btn_paste_and_read">Paste &amp; Read</string>
+    <string name="btn_mic">Mic</string>
+    <string name="btn_voice_to_text">Voice→Text</string>
+    <string name="btn_stop_voice">Stop Voice</string>
+    <string name="btn_stop_recording">Stop Recording</string>
+    <string name="btn_processing">Processing...</string>
+    <string name="btn_transcribing">Transcribing...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">Recording started</string>
+    <string name="recording_stopped">Recording stopped</string>
+    <string name="transcription_completed">Transcription completed</string>
+    <string name="already_recording">Already recording</string>
+    <string name="not_recording">Not recording</string>
+    <string name="processing_in_progress">Processing in progress</string>
+    <string name="microphone_permission_required">Microphone permission required</string>
+    <string name="failed_to_start_recording">Failed to start recording</string>
+    <string name="transcription_failed">Transcription failed</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">Enter Olama server URL</string>
+    <string name="olama_model">Olama Model</string>
+    <string name="olama_model_hint">Enter Olama model name</string>
+    <string name="check_model">Check Model</string>
+    <string name="save_olama">Save Olama</string>
+    <string name="please_enter_url_and_model">Please enter URL and model</string>
+    <string name="olama_settings_saved">Olama settings saved</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">Enable keyboard sound</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">Language Settings</string>
+    <string name="select_app_language">Select App Language</string>
+    <string name="language_changed">Language changed</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">DeepSeek API Key</string>
+    <string name="gpt_api_card_title">GPT API Key</string>
+    <string name="gpt_assistants_card_title">GPT Assistants ID</string>
+    <string name="web_url_card_title">Web URL</string>
+    <string name="olama_settings_card_title">Olama Settings</string>
+    <string name="voice_to_text_card_title">Voice-to-Text Settings</string>
+    <string name="language_settings_card_title">Language Settings</string>
+    <string name="keyboard_settings_card_title">Keyboard Settings</string>
+    <string name="sound_settings_card_title">Sound Settings</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">Save API Keys</string>
+    <string name="enable_keyboard_button">Enable Keyboard</string>
+    <string name="select_keyboard_button">Select Keyboard</string>
+    <string name="check_model_button">Check Model</string>
+    <string name="save_olama_button">Save Olama</string>
+    <string name="checking_model_text">Checking...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">Read clipboard</string>
+    <string name="stop_tts_button">Stop reading</string>
+    <string name="translate_button">Translate</string>
+    <string name="ask_button">Ask</string>
+    <string name="gpt_ask_button">GPT Ask</string>
+    <string name="gpt_translate_button">GPT Trans</string>
+    <string name="deepseek_ask_button">Deepseek Ask</string>
+    <string name="deepseek_translate_button">Deepseek Trans</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">Calculate</string>
+    <string name="clear_history_button">Clear History</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">Voice→Text</string>
+    <string name="stop_voice_button">Stop Voice</string>
+    <string name="gpt_ask_button_text">GPT Ask</string>
+    <string name="assistants_gpt_button">Assistants GPT</string>
+    <string name="olama_ask_button">Olama Ask</string>
+    <string name="stop_generation_button">Stop Gen</string>
+    <string name="gpt_translate_button_text">GPT Trans</string>
+    <string name="gpt_continue_button">GPT Continue</string>
+    <string name="gpt_suggest_button">GPT Suggest</string>
+    <string name="deepseek_suggest_button">DeepSeek Suggest</string>
+    <string name="ask_button_text">Convert text</string>
+    <string name="gpt_spell_check_button">GPT SpellCheck</string>
+    <string name="deepseek_spell_check_button">DeepSeek SpellCheck</string>
+    <string name="ask_deepseek_button">Ask DeepSeek</string>
+    <string name="olama_translate_button">Olama Trans</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">Recording...</string>
+    <string name="stop_recording_text">Stop Recording</string>
+    <string name="processing_text">Processing...</string>
+    <string name="transcribing_text">Transcribing...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    <string name="language_switch_button">Switch Language</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">Model</string>
+    <string name="check_olama_model_button">Check Model</string>
+    <string name="save_olama_settings_button">Save Olama</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">Please enter Olama URL</string>
+    <string name="model_found">Model: %s</string>
+    <string name="cannot_get_model">Cannot get model: %s</string>
+    <string name="olama_saved">Olama URL and model saved</string>
+</resources> 

@@ -1,0 +1,229 @@
+<resources>
+    <string name="app_name">AI Keyboard</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek API Key</string>
+    <string name="deepseek_api_key_hint">Nhập DeepSeek API key</string>
+    <string name="gpt_api_key">GPT API Key</string>
+    <string name="gpt_api_key_hint">Nhập GPT API key</string>
+    <string name="gpt_assistants_id">GPT Assistants ID</string>
+    <string name="gpt_assistants_id_hint">Nhập GPT Assistants ID</string>
+    <string name="web_url">Web URL</string>
+    <string name="web_url_hint">Nhập web URL</string>
+    <string name="save_api_keys">Lưu API Keys</string>
+    <string name="enable_keyboard">Bật bàn phím</string>
+    <string name="select_keyboard">Chọn bàn phím</string>
+    <string name="api_settings">Cài đặt API</string>
+    <string name="keyboard_settings">Cài đặt bàn phím</string>
+    <string name="enter_at_least_one_api_key">Vui lòng nhập ít nhất một API key</string>
+    <string name="settings_saved">Cài đặt đã lưu</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">Voice-to-Text Settings</string>
+    <string name="voice_language_hint">Recording language (leave empty = auto detect)</string>
+    <string name="voice_using_gpt_api">Use GPT API key for Voice-to-Text</string>
+    <string name="auto_detect">Auto detect</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">Vietnamese (vi)</string>
+    <string name="english">English (en)</string>
+    <string name="chinese">Chinese (zh)</string>
+    <string name="japanese">Japanese (ja)</string>
+    <string name="korean">Korean (ko)</string>
+    <string name="french">French (fr)</string>
+    <string name="german">German (de)</string>
+    <string name="spanish">Spanish (es)</string>
+    <string name="italian">Italian (it)</string>
+    <string name="russian">Russian (ru)</string>
+    <string name="arabic">Arabic (ar)</string>
+    <string name="thai">Thai (th)</string>
+    <string name="hindi">Hindi (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">Hỏi GPT</string>
+    <string name="btn_ask_deepseek">Hỏi DeepSeek</string>
+    <string name="btn_ask_olama">Hỏi Olama</string>
+    <string name="btn_translate">Dịch</string>
+    <string name="btn_paste_and_read">Đọc clipboard</string>
+    <string name="btn_mic">Mic</string>
+    <string name="btn_voice_to_text">Voice→Text</string>
+    <string name="btn_stop_voice">Dừng Voice</string>
+    <string name="btn_stop_recording">Dừng ghi âm</string>
+    <string name="btn_processing">Đang xử lý...</string>
+    <string name="btn_transcribing">Đang chuyển đổi...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">Bắt đầu ghi âm</string>
+    <string name="recording_stopped">Dừng ghi âm</string>
+    <string name="transcription_completed">Chuyển đổi hoàn tất</string>
+    <string name="already_recording">Đang ghi âm</string>
+    <string name="not_recording">Không ghi âm</string>
+    <string name="processing_in_progress">Đang xử lý</string>
+    <string name="microphone_permission_required">Cần quyền microphone</string>
+    <string name="failed_to_start_recording">Không thể bắt đầu ghi âm</string>
+    <string name="transcription_failed">Chuyển đổi thất bại</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">Nhập URL server Olama</string>
+    <string name="olama_model">Olama Model</string>
+    <string name="olama_model_hint">Nhập tên model Olama</string>
+    <string name="check_model">Kiểm tra model</string>
+    <string name="save_olama">Lưu Olama</string>
+    <string name="please_enter_url_and_model">Vui lòng nhập URL và Model</string>
+    <string name="olama_settings_saved">Cài đặt Olama đã lưu</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">Bật âm thanh gõ phím</string>
+    <string name="enable_vietnamese_enhancer">Bật cải tiến gõ tiếng Việt</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">Cài đặt ngôn ngữ</string>
+    <string name="select_app_language">Chọn ngôn ngữ ứng dụng</string>
+    <string name="language_changed">Đã thay đổi ngôn ngữ</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">Khóa API DeepSeek</string>
+    <string name="gpt_api_card_title">Khóa API GPT</string>
+    <string name="gpt_assistants_card_title">ID Trợ lý GPT</string>
+    <string name="web_url_card_title">URL Web</string>
+    <string name="olama_settings_card_title">Cài đặt Olama</string>
+    <string name="voice_to_text_card_title">Voice-to-Text Settings</string>
+    <string name="language_settings_card_title">Cài đặt ngôn ngữ</string>
+    <string name="keyboard_settings_card_title">Cài đặt bàn phím</string>
+    <string name="sound_settings_card_title">Cài đặt âm thanh</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">Lưu khóa API</string>
+    <string name="enable_keyboard_button">Bật bàn phím</string>
+    <string name="select_keyboard_button">Chọn bàn phím</string>
+    <string name="check_model_button">Kiểm tra Model</string>
+    <string name="save_olama_button">Lưu Olama</string>
+    <string name="checking_model_text">Đang kiểm tra...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">Đọc clipboard</string>
+    <string name="stop_tts_button">Dừng đọc</string>
+    <string name="translate_button">Dịch</string>
+    <string name="ask_button">Hỏi</string>
+    <string name="gpt_ask_button">GPT Hỏi</string>
+    <string name="gpt_translate_button">GPT Dịch</string>
+    <string name="deepseek_ask_button">Deepseek Hỏi</string>
+    <string name="deepseek_translate_button">Deepseek Dịch</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">Tính toán</string>
+    <string name="clear_history_button">Xóa lịch sử</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">Giọng nói→Văn bản</string>
+    <string name="stop_voice_button">Dừng giọng nói</string>
+    <string name="gpt_ask_button_text">GPT Hỏi</string>
+    <string name="assistants_gpt_button">GPT Trợ lý</string>
+    <string name="olama_ask_button">Olama Hỏi</string>
+    <string name="stop_generation_button">Dừng tạo</string>
+    <string name="gpt_translate_button_text">GPT Dịch</string>
+    <string name="gpt_continue_button">GPT Tiếp tục</string>
+    <string name="gpt_suggest_button">GPT Gợi ý</string>
+    <string name="deepseek_suggest_button">DeepSeek Gợi ý</string>
+    <string name="ask_button_text">Convert văn bản</string>
+    <string name="gpt_spell_check_button">GPT Kiểm tra chính tả</string>
+    <string name="deepseek_spell_check_button">DeepSeek Kiểm tra chính tả</string>
+    <string name="ask_deepseek_button">Hỏi DeepSeek</string>
+    <string name="olama_translate_button">Olama Dịch</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">Đang ghi âm...</string>
+    <string name="stop_recording_text">Dừng ghi âm</string>
+    <string name="processing_text">Đang xử lý...</string>
+    <string name="transcribing_text">Đang chuyển đổi...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    <string name="language_switch_button">Chuyển đổi ngôn ngữ</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">Model</string>
+    <string name="check_olama_model_button">Kiểm tra model</string>
+    <string name="save_olama_settings_button">Lưu Olama</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">Vui lòng nhập Olama URL</string>
+    <string name="model_found">Model: %s</string>
+    <string name="cannot_get_model">Không lấy được model: %s</string>
+    <string name="olama_saved">Đã lưu Olama URL và model</string>
+    
+    <string-array name="gpt_models">
+        <item>gpt-3.5-turbo-1106</item>
+        <item>gpt-4o-2024-11-20</item>
+        <item>gpt-4o-mini-2024-07-18</item>
+        <item>o3-mini-2025-01-31</item>
+        <item>o1-2024-12-17</item>
+        <item>o1-preview-2024-09-12</item>
+    </string-array>
+
+    <string name="storage_permission_denied">Storage permission is required for logging</string>
+    <string name="microphone_permission_denied">Microphone permission denied. Please enable it in settings.</string>
+    <string name="microphone_permission_granted">Microphone permission granted</string>
+
+    <!-- Smartbar -->
+    <string name="smartbar_toggle">⚡</string>
+    <string name="language_vn">VN</string>
+    <string name="language_en">EN</string>
+    <string name="paste_and_read">Read clipboard</string>
+    <string name="stop_tts">Stop reading</string>
+    <string name="translate">Translate</string>
+    <string name="ask">Ask</string>
+    <string name="gpt_ask">GPT Ask</string>
+    <string name="gpt_translate">GPT Trans</string>
+    <string name="deepseek_ask">Deepseek Ask</string>
+    <string name="deepseek_translate">Deepseek Trans</string>
+    <string name="switch_keyboard">⌨️</string>
+    <string name="mic">🎤</string>
+    <string name="calculator">Calculate</string>
+    <string name="clear_history">Clear History</string>
+    <string name="no_text_to_translate">No text to translate</string>
+    <string name="enter_question_or_select_text">Please enter a question or select text.</string>
+    <string name="listening">Listening…</string>
+    <string name="stopped_listening">Stopped listening</string>
+    <string name="speech_recognition_error">Speech recognition error: %s</string>
+    <string name="audio_recording_error">Audio recording error</string>
+    <string name="client_side_error">Client side error</string>
+    <string name="insufficient_permissions">Insufficient permissions</string>
+    <string name="network_error">Network error</string>
+    <string name="network_timeout">Network timeout</string>
+    <string name="no_recognition_result_matched">No recognition result matched</string>
+    <string name="recognizer_service_busy">RecognitionService busy</string>
+    <string name="server_sends_error_status">Server sends error status</string>
+    <string name="no_speech_input">No speech input</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="added_to_clipboard_history">Added to clipboard history</string>
+    <string name="clipboard_history_cleared">Clipboard history cleared</string>
+    <string name="tts_language_not_supported">TTS language is not supported.</string>
+    <string name="tts_initialization_failed">TTS initialization failed.</string>
+    <string name="calculator_back">Back</string>
+    <string name="calculator_insert">Insert</string>
+    <string name="calculator_clear">C</string>
+    <string name="calculator_error">Error</string>
+    <string name="division_by_zero">Division by zero</string>
+    <string name="invalid_operator">Invalid operator</string>
+    <string name="invalid_expression">Invalid expression</string>
+    <string name="space">Space</string>
+
+    <!-- Key labels (có thể không cần thiết nếu đã tạo nút động) -->
+    <string name="key_label_shift">⇧</string> <!-- ⇧ -->
+    <string name="key_label_backspace">⌫</string> <!-- ⌫ -->
+    <string name="key_label_enter">⏎</string> <!-- ⏎ -->
+    <string name="key_label_symbols">123</string>
+    <string name="key_label_abc">ABC</string>
+
+    <!-- Dictionary Suggestions -->
+    <string name="dictionary_suggestions_title">Gợi ý từ</string>
+    <string name="close_suggestions">Đóng gợi ý</string>
+
+</resources>

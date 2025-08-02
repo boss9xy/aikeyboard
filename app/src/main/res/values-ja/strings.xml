@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">AIキーボード</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek APIキー</string>
+    <string name="deepseek_api_key_hint">DeepSeek APIキーを入力してください</string>
+    <string name="gpt_api_key">GPT APIキー</string>
+    <string name="gpt_api_key_hint">GPT APIキーを入力してください</string>
+    <string name="gpt_assistants_id">GPTアシスタントID</string>
+    <string name="gpt_assistants_id_hint">GPTアシスタントIDを入力してください</string>
+    <string name="web_url">ウェブURL</string>
+    <string name="web_url_hint">ウェブURLを入力してください</string>
+    <string name="save_api_keys">APIキーを保存</string>
+    <string name="enable_keyboard">キーボードを有効化</string>
+    <string name="select_keyboard">キーボードを選択</string>
+    <string name="api_settings">API設定</string>
+    <string name="keyboard_settings">キーボード設定</string>
+    <string name="enter_at_least_one_api_key">少なくとも1つのAPIキーを入力してください</string>
+    <string name="settings_saved">設定が保存されました</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">音声からテキスト設定</string>
+    <string name="voice_language_hint">録音言語（空白=自動検出）</string>
+    <string name="voice_using_gpt_api">音声からテキストにGPT APIキーを使用</string>
+    <string name="auto_detect">自動検出</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">ベトナム語 (vi)</string>
+    <string name="english">英語 (en)</string>
+    <string name="chinese">中国語 (zh)</string>
+    <string name="japanese">日本語 (ja)</string>
+    <string name="korean">韓国語 (ko)</string>
+    <string name="french">フランス語 (fr)</string>
+    <string name="german">ドイツ語 (de)</string>
+    <string name="spanish">スペイン語 (es)</string>
+    <string name="italian">イタリア語 (it)</string>
+    <string name="russian">ロシア語 (ru)</string>
+    <string name="arabic">アラビア語 (ar)</string>
+    <string name="thai">タイ語 (th)</string>
+    <string name="hindi">ヒンディー語 (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">GPTに質問</string>
+    <string name="btn_ask_deepseek">DeepSeekに質問</string>
+    <string name="btn_ask_olama">Olamaに質問</string>
+    <string name="btn_translate">翻訳</string>
+    <string name="btn_paste_and_read">貼り付けて読み取り</string>
+    <string name="btn_mic">マイク</string>
+    <string name="btn_voice_to_text">音声→テキスト</string>
+    <string name="btn_stop_voice">音声停止</string>
+    <string name="btn_stop_recording">録音停止</string>
+    <string name="btn_processing">処理中...</string>
+    <string name="btn_transcribing">文字起こし中...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">録音開始</string>
+    <string name="recording_stopped">録音停止</string>
+    <string name="transcription_completed">文字起こし完了</string>
+    <string name="already_recording">既に録音中</string>
+    <string name="not_recording">録音していません</string>
+    <string name="processing_in_progress">処理中です</string>
+    <string name="microphone_permission_required">マイク権限が必要です</string>
+    <string name="failed_to_start_recording">録音開始に失敗しました</string>
+    <string name="transcription_failed">文字起こしに失敗しました</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">OlamaサーバーURLを入力してください</string>
+    <string name="olama_model">Olamaモデル</string>
+    <string name="olama_model_hint">Olamaモデル名を入力してください</string>
+    <string name="check_model">モデル確認</string>
+    <string name="save_olama">Olama保存</string>
+    <string name="please_enter_url_and_model">URLとモデルを入力してください</string>
+    <string name="olama_settings_saved">Olama設定が保存されました</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">キーボード音を有効化</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">言語設定</string>
+    <string name="select_app_language">アプリ言語を選択</string>
+    <string name="language_changed">言語が変更されました</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">DeepSeek APIキー</string>
+    <string name="gpt_api_card_title">GPT APIキー</string>
+    <string name="gpt_assistants_card_title">GPTアシスタントID</string>
+    <string name="web_url_card_title">Web URL</string>
+    <string name="olama_settings_card_title">Olama設定</string>
+    <string name="voice_to_text_card_title">音声テキスト変換設定</string>
+    <string name="language_settings_card_title">言語設定</string>
+    <string name="keyboard_settings_card_title">キーボード設定</string>
+    <string name="sound_settings_card_title">音声設定</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">APIキーを保存</string>
+    <string name="enable_keyboard_button">キーボードを有効化</string>
+    <string name="select_keyboard_button">キーボードを選択</string>
+    <string name="check_model_button">モデルをチェック</string>
+    <string name="save_olama_button">Olamaを保存</string>
+    <string name="checking_model_text">チェック中...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">クリップボードを読み取り</string>
+    <string name="stop_tts_button">読み取り停止</string>
+    <string name="translate_button">翻訳</string>
+    <string name="ask_button">質問</string>
+    <string name="gpt_ask_button">GPT質問</string>
+    <string name="gpt_translate_button">GPT翻訳</string>
+    <string name="deepseek_ask_button">Deepseek質問</string>
+    <string name="deepseek_translate_button">Deepseek翻訳</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">計算</string>
+    <string name="clear_history_button">履歴をクリア</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">音声→テキスト</string>
+    <string name="stop_voice_button">音声停止</string>
+    <string name="gpt_ask_button_text">GPT質問</string>
+    <string name="assistants_gpt_button">GPTアシスタント</string>
+    <string name="olama_ask_button">Olama質問</string>
+    <string name="stop_generation_button">生成停止</string>
+    <string name="gpt_translate_button_text">GPT翻訳</string>
+    <string name="gpt_continue_button">GPT続行</string>
+    <string name="gpt_suggest_button">GPT提案</string>
+    <string name="deepseek_suggest_button">DeepSeek提案</string>
+    <string name="ask_button_text">テキスト変換</string>
+    <string name="gpt_spell_check_button">GPTスペルチェック</string>
+    <string name="deepseek_spell_check_button">DeepSeekスペルチェック</string>
+    <string name="ask_deepseek_button">DeepSeek質問</string>
+    <string name="olama_translate_button">Olama翻訳</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">録音中...</string>
+    <string name="stop_recording_text">録音停止</string>
+    <string name="processing_text">処理中...</string>
+    <string name="transcribing_text">文字起こし中...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">モデル</string>
+    <string name="check_olama_model_button">モデル確認</string>
+    <string name="save_olama_settings_button">Olama保存</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">Olama URLを入力してください</string>
+    <string name="model_found">モデル: %s</string>
+    <string name="cannot_get_model">モデルを取得できません: %s</string>
+    <string name="olama_saved">Olama URLとモデルを保存しました</string>
+</resources> 

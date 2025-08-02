@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
+    android:keyWidth="7.500005%p"
+    android:keyHeight="40dp"
+    android:horizontalGap="2.199996%p"
+    android:verticalGap="9dp">
+    <Row>
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="113"
+            android:keyEdgeFlags="left"
+            android:keyLabel="q" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="119"
+            android:keyLabel="w" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="101"
+            android:keyLabel="e" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="114"
+            android:keyLabel="r" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="116"
+            android:keyLabel="t" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="121"
+            android:keyLabel="y" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="117"
+            android:keyLabel="u" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="105"
+            android:keyLabel="i" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="111"
+            android:keyLabel="o" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="112"
+            android:keyEdgeFlags="right"
+            android:keyLabel="p" />
+    </Row>
+    <Row>
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:keyWidth="7.500005%p"
+            android:horizontalGap="7.500005%p"
+            android:codes="97"
+            android:keyEdgeFlags="left"
+            android:keyLabel="a" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="115"
+            android:keyLabel="s" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="100"
+            android:keyLabel="d" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="102"
+            android:keyLabel="f" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="103"
+            android:keyLabel="g" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="104"
+            android:keyLabel="h" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="106"
+            android:keyLabel="j" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="107"
+            android:keyLabel="k" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="108"
+            android:keyLabel="l" />
+    </Row>
+    <Row>
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:keyWidth="12.800002%p"
+            android:codes="-1"
+            android:keyEdgeFlags="left"
+            android:keyLabel="⇧" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="122"
+            android:keyLabel="z" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="120"
+            android:keyLabel="x" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="99"
+            android:keyLabel="c" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="118"
+            android:keyLabel="v" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="98"
+            android:keyLabel="b" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="110"
+            android:keyLabel="n" />
+        <Key
+            android:keyBackground="@drawable/key_background"
+            android:codes="109"
+            android:keyLabel="m" />
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:keyWidth="12.399996%p"
+            android:codes="-5"
+            android:keyEdgeFlags="right"
+            android:isRepeatable="true"
+            android:keyLabel="⌫" />
+    </Row>
+    <Row android:rowEdgeFlags="bottom">
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:keyWidth="15.699995%p"
+            android:codes="-2"
+            android:keyEdgeFlags="left"
+            android:keyLabel="123" />
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:codes="44"
+            android:keyLabel="," />
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:keyWidth="39.999996%p"
+            android:codes="32"
+            android:isRepeatable="true"
+            android:keyLabel="Space" />
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:codes="46"
+            android:keyLabel="." />
+        <Key
+            android:textColor="@color/key_text_special"
+            android:keyBackground="@drawable/key_special_background"
+            android:keyWidth="17.999994%p"
+            android:codes="-4"
+            android:keyEdgeFlags="right"
+            android:keyLabel="⏎" />
+    </Row>
+</Keyboard>

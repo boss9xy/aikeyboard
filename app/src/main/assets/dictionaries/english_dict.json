@@ -1,0 +1,932 @@
+{
+  "i": {
+    "type": "pronoun",
+    "next": [
+      "am",
+      "want",
+      "need",
+      "like",
+      "have"
+    ]
+  },
+  "you": {
+    "type": "pronoun",
+    "next": [
+      "are",
+      "want",
+      "need",
+      "like",
+      "have"
+    ]
+  },
+  "he": {
+    "type": "pronoun",
+    "next": [
+      "is",
+      "wants",
+      "needs",
+      "likes",
+      "has"
+    ]
+  },
+  "she": {
+    "type": "pronoun",
+    "next": [
+      "is",
+      "wants",
+      "needs",
+      "likes",
+      "has"
+    ]
+  },
+  "it": {
+    "type": "pronoun",
+    "next": [
+      "is",
+      "has",
+      "does",
+      "works",
+      "looks"
+    ]
+  },
+  "we": {
+    "type": "pronoun",
+    "next": [
+      "are",
+      "want",
+      "need",
+      "like",
+      "have"
+    ]
+  },
+  "they": {
+    "type": "pronoun",
+    "next": [
+      "are",
+      "want",
+      "need",
+      "like",
+      "have"
+    ]
+  },
+  "am": {
+    "type": "verb",
+    "next": [
+      "going",
+      "working",
+      "studying",
+      "reading",
+      "writing"
+    ]
+  },
+  "is": {
+    "type": "verb",
+    "next": [
+      "going",
+      "working",
+      "studying",
+      "reading",
+      "writing"
+    ]
+  },
+  "are": {
+    "type": "verb",
+    "next": [
+      "going",
+      "working",
+      "studying",
+      "reading",
+      "writing"
+    ]
+  },
+  "have": {
+    "type": "verb",
+    "next": [
+      "been",
+      "gone",
+      "worked",
+      "studied",
+      "read"
+    ]
+  },
+  "has": {
+    "type": "verb",
+    "next": [
+      "been",
+      "gone",
+      "worked",
+      "studied",
+      "read"
+    ]
+  },
+  "had": {
+    "type": "verb",
+    "next": [
+      "been",
+      "gone",
+      "worked",
+      "studied",
+      "read"
+    ]
+  },
+  "want": {
+    "type": "verb",
+    "next": [
+      "to",
+      "go",
+      "work",
+      "study",
+      "read"
+    ]
+  },
+  "need": {
+    "type": "verb",
+    "next": [
+      "to",
+      "go",
+      "work",
+      "study",
+      "read"
+    ]
+  },
+  "like": {
+    "type": "verb",
+    "next": [
+      "to",
+      "go",
+      "work",
+      "study",
+      "read"
+    ]
+  },
+  "love": {
+    "type": "verb",
+    "next": [
+      "to",
+      "go",
+      "work",
+      "study",
+      "read"
+    ]
+  },
+  "house": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "car": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "book": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "pen": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "table": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "chair": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "door": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "wall": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "floor": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "ceiling": {
+    "type": "noun",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "good": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "bad": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "big": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "small": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "tall": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "short": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "long": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "wide": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "narrow": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "beautiful": {
+    "type": "adjective",
+    "next": [
+      "for",
+      "at",
+      "with",
+      "to",
+      "in"
+    ]
+  },
+  "and": {
+    "type": "conjunction",
+    "next": [
+      "also",
+      "too",
+      "then",
+      "so",
+      "because"
+    ]
+  },
+  "or": {
+    "type": "conjunction",
+    "next": [
+      "else",
+      "then",
+      "so",
+      "because",
+      "but"
+    ]
+  },
+  "but": {
+    "type": "conjunction",
+    "next": [
+      "also",
+      "then",
+      "so",
+      "because",
+      "however"
+    ]
+  },
+  "because": {
+    "type": "conjunction",
+    "next": [
+      "of",
+      "so",
+      "then",
+      "therefore",
+      "thus"
+    ]
+  },
+  "so": {
+    "type": "conjunction",
+    "next": [
+      "that",
+      "then",
+      "therefore",
+      "thus",
+      "hence"
+    ]
+  },
+  "this": {
+    "type": "determiner",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "that": {
+    "type": "determiner",
+    "next": [
+      "is",
+      "has",
+      "looks",
+      "feels",
+      "smells"
+    ]
+  },
+  "these": {
+    "type": "determiner",
+    "next": [
+      "are",
+      "have",
+      "look",
+      "feel",
+      "smell"
+    ]
+  },
+  "those": {
+    "type": "determiner",
+    "next": [
+      "are",
+      "have",
+      "look",
+      "feel",
+      "smell"
+    ]
+  },
+  "not": {
+    "type": "negation",
+    "next": [
+      "to",
+      "have",
+      "be",
+      "do",
+      "can"
+    ]
+  },
+  "no": {
+    "type": "negation",
+    "next": [
+      "one",
+      "way",
+      "time",
+      "problem",
+      "issue"
+    ]
+  },
+  "never": {
+    "type": "negation",
+    "next": [
+      "to",
+      "have",
+      "be",
+      "do",
+      "can"
+    ]
+  },
+  "yes": {
+    "type": "affirmation",
+    "next": [
+      "it",
+      "is",
+      "has",
+      "does",
+      "can"
+    ]
+  },
+  "sure": {
+    "type": "affirmation",
+    "next": [
+      "it",
+      "is",
+      "has",
+      "does",
+      "can"
+    ]
+  },
+  "right": {
+    "type": "affirmation",
+    "next": [
+      "it",
+      "is",
+      "has",
+      "does",
+      "can"
+    ]
+  },
+  "what": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "who": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "where": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "when": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "why": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "how": {
+    "type": "question",
+    "next": [
+      "is",
+      "are",
+      "do",
+      "does",
+      "can"
+    ]
+  },
+  "today": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "have",
+      "will"
+    ]
+  },
+  "yesterday": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "had",
+      "went"
+    ]
+  },
+  "tomorrow": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "will",
+      "can"
+    ]
+  },
+  "this week": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "have",
+      "will"
+    ]
+  },
+  "this month": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "have",
+      "will"
+    ]
+  },
+  "this year": {
+    "type": "time",
+    "next": [
+      "i",
+      "we",
+      "they",
+      "have",
+      "will"
+    ]
+  },
+  "sunny": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "rainy": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "windy": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "cold": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "hot": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "warm": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "cool": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "humid": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "dry": {
+    "type": "weather",
+    "next": [
+      "today",
+      "tomorrow",
+      "this week",
+      "outside",
+      "here"
+    ]
+  },
+  "happy": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "sad": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "angry": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "afraid": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "surprised": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "excited": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "bored": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "tired": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "healthy": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "sick": {
+    "type": "emotion",
+    "next": [
+      "to",
+      "with",
+      "about",
+      "for",
+      "because"
+    ]
+  },
+  "one": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "two": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "three": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "four": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "five": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "six": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "seven": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "eight": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "nine": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  },
+  "ten": {
+    "type": "number",
+    "next": [
+      "of",
+      "for",
+      "to",
+      "with",
+      "in"
+    ]
+  }
+}

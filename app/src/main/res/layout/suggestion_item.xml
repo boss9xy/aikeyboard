@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <!-- Từ gợi ý -->
+    <TextView
+        android:id="@+id/suggestionWord"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/key_text_normal"
+        android:textStyle="bold"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <!-- Định nghĩa ngắn (nếu có) -->
+    <TextView
+        android:id="@+id/suggestionDefinition"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/key_text_special"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:layout_marginTop="2dp"
+        android:visibility="gone"/>
+
+</LinearLayout> 

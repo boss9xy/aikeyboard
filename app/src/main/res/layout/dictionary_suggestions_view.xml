@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dictionarySuggestionsContainer"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical"
+    android:background="@color/keyboard_background"
+    android:visibility="visible">
+
+    <!-- Không có header để tiết kiệm không gian -->
+
+    <!-- Container cho 3 phần gợi ý -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <!-- Phần 1: Từ đơn -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/keyboard_background"
+            android:paddingHorizontal="4dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/singleWordRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/keyboard_background"/>
+
+        </LinearLayout>
+
+        <!-- Divider dọc -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/key_special_background"/>
+
+        <!-- Phần 2: Từ đôi -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/keyboard_background"
+            android:paddingHorizontal="4dp">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/phraseRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/keyboard_background"/>
+
+        </LinearLayout>
+
+        <!-- Divider dọc -->
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/key_special_background"/>
+
+        <!-- Phần 3: Từ tiếp theo -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@color/keyboard_background"
+            android:paddingHorizontal="4dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nextWordRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:background="@color/keyboard_background"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Divider ngang -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/key_special_background"
+        android:layout_marginHorizontal="8dp"/>
+
+</LinearLayout> 

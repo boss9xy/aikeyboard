@@ -1,0 +1,1587 @@
+{
+  "tôi": {
+    "type": "pronoun",
+    "next": [
+      "muốn",
+      "cần",
+      "thích",
+      "làm",
+      "học"
+    ]
+  },
+  "bạn": {
+    "type": "pronoun",
+    "next": [
+      "có",
+      "muốn",
+      "thích",
+      "làm",
+      "học"
+    ]
+  },
+  "anh": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "chị": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "em": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "ông": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "bà": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "cô": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "chú": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "bác": {
+    "type": "pronoun",
+    "next": [
+      "ấy",
+      "đó",
+      "kia",
+      "này",
+      "đang"
+    ]
+  },
+  "làm": {
+    "type": "verb",
+    "next": [
+      "việc",
+      "bài",
+      "dự án",
+      "công việc",
+      "nhà"
+    ]
+  },
+  "học": {
+    "type": "verb",
+    "next": [
+      "bài",
+      "môn",
+      "kiến thức",
+      "kỹ năng",
+      "tiếng"
+    ]
+  },
+  "ăn": {
+    "type": "verb",
+    "next": [
+      "cơm",
+      "phở",
+      "bún",
+      "cháo",
+      "bánh"
+    ]
+  },
+  "uống": {
+    "type": "verb",
+    "next": [
+      "nước",
+      "trà",
+      "cà phê",
+      "sữa",
+      "bia"
+    ]
+  },
+  "đi": {
+    "type": "verb",
+    "next": [
+      "nhà",
+      "trường",
+      "công ty",
+      "chợ",
+      "bệnh viện"
+    ]
+  },
+  "về": {
+    "type": "verb",
+    "next": [
+      "nhà",
+      "quê",
+      "thành phố",
+      "nước",
+      "trường"
+    ]
+  },
+  "đến": {
+    "type": "verb",
+    "next": [
+      "nhà",
+      "trường",
+      "công ty",
+      "chợ",
+      "bệnh viện"
+    ]
+  },
+  "xem": {
+    "type": "verb",
+    "next": [
+      "phim",
+      "tivi",
+      "sách",
+      "báo",
+      "truyện"
+    ]
+  },
+  "nghe": {
+    "type": "verb",
+    "next": [
+      "nhạc",
+      "radio",
+      "tin tức",
+      "podcast",
+      "sách nói"
+    ]
+  },
+  "chơi": {
+    "type": "verb",
+    "next": [
+      "game",
+      "thể thao",
+      "nhạc",
+      "cờ",
+      "bóng"
+    ]
+  },
+  "tốt": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "xấu": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "đẹp": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "lớn": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "nhỏ": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "cao": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "thấp": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "dài": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "ngắn": {
+    "type": "adjective",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "nhà": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "anh",
+      "chị"
+    ]
+  },
+  "xe": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "máy",
+      "hơi"
+    ]
+  },
+  "sách": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "giáo",
+      "truyện"
+    ]
+  },
+  "bút": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "mực",
+      "chì"
+    ]
+  },
+  "bàn": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "học",
+      "làm việc"
+    ]
+  },
+  "ghế": {
+    "type": "noun",
+    "next": [
+      "của",
+      "tôi",
+      "bạn",
+      "ngồi",
+      "đứng"
+    ]
+  },
+  "cửa": {
+    "type": "noun",
+    "next": [
+      "của",
+      "nhà",
+      "phòng",
+      "trước",
+      "sau"
+    ]
+  },
+  "tường": {
+    "type": "noun",
+    "next": [
+      "của",
+      "nhà",
+      "phòng",
+      "trước",
+      "sau"
+    ]
+  },
+  "sàn": {
+    "type": "noun",
+    "next": [
+      "của",
+      "nhà",
+      "phòng",
+      "trước",
+      "sau"
+    ]
+  },
+  "trần": {
+    "type": "noun",
+    "next": [
+      "của",
+      "nhà",
+      "phòng",
+      "trước",
+      "sau"
+    ]
+  },
+  "và": {
+    "type": "conjunction",
+    "next": [
+      "cũng",
+      "cả",
+      "thì",
+      "nên",
+      "vì"
+    ]
+  },
+  "hoặc": {
+    "type": "conjunction",
+    "next": [
+      "là",
+      "có",
+      "thì",
+      "nên",
+      "vì"
+    ]
+  },
+  "nhưng": {
+    "type": "conjunction",
+    "next": [
+      "mà",
+      "còn",
+      "thì",
+      "nên",
+      "vì"
+    ]
+  },
+  "vì": {
+    "type": "conjunction",
+    "next": [
+      "vậy",
+      "nên",
+      "thì",
+      "có",
+      "là"
+    ]
+  },
+  "nên": {
+    "type": "conjunction",
+    "next": [
+      "là",
+      "có",
+      "thì",
+      "vì",
+      "mà"
+    ]
+  },
+  "này": {
+    "type": "determiner",
+    "next": [
+      "là",
+      "của",
+      "tôi",
+      "bạn",
+      "anh"
+    ]
+  },
+  "kia": {
+    "type": "determiner",
+    "next": [
+      "là",
+      "của",
+      "tôi",
+      "bạn",
+      "anh"
+    ]
+  },
+  "đó": {
+    "type": "determiner",
+    "next": [
+      "là",
+      "của",
+      "tôi",
+      "bạn",
+      "anh"
+    ]
+  },
+  "ấy": {
+    "type": "determiner",
+    "next": [
+      "là",
+      "của",
+      "tôi",
+      "bạn",
+      "anh"
+    ]
+  },
+  "không": {
+    "type": "negation",
+    "next": [
+      "có",
+      "là",
+      "phải",
+      "đúng",
+      "sai"
+    ]
+  },
+  "chưa": {
+    "type": "negation",
+    "next": [
+      "có",
+      "là",
+      "phải",
+      "đúng",
+      "sai"
+    ]
+  },
+  "chẳng": {
+    "type": "negation",
+    "next": [
+      "có",
+      "là",
+      "phải",
+      "đúng",
+      "sai"
+    ]
+  },
+  "có": {
+    "type": "affirmation",
+    "next": [
+      "thể",
+      "thời gian",
+      "tiền",
+      "kinh nghiệm",
+      "ý tưởng"
+    ]
+  },
+  "phải": {
+    "type": "affirmation",
+    "next": [
+      "là",
+      "có",
+      "thì",
+      "nên",
+      "vì"
+    ]
+  },
+  "đúng": {
+    "type": "affirmation",
+    "next": [
+      "rồi",
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế"
+    ]
+  },
+  "gì": {
+    "type": "question",
+    "next": [
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế",
+      "à"
+    ]
+  },
+  "ai": {
+    "type": "question",
+    "next": [
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế",
+      "à"
+    ]
+  },
+  "đâu": {
+    "type": "question",
+    "next": [
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế",
+      "à"
+    ]
+  },
+  "khi nào": {
+    "type": "question",
+    "next": [
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế",
+      "à"
+    ]
+  },
+  "tại sao": {
+    "type": "question",
+    "next": [
+      "vậy",
+      "thế",
+      "như vậy",
+      "như thế",
+      "à"
+    ]
+  },
+  "hôm nay": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "hôm qua": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "ngày mai": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "tuần này": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "tháng này": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "năm nay": {
+    "type": "time",
+    "next": [
+      "tôi",
+      "bạn",
+      "chúng ta",
+      "có",
+      "làm"
+    ]
+  },
+  "nắng": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "mưa": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "gió": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "lạnh": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "nóng": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "ấm": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "mát": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "ẩm": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "khô": {
+    "type": "weather",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "vui": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "buồn": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "giận": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "sợ": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "ngạc nhiên": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "thích thú": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "chán": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "mệt": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "khỏe": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "ốm": {
+    "type": "emotion",
+    "next": [
+      "lắm",
+      "quá",
+      "nhất",
+      "nhất",
+      "nhất"
+    ]
+  },
+  "một": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "hai": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "ba": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "bốn": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "năm": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "sáu": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "bảy": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "tám": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "chín": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "mười": {
+    "type": "number",
+    "next": [
+      "cái",
+      "con",
+      "chiếc",
+      "quyển",
+      "cuốn"
+    ]
+  },
+  "chào": {
+    "type": "greeting",
+    "next": [
+      "bạn",
+      "anh",
+      "chị",
+      "em",
+      "ông",
+      "bà",
+      "cô",
+      "chú",
+      "bác"
+    ]
+  },
+  "các": {
+    "type": "determiner",
+    "next": [
+      "bạn",
+      "anh",
+      "chị",
+      "em",
+      "ông",
+      "bà",
+      "cô",
+      "chú",
+      "bác"
+    ]
+  },
+  "cá": {
+    "type": "noun",
+    "next": [
+      "to",
+      "nhỏ",
+      "lớn",
+      "nhiều",
+      "ít",
+      "ngon",
+      "tươi"
+    ]
+  },
+  "ngủ": {
+    "type": "verb",
+    "next": [
+      "ngon",
+      "sâu",
+      "ít",
+      "nhiều",
+      "sớm",
+      "muộn"
+    ]
+  },
+  "đọc": {
+    "type": "verb",
+    "next": [
+      "sách",
+      "báo",
+      "truyện",
+      "tin",
+      "tức",
+      "email"
+    ]
+  },
+  "viết": {
+    "type": "verb",
+    "next": [
+      "bài",
+      "văn",
+      "thư",
+      "email",
+      "tin",
+      "nhắn"
+    ]
+  },
+  "nói": {
+    "type": "verb",
+    "next": [
+      "tiếng",
+      "Việt",
+      "Anh",
+      "Pháp",
+      "Đức",
+      "Nhật"
+    ]
+  },
+  "hiểu": {
+    "type": "verb",
+    "next": [
+      "rồi",
+      "chưa",
+      "được",
+      "không",
+      "có",
+      "thể"
+    ]
+  },
+  "biết": {
+    "type": "verb",
+    "next": [
+      "rồi",
+      "chưa",
+      "được",
+      "không",
+      "có",
+      "thể"
+    ]
+  },
+  "muốn": {
+    "type": "verb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "cần": {
+    "type": "verb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "thích": {
+    "type": "verb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "yêu": {
+    "type": "verb",
+    "next": [
+      "bạn",
+      "anh",
+      "chị",
+      "em",
+      "ông",
+      "bà"
+    ]
+  },
+  "ghét": {
+    "type": "verb",
+    "next": [
+      "ai",
+      "gì",
+      "điều",
+      "này",
+      "đó",
+      "kia"
+    ]
+  },
+  "rất": {
+    "type": "adverb",
+    "next": [
+      "đẹp",
+      "xấu",
+      "tốt",
+      "dở",
+      "ngon",
+      "dở"
+    ]
+  },
+  "rồi": {
+    "type": "adverb",
+    "next": [
+      "sao",
+      "vậy",
+      "thế",
+      "này",
+      "đó",
+      "kia"
+    ]
+  },
+  "đang": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "sẽ": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "đã": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "vừa": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "mới": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "cũng": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "luôn": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "thường": {
+    "type": "adverb",
+    "next": [
+      "học",
+      "làm",
+      "đi",
+      "về",
+      "ăn",
+      "uống"
+    ]
+  },
+  "hiếm": {
+    "type": "adverb",
+    "next": [
+      "khi",
+      "lúc",
+      "thời",
+      "gian",
+      "này",
+      "đó"
+    ]
+  },
+  "đôi": {
+    "type": "adverb",
+    "next": [
+      "khi",
+      "lúc",
+      "thời",
+      "gian",
+      "này",
+      "đó"
+    ]
+  },
+  "khi": {
+    "type": "conjunction",
+    "next": [
+      "nào",
+      "đó",
+      "này",
+      "kia",
+      "ấy",
+      "thế"
+    ]
+  },
+  "nếu": {
+    "type": "conjunction",
+    "next": [
+      "có",
+      "thì",
+      "sẽ",
+      "được",
+      "không",
+      "thể"
+    ]
+  },
+  "dở": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "ngon": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "to": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nhiều": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "ít": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "cũ": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "hay": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nhanh": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "chậm": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "rộng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "hẹp": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "sâu": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nông": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nặng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nhẹ": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "cứng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "mềm": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "sạch": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "bẩn": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "ướt": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "trắng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "đen": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "đỏ": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "xanh": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "vàng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "tím": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "nâu": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "xám": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "hồng": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  },
+  "cam": {
+    "type": "adjective",
+    "next": [
+      "quá",
+      "lắm",
+      "thật",
+      "vậy",
+      "thế",
+      "sao"
+    ]
+  }
+}

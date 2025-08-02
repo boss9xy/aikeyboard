@@ -1,0 +1,720 @@
+{
+  "auto_complete_rules": {
+    "gai": [
+      "gai",
+      "gãi",
+      "gài",
+      "gại",
+      "gái"
+    ],
+    "luot": [
+      "lượt",
+      "luốt",
+      "lướt"
+    ],
+    "luom": [
+      "lượm",
+      "luộm",
+      "lườm",
+      "luôm"
+    ],
+    "luon": [
+      "lượn",
+      "luồn",
+      "luôn",
+      "lươn",
+      "lườn"
+    ],
+    "luoc": [
+      "lược",
+      "luộc",
+      "luốc"
+    ],
+    "phanh": [
+      "phanh",
+      "phành"
+    ],
+    "phang": [
+      "phang",
+      "phăng",
+      "phàng",
+      "phạng",
+      "phẳng",
+      "phảng"
+    ],
+    "sut": [
+      "sứt",
+      "sựt",
+      "sút",
+      "sụt"
+    ],
+    "suc": [
+      "sức",
+      "sực",
+      "súc",
+      "sục"
+    ],
+    "sua": [
+      "sứa",
+      "sủa",
+      "sửa",
+      "sưa",
+      "sụa",
+      "sữa"
+    ],
+    "map": [
+      "mấp",
+      "mạp",
+      "mập"
+    ],
+    "rua": [
+      "rủa",
+      "rửa",
+      "rua",
+      "rứa",
+      "rữa",
+      "rùa",
+      "rựa"
+    ],
+    "rui": [
+      "rủi",
+      "rui",
+      "rụi",
+      "rùi"
+    ],
+    "run": [
+      "rủn",
+      "run",
+      "rún",
+      "rùn"
+    ],
+    "theu": [
+      "thều",
+      "thểu",
+      "thêu"
+    ],
+    "them": [
+      "thềm",
+      "thèm",
+      "thêm"
+    ],
+    "loet": [
+      "loẹt",
+      "loét"
+    ],
+    "lien": [
+      "liến",
+      "liễn",
+      "liền",
+      "liện",
+      "liên"
+    ],
+    "phet": [
+      "phệt",
+      "phét",
+      "phết",
+      "phẹt"
+    ],
+    "buom": [
+      "bươm",
+      "buộm",
+      "buồm",
+      "bướm"
+    ],
+    "buon": [
+      "bươn",
+      "buôn",
+      "buồn"
+    ],
+    "buoi": [
+      "bươi",
+      "bưởi",
+      "buổi"
+    ],
+    "buou": [
+      "bươu",
+      "bướu"
+    ],
+    "duc": [
+      "đục",
+      "đực",
+      "đúc",
+      "dục",
+      "đức"
+    ],
+    "dun": [
+      "đụn",
+      "đùn",
+      "đun",
+      "dún",
+      "dùn"
+    ],
+    "dup": [
+      "đụp",
+      "đúp"
+    ],
+    "dut": [
+      "đụt",
+      "dứt",
+      "đứt",
+      "dút",
+      "đút"
+    ],
+    "lau": [
+      "lâu",
+      "lảu",
+      "lậu",
+      "láu",
+      "lầu",
+      "làu",
+      "lẩu",
+      "lạu",
+      "lau"
+    ],
+    "lay": [
+      "lây",
+      "lẫy",
+      "lậy",
+      "láy",
+      "lẩy",
+      "lầy",
+      "lấy",
+      "lạy",
+      "lay"
+    ],
+    "lam": [
+      "lâm",
+      "lẫm",
+      "lăm",
+      "lầm",
+      "lặm",
+      "làm",
+      "lẩm",
+      "lam",
+      "lảm",
+      "lấm",
+      "lắm",
+      "lãm",
+      "lạm",
+      "lằm"
+    ],
+    "lan": [
+      "lân",
+      "lẩn",
+      "lẫn",
+      "lận",
+      "lăn",
+      "lán",
+      "lần",
+      "lặn",
+      "lẳn",
+      "lấn",
+      "làn",
+      "lãn",
+      "lạn",
+      "lan",
+      "lằn"
+    ],
+    "hong": [
+      "hong",
+      "hống",
+      "hồng",
+      "hông",
+      "hỏng",
+      "hòng",
+      "hóng",
+      "hổng",
+      "họng"
+    ],
+    "choang": [
+      "choảng",
+      "choáng",
+      "choạng",
+      "choàng",
+      "choang"
+    ],
+    "choe": [
+      "chọe",
+      "chòe",
+      "chóe",
+      "choe"
+    ],
+    "dia": [
+      "đỉa",
+      "đìa",
+      "dĩa",
+      "dìa",
+      "địa",
+      "đĩa"
+    ],
+    "hai": [
+      "hai",
+      "hại",
+      "hài",
+      "hái",
+      "hải",
+      "hãi"
+    ],
+    "ham": [
+      "ham",
+      "hầm",
+      "hâm",
+      "hằm",
+      "hạm",
+      "hám",
+      "hàm",
+      "hãm",
+      "hấm",
+      "hẩm",
+      "hẳm",
+      "hậm",
+      "hăm"
+    ],
+    "han": [
+      "han",
+      "hân",
+      "hằn",
+      "hạn",
+      "hấn",
+      "hàn",
+      "hắn",
+      "hẳn",
+      "hán",
+      "hãn",
+      "hận"
+    ],
+    "hao": [
+      "hao",
+      "hạo",
+      "háo",
+      "hào",
+      "hảo",
+      "hão"
+    ],
+    "hay": [
+      "hay",
+      "hây",
+      "háy",
+      "hầy",
+      "hẩy",
+      "hãy"
+    ],
+    "hau": [
+      "hau",
+      "hầu",
+      "hâu",
+      "háu",
+      "hàu",
+      "hấu",
+      "hẫu",
+      "hậu"
+    ],
+    "chang": [
+      "chẳng",
+      "chặng",
+      "chàng",
+      "chạng",
+      "chang",
+      "chằng",
+      "chăng",
+      "cháng"
+    ],
+    "lang": [
+      "lạng",
+      "lẵng",
+      "láng",
+      "làng",
+      "lằng",
+      "lắng",
+      "lang",
+      "lăng",
+      "lâng",
+      "lẳng",
+      "lặng",
+      "lãng",
+      "lảng"
+    ],
+    "lanh": [
+      "lạnh",
+      "lánh",
+      "lành",
+      "lanh",
+      "lãnh",
+      "lảnh"
+    ],
+    "sao": [
+      "sảo",
+      "São",
+      "sạo",
+      "sào",
+      "sáo",
+      "sao"
+    ],
+    "san": [
+      "sản",
+      "sân",
+      "sần",
+      "sạn",
+      "sàn",
+      "sán",
+      "sẵn",
+      "săn",
+      "sắn",
+      "sấn",
+      "san"
+    ],
+    "sai": [
+      "sải",
+      "sãi",
+      "sài",
+      "sái",
+      "sai"
+    ],
+    "say": [
+      "sảy",
+      "sậy",
+      "sầy",
+      "sây",
+      "sấy",
+      "sẩy",
+      "say"
+    ],
+    "phong": [
+      "phông",
+      "phóng",
+      "phồng",
+      "phòng",
+      "phỗng",
+      "phong",
+      "phộng",
+      "phổng",
+      "phỏng"
+    ],
+    "riem": [
+      "riềm"
+    ],
+    "theo": [
+      "thẻo",
+      "thẹo",
+      "thèo",
+      "theo"
+    ],
+    "quat": [
+      "quát",
+      "quặt",
+      "quật",
+      "quạt",
+      "quắt",
+      "quất"
+    ],
+    "quan": [
+      "quán",
+      "quặn",
+      "quần",
+      "quăn",
+      "quàn",
+      "quận",
+      "quan",
+      "quẫn",
+      "quằn",
+      "quân",
+      "quắn",
+      "quấn",
+      "quản",
+      "quẩn"
+    ],
+    "quai": [
+      "quái",
+      "quại",
+      "quài",
+      "quai",
+      "quải"
+    ],
+    "quac": [
+      "quác",
+      "quặc",
+      "quạc",
+      "quắc"
+    ],
+    "lua": [
+      "lửa",
+      "lưa",
+      "lụa",
+      "lúa",
+      "lứa",
+      "lua",
+      "lùa",
+      "lựa",
+      "lừa",
+      "lữa"
+    ],
+    "thinh": [
+      "thỉnh",
+      "thinh",
+      "thình",
+      "thịnh",
+      "thính"
+    ],
+    "mop": [
+      "móp",
+      "mọp"
+    ],
+    "am": [
+      "ẵm",
+      "ám",
+      "ẩm",
+      "ảm",
+      "am",
+      "ăm",
+      "ầm",
+      "âm",
+      "ậm",
+      "ấm"
+    ],
+    "mon": [
+      "món",
+      "mởn",
+      "môn",
+      "mớn",
+      "mọn",
+      "mòn",
+      "mơn",
+      "mồn",
+      "mon"
+    ],
+    "mom": [
+      "móm",
+      "mỏm",
+      "mõm",
+      "mớm",
+      "mồm",
+      "mom"
+    ],
+    "moi": [
+      "mói",
+      "mội",
+      "mỏi",
+      "môi",
+      "mới",
+      "mối",
+      "mỗi",
+      "mọi",
+      "mời",
+      "mòi",
+      "mơi",
+      "mồi",
+      "moi"
+    ],
+    "moc": [
+      "móc",
+      "mộc",
+      "mốc",
+      "mọc"
+    ],
+    "dua": [
+      "dũa",
+      "đùa",
+      "đua",
+      "dứa",
+      "đứa",
+      "dua",
+      "dúa",
+      "đúa",
+      "dựa",
+      "dùa",
+      "dừa",
+      "đũa",
+      "dưa",
+      "đưa"
+    ],
+    "thuyen": [
+      "thuyền",
+      "thuyên"
+    ],
+    "giau": [
+      "giấu",
+      "giàu",
+      "giậu",
+      "giầu",
+      "giâu"
+    ],
+    "giay": [
+      "giấy",
+      "giày",
+      "giẫy",
+      "giãy",
+      "giây",
+      "giầy"
+    ],
+    "giac": [
+      "giấc",
+      "giặc",
+      "giác"
+    ],
+    "gian": [
+      "giấn",
+      "giàn",
+      "giận",
+      "giãn",
+      "giần",
+      "gian",
+      "giản",
+      "gián"
+    ],
+    "giam": [
+      "giấm",
+      "giằm",
+      "giẫm",
+      "giậm",
+      "giặm",
+      "giam",
+      "giâm",
+      "giăm",
+      "giảm",
+      "giám"
+    ],
+    "hoat": [
+      "hoắt",
+      "hoạt"
+    ],
+    "hoam": [
+      "hoắm"
+    ],
+    "cay": [
+      "cạy",
+      "cây",
+      "cấy",
+      "cay",
+      "cày",
+      "cáy",
+      "cậy",
+      "cầy"
+    ],
+    "xung": [
+      "xứng",
+      "xửng",
+      "xúng",
+      "xùng",
+      "xừng",
+      "xung",
+      "xưng",
+      "xủng"
+    ],
+    "cap": [
+      "cạp",
+      "cấp",
+      "cắp",
+      "cáp",
+      "cập",
+      "cặp"
+    ],
+    "cao": [
+      "cạo",
+      "cao",
+      "cào",
+      "cáo",
+      "cảo"
+    ],
+    "can": [
+      "cạn",
+      "cân",
+      "cằn",
+      "cẫn",
+      "cấn",
+      "càn",
+      "cẩn",
+      "cần",
+      "căn",
+      "cán",
+      "cản",
+      "can",
+      "cận",
+      "cắn",
+      "cặn"
+    ],
+    "cam": [
+      "cạm",
+      "câm",
+      "cằm",
+      "cấm",
+      "cẩm",
+      "căm",
+      "cám",
+      "cảm",
+      "cam",
+      "cắm",
+      "cầm",
+      "cặm"
+    ],
+    "cac": [
+      "cạc",
+      "cắc",
+      "cấc",
+      "các"
+    ],
+    "soi": [
+      "sòi",
+      "sồi",
+      "sợi",
+      "sói",
+      "soi",
+      "sới",
+      "sôi",
+      "sổi",
+      "sởi",
+      "sỏi",
+      "sõi"
+    ],
+    "son": [
+      "sòn",
+      "sồn",
+      "són",
+      "sớn",
+      "son",
+      "sờn",
+      "sôn",
+      "sởn",
+      "sơn"
+    ],
+    "long": [
+      "lông",
+      "lồng",
+      "long",
+      "lỏng",
+      "lòng",
+      "lõng",
+      "lộng",
+      "lọng",
+      "lổng",
+      "lóng"
+    ],
+    "kua": [
+      "kủa",
+      "kua"
+    ],
+    "ton": [
+      "tồn",
+      "tốn",
+      "tôn",
+      "tợn",
+      "tổn",
+      "ton",
+      "tởn",
+      "tớn",
+      "tơn"
+    ],
+    "voi": [
+      "vội",
+      "vời",
+      "vói",
+      "voi",
+      "với",
+      "vôi",
+      "vơi",
+      "vòi",
+      "vợi",
+      "vọi",
+      "vối"
+    ]
+  }
+}

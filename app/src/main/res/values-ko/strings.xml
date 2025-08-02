@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">AI 키보드</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek API 키</string>
+    <string name="deepseek_api_key_hint">DeepSeek API 키를 입력하세요</string>
+    <string name="gpt_api_key">GPT API 키</string>
+    <string name="gpt_api_key_hint">GPT API 키를 입력하세요</string>
+    <string name="gpt_assistants_id">GPT 어시스턴트 ID</string>
+    <string name="gpt_assistants_id_hint">GPT 어시스턴트 ID를 입력하세요</string>
+    <string name="web_url">웹 URL</string>
+    <string name="web_url_hint">웹 URL을 입력하세요</string>
+    <string name="save_api_keys">API 키 저장</string>
+    <string name="enable_keyboard">키보드 활성화</string>
+    <string name="select_keyboard">키보드 선택</string>
+    <string name="api_settings">API 설정</string>
+    <string name="keyboard_settings">키보드 설정</string>
+    <string name="enter_at_least_one_api_key">최소 하나의 API 키를 입력하세요</string>
+    <string name="settings_saved">설정이 저장되었습니다</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">음성-텍스트 설정</string>
+    <string name="voice_language_hint">녹음 언어 (비워두면=자동 감지)</string>
+    <string name="voice_using_gpt_api">음성-텍스트에 GPT API 키 사용</string>
+    <string name="auto_detect">자동 감지</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">베트남어 (vi)</string>
+    <string name="english">영어 (en)</string>
+    <string name="chinese">중국어 (zh)</string>
+    <string name="japanese">일본어 (ja)</string>
+    <string name="korean">한국어 (ko)</string>
+    <string name="french">프랑스어 (fr)</string>
+    <string name="german">독일어 (de)</string>
+    <string name="spanish">스페인어 (es)</string>
+    <string name="italian">이탈리아어 (it)</string>
+    <string name="russian">러시아어 (ru)</string>
+    <string name="arabic">아랍어 (ar)</string>
+    <string name="thai">태국어 (th)</string>
+    <string name="hindi">힌디어 (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">GPT에게 질문</string>
+    <string name="btn_ask_deepseek">DeepSeek에게 질문</string>
+    <string name="btn_ask_olama">Olama에게 질문</string>
+    <string name="btn_translate">번역</string>
+    <string name="btn_paste_and_read">붙여넣기 및 읽기</string>
+    <string name="btn_mic">마이크</string>
+    <string name="btn_voice_to_text">음성→텍스트</string>
+    <string name="btn_stop_voice">음성 중지</string>
+    <string name="btn_stop_recording">녹음 중지</string>
+    <string name="btn_processing">처리 중...</string>
+    <string name="btn_transcribing">전사 중...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">녹음 시작</string>
+    <string name="recording_stopped">녹음 중지</string>
+    <string name="transcription_completed">전사 완료</string>
+    <string name="already_recording">이미 녹음 중</string>
+    <string name="not_recording">녹음 중이 아닙니다</string>
+    <string name="processing_in_progress">처리 중입니다</string>
+    <string name="microphone_permission_required">마이크 권한이 필요합니다</string>
+    <string name="failed_to_start_recording">녹음 시작에 실패했습니다</string>
+    <string name="transcription_failed">전사에 실패했습니다</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">Olama 서버 URL을 입력하세요</string>
+    <string name="olama_model">Olama 모델</string>
+    <string name="olama_model_hint">Olama 모델 이름을 입력하세요</string>
+    <string name="check_model">모델 확인</string>
+    <string name="save_olama">Olama 저장</string>
+    <string name="please_enter_url_and_model">URL과 모델을 입력하세요</string>
+    <string name="olama_settings_saved">Olama 설정이 저장되었습니다</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">키보드 소리 활성화</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">언어 설정</string>
+    <string name="select_app_language">앱 언어 선택</string>
+    <string name="language_changed">언어가 변경되었습니다</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">DeepSeek API 키</string>
+    <string name="gpt_api_card_title">GPT API 키</string>
+    <string name="gpt_assistants_card_title">GPT 어시스턴트 ID</string>
+    <string name="web_url_card_title">웹 URL</string>
+    <string name="olama_settings_card_title">Olama 설정</string>
+    <string name="voice_to_text_card_title">음성 텍스트 변환 설정</string>
+    <string name="language_settings_card_title">언어 설정</string>
+    <string name="keyboard_settings_card_title">키보드 설정</string>
+    <string name="sound_settings_card_title">소리 설정</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">API 키 저장</string>
+    <string name="enable_keyboard_button">키보드 활성화</string>
+    <string name="select_keyboard_button">키보드 선택</string>
+    <string name="check_model_button">모델 확인</string>
+    <string name="save_olama_button">Olama 저장</string>
+    <string name="checking_model_text">확인 중...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">클립보드 읽기</string>
+    <string name="stop_tts_button">읽기 중지</string>
+    <string name="translate_button">번역</string>
+    <string name="ask_button">질문</string>
+    <string name="gpt_ask_button">GPT 질문</string>
+    <string name="gpt_translate_button">GPT 번역</string>
+    <string name="deepseek_ask_button">Deepseek 질문</string>
+    <string name="deepseek_translate_button">Deepseek 번역</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">계산</string>
+    <string name="clear_history_button">기록 지우기</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">음성→텍스트</string>
+    <string name="stop_voice_button">음성 중지</string>
+    <string name="gpt_ask_button_text">GPT 질문</string>
+    <string name="assistants_gpt_button">GPT 어시스턴트</string>
+    <string name="olama_ask_button">Olama 질문</string>
+    <string name="stop_generation_button">생성 중지</string>
+    <string name="gpt_translate_button_text">GPT 번역</string>
+    <string name="gpt_continue_button">GPT 계속</string>
+    <string name="gpt_suggest_button">GPT 제안</string>
+    <string name="deepseek_suggest_button">DeepSeek 제안</string>
+    <string name="ask_button_text">텍스트 변환</string>
+    <string name="gpt_spell_check_button">GPT 맞춤법 검사</string>
+    <string name="deepseek_spell_check_button">DeepSeek 맞춤법 검사</string>
+    <string name="ask_deepseek_button">DeepSeek 질문</string>
+    <string name="olama_translate_button">Olama 번역</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">녹음 중...</string>
+    <string name="stop_recording_text">녹음 중지</string>
+    <string name="processing_text">처리 중...</string>
+    <string name="transcribing_text">전사 중...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">모델</string>
+    <string name="check_olama_model_button">모델 확인</string>
+    <string name="save_olama_settings_button">Olama 저장</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">Olama URL을 입력하세요</string>
+    <string name="model_found">모델: %s</string>
+    <string name="cannot_get_model">모델을 가져올 수 없습니다: %s</string>
+    <string name="olama_saved">Olama URL과 모델이 저장되었습니다</string>
+</resources> 

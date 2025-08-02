@@ -1,0 +1,50 @@
+{
+  "greeting": [
+    "xin",
+    "chào",
+    "hello",
+    "hi"
+  ],
+  "question": [
+    "gì",
+    "sao",
+    "tại",
+    "vì",
+    "khi"
+  ],
+  "action": [
+    "làm",
+    "học",
+    "đọc",
+    "viết",
+    "nói"
+  ],
+  "time": [
+    "hôm",
+    "ngày",
+    "tuần",
+    "tháng",
+    "năm"
+  ],
+  "location": [
+    "nhà",
+    "trường",
+    "công",
+    "việc",
+    "nơi"
+  ],
+  "emotion": [
+    "vui",
+    "buồn",
+    "giận",
+    "sợ",
+    "thích"
+  ],
+  "number": [
+    "một",
+    "hai",
+    "ba",
+    "bốn",
+    "năm"
+  ]
+}

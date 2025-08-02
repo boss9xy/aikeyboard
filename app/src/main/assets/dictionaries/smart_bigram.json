@@ -1,0 +1,343 @@
+{
+  "gai": [
+    "gài",
+    "gại",
+    "gái"
+  ],
+  "gài": [
+    "gai",
+    "gại",
+    "gái"
+  ],
+  "gại": [
+    "gai",
+    "gài",
+    "gái"
+  ],
+  "gái": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "gãi": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "phúng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "phừng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "phùng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "phung": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "phụng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "vành": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "vảnh": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "truồng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "truông": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "trưởng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "trường": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "trương": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "trướng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "xuýt": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "xiềng": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "ngưu": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chét": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chết": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nguy": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "ngụy": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chép": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chèn": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chen": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chén": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chèo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "cheo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chẹo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chéo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chêm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chèm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chễm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chém": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nén": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nền": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nên": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nến": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "néo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "neo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nẻo": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "ném": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nệm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nêm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nem": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "nếm": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "chểnh": [
+    "gai",
+    "gài",
+    "gại"
+  ],
+  "tôi": [
+    "muốn",
+    "cần",
+    "thích",
+    "đang",
+    "sẽ"
+  ],
+  "bạn": [
+    "có",
+    "muốn",
+    "thích",
+    "đang",
+    "sẽ"
+  ],
+  "có": [
+    "thể",
+    "nhiều",
+    "ít",
+    "một",
+    "hai"
+  ],
+  "không": [
+    "có",
+    "thể",
+    "muốn",
+    "thích",
+    "đang"
+  ],
+  "đang": [
+    "làm",
+    "học",
+    "đọc",
+    "viết",
+    "nói"
+  ],
+  "sẽ": [
+    "làm",
+    "học",
+    "đọc",
+    "viết",
+    "nói"
+  ],
+  "muốn": [
+    "làm",
+    "học",
+    "đọc",
+    "viết",
+    "nói"
+  ],
+  "thích": [
+    "làm",
+    "học",
+    "đọc",
+    "viết",
+    "nói"
+  ],
+  "làm": [
+    "gì",
+    "việc",
+    "bài",
+    "công",
+    "nghề"
+  ],
+  "học": [
+    "gì",
+    "bài",
+    "môn",
+    "trường",
+    "lớp"
+  ],
+  "đọc": [
+    "sách",
+    "báo",
+    "tin",
+    "tài",
+    "liệu"
+  ],
+  "viết": [
+    "bài",
+    "văn",
+    "thư",
+    "email",
+    "tin"
+  ],
+  "nói": [
+    "chuyện",
+    "tiếng",
+    "lời",
+    "câu",
+    "từ"
+  ]
+}

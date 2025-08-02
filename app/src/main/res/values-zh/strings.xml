@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">AI键盘</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek API密钥</string>
+    <string name="deepseek_api_key_hint">输入您的DeepSeek API密钥</string>
+    <string name="gpt_api_key">GPT API密钥</string>
+    <string name="gpt_api_key_hint">输入您的GPT API密钥</string>
+    <string name="gpt_assistants_id">GPT助手ID</string>
+    <string name="gpt_assistants_id_hint">输入您的GPT助手ID</string>
+    <string name="web_url">网页URL</string>
+    <string name="web_url_hint">输入网页URL</string>
+    <string name="save_api_keys">保存API密钥</string>
+    <string name="enable_keyboard">启用键盘</string>
+    <string name="select_keyboard">选择键盘</string>
+    <string name="api_settings">API设置</string>
+    <string name="keyboard_settings">键盘设置</string>
+    <string name="enter_at_least_one_api_key">请至少输入一个API密钥</string>
+    <string name="settings_saved">设置已保存</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">语音转文字设置</string>
+    <string name="voice_language_hint">录音语言（留空=自动识别）</string>
+    <string name="voice_using_gpt_api">使用GPT API密钥进行语音转文字</string>
+    <string name="auto_detect">自动识别</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">越南语 (vi)</string>
+    <string name="english">英语 (en)</string>
+    <string name="chinese">中文 (zh)</string>
+    <string name="japanese">日语 (ja)</string>
+    <string name="korean">韩语 (ko)</string>
+    <string name="french">法语 (fr)</string>
+    <string name="german">德语 (de)</string>
+    <string name="spanish">西班牙语 (es)</string>
+    <string name="italian">意大利语 (it)</string>
+    <string name="russian">俄语 (ru)</string>
+    <string name="arabic">阿拉伯语 (ar)</string>
+    <string name="thai">泰语 (th)</string>
+    <string name="hindi">印地语 (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">问GPT</string>
+    <string name="btn_ask_deepseek">问DeepSeek</string>
+    <string name="btn_ask_olama">问Olama</string>
+    <string name="btn_translate">翻译</string>
+    <string name="btn_paste_and_read">粘贴并阅读</string>
+    <string name="btn_mic">麦克风</string>
+    <string name="btn_voice_to_text">语音→文字</string>
+    <string name="btn_stop_voice">停止录音</string>
+    <string name="btn_stop_recording">停止录音</string>
+    <string name="btn_processing">处理中...</string>
+    <string name="btn_transcribing">转录中...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">开始录音</string>
+    <string name="recording_stopped">停止录音</string>
+    <string name="transcription_completed">转录完成</string>
+    <string name="already_recording">已在录音中</string>
+    <string name="not_recording">未在录音</string>
+    <string name="processing_in_progress">正在处理中</string>
+    <string name="microphone_permission_required">需要麦克风权限</string>
+    <string name="failed_to_start_recording">启动录音失败</string>
+    <string name="transcription_failed">转录失败</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">输入Olama服务器URL</string>
+    <string name="olama_model">Olama模型</string>
+    <string name="olama_model_hint">输入Olama模型名称</string>
+    <string name="check_model">检查模型</string>
+    <string name="save_olama">保存Olama</string>
+    <string name="please_enter_url_and_model">请输入URL和模型</string>
+    <string name="olama_settings_saved">Olama设置已保存</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">启用键盘声音</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">语言设置</string>
+    <string name="select_app_language">选择应用语言</string>
+    <string name="language_changed">语言已更改</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">DeepSeek API密钥</string>
+    <string name="gpt_api_card_title">GPT API密钥</string>
+    <string name="gpt_assistants_card_title">GPT助手ID</string>
+    <string name="web_url_card_title">网页URL</string>
+    <string name="olama_settings_card_title">Olama设置</string>
+    <string name="voice_to_text_card_title">语音转文字设置</string>
+    <string name="language_settings_card_title">语言设置</string>
+    <string name="keyboard_settings_card_title">键盘设置</string>
+    <string name="sound_settings_card_title">声音设置</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">保存API密钥</string>
+    <string name="enable_keyboard_button">启用键盘</string>
+    <string name="select_keyboard_button">选择键盘</string>
+    <string name="check_model_button">检查模型</string>
+    <string name="save_olama_button">保存Olama</string>
+    <string name="checking_model_text">检查中...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">读取剪贴板</string>
+    <string name="stop_tts_button">停止朗读</string>
+    <string name="translate_button">翻译</string>
+    <string name="ask_button">提问</string>
+    <string name="gpt_ask_button">GPT提问</string>
+    <string name="gpt_translate_button">GPT翻译</string>
+    <string name="deepseek_ask_button">Deepseek提问</string>
+    <string name="deepseek_translate_button">Deepseek翻译</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">计算</string>
+    <string name="clear_history_button">清除历史</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">语音→文字</string>
+    <string name="stop_voice_button">停止语音</string>
+    <string name="gpt_ask_button_text">GPT提问</string>
+    <string name="assistants_gpt_button">GPT助手</string>
+    <string name="olama_ask_button">Olama提问</string>
+    <string name="stop_generation_button">停止生成</string>
+    <string name="gpt_translate_button_text">GPT翻译</string>
+    <string name="gpt_continue_button">GPT继续</string>
+    <string name="gpt_suggest_button">GPT建议</string>
+    <string name="deepseek_suggest_button">DeepSeek建议</string>
+    <string name="ask_button_text">转换文本</string>
+    <string name="gpt_spell_check_button">GPT拼写检查</string>
+    <string name="deepseek_spell_check_button">DeepSeek拼写检查</string>
+    <string name="ask_deepseek_button">DeepSeek提问</string>
+    <string name="olama_translate_button">Olama翻译</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">正在录音...</string>
+    <string name="stop_recording_text">停止录音</string>
+    <string name="processing_text">处理中...</string>
+    <string name="transcribing_text">转录中...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">模型</string>
+    <string name="check_olama_model_button">检查模型</string>
+    <string name="save_olama_settings_button">保存Olama</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">请输入Olama URL</string>
+    <string name="model_found">模型: %s</string>
+    <string name="cannot_get_model">无法获取模型: %s</string>
+    <string name="olama_saved">已保存Olama URL和模型</string>
+</resources> 

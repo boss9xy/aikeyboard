@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- App Name -->
+    <string name="app_name">KI-Tastatur</string>
+    
+    <!-- Settings -->
+    <string name="deepseek_api_key">DeepSeek API-Schlüssel</string>
+    <string name="deepseek_api_key_hint">Geben Sie Ihren DeepSeek API-Schlüssel ein</string>
+    <string name="gpt_api_key">GPT API-Schlüssel</string>
+    <string name="gpt_api_key_hint">Geben Sie Ihren GPT API-Schlüssel ein</string>
+    <string name="gpt_assistants_id">GPT-Assistent-ID</string>
+    <string name="gpt_assistants_id_hint">Geben Sie Ihre GPT-Assistent-ID ein</string>
+    <string name="web_url">Web-URL</string>
+    <string name="web_url_hint">Geben Sie die Web-URL ein</string>
+    <string name="save_api_keys">API-Schlüssel speichern</string>
+    <string name="enable_keyboard">Tastatur aktivieren</string>
+    <string name="select_keyboard">Tastatur auswählen</string>
+    <string name="api_settings">API-Einstellungen</string>
+    <string name="keyboard_settings">Tastatur-Einstellungen</string>
+    <string name="enter_at_least_one_api_key">Bitte geben Sie mindestens einen API-Schlüssel ein</string>
+    <string name="settings_saved">Einstellungen gespeichert</string>
+    
+    <!-- Voice-to-Text -->
+    <string name="voice_to_text_settings">Sprache-zu-Text-Einstellungen</string>
+    <string name="voice_language_hint">Aufnahmesprache (leer=automatische Erkennung)</string>
+    <string name="voice_using_gpt_api">GPT API-Schlüssel für Sprache-zu-Text verwenden</string>
+    <string name="auto_detect">Automatische Erkennung</string>
+    
+    <!-- Languages -->
+    <string name="vietnamese">Vietnamesisch (vi)</string>
+    <string name="english">Englisch (en)</string>
+    <string name="chinese">Chinesisch (zh)</string>
+    <string name="japanese">Japanisch (ja)</string>
+    <string name="korean">Koreanisch (ko)</string>
+    <string name="french">Französisch (fr)</string>
+    <string name="german">Deutsch (de)</string>
+    <string name="spanish">Spanisch (es)</string>
+    <string name="italian">Italienisch (it)</string>
+    <string name="russian">Russisch (ru)</string>
+    <string name="arabic">Arabisch (ar)</string>
+    <string name="thai">Thailändisch (th)</string>
+    <string name="hindi">Hindi (hi)</string>
+    
+    <!-- AI Buttons -->
+    <string name="btn_ask_gpt">GPT fragen</string>
+    <string name="btn_ask_deepseek">DeepSeek fragen</string>
+    <string name="btn_ask_olama">Olama fragen</string>
+    <string name="btn_translate">Übersetzen</string>
+    <string name="btn_paste_and_read">Einfügen und lesen</string>
+    <string name="btn_mic">Mikrofon</string>
+    <string name="btn_voice_to_text">Sprache→Text</string>
+    <string name="btn_stop_voice">Sprache stoppen</string>
+    <string name="btn_stop_recording">Aufnahme stoppen</string>
+    <string name="btn_processing">Verarbeitung...</string>
+    <string name="btn_transcribing">Transkription...</string>
+    
+    <!-- Messages -->
+    <string name="recording_started">Aufnahme gestartet</string>
+    <string name="recording_stopped">Aufnahme gestoppt</string>
+    <string name="transcription_completed">Transkription abgeschlossen</string>
+    <string name="already_recording">Bereits aufnahme</string>
+    <string name="not_recording">Nicht aufnahme</string>
+    <string name="processing_in_progress">Verarbeitung läuft</string>
+    <string name="microphone_permission_required">Mikrofon-Berechtigung erforderlich</string>
+    <string name="failed_to_start_recording">Aufnahme starten fehlgeschlagen</string>
+    <string name="transcription_failed">Transkription fehlgeschlagen</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url">Olama URL</string>
+    <string name="olama_url_hint">Geben Sie die Olama-Server-URL ein</string>
+    <string name="olama_model">Olama-Modell</string>
+    <string name="olama_model_hint">Geben Sie den Olama-Modellnamen ein</string>
+    <string name="check_model">Modell prüfen</string>
+    <string name="save_olama">Olama speichern</string>
+    <string name="please_enter_url_and_model">Bitte geben Sie URL und Modell ein</string>
+    <string name="olama_settings_saved">Olama-Einstellungen gespeichert</string>
+    
+    <!-- Sound Settings -->
+    <string name="enable_keyboard_sound">Tastatur-Sound aktivieren</string>
+    
+    <!-- Language Selection -->
+    <string name="language_settings">Spracheinstellungen</string>
+    <string name="select_app_language">App-Sprache auswählen</string>
+    <string name="language_changed">Sprache geändert</string>
+    
+    <!-- Settings Labels -->
+    <string name="deepseek_api_card_title">DeepSeek API-Schlüssel</string>
+    <string name="gpt_api_card_title">GPT API-Schlüssel</string>
+    <string name="gpt_assistants_card_title">GPT Assistent-ID</string>
+    <string name="web_url_card_title">Web-URL</string>
+    <string name="olama_settings_card_title">Olama-Einstellungen</string>
+    <string name="voice_to_text_card_title">Sprach-zu-Text-Einstellungen</string>
+    <string name="language_settings_card_title">Spracheinstellungen</string>
+    <string name="keyboard_settings_card_title">Tastatureinstellungen</string>
+    <string name="sound_settings_card_title">Toneinstellungen</string>
+    
+    <!-- Button Labels -->
+    <string name="save_api_keys_button">API-Schlüssel speichern</string>
+    <string name="enable_keyboard_button">Tastatur aktivieren</string>
+    <string name="select_keyboard_button">Tastatur auswählen</string>
+    <string name="check_model_button">Modell prüfen</string>
+    <string name="save_olama_button">Olama speichern</string>
+    <string name="checking_model_text">Prüfung...</string>
+    
+    <!-- Smartbar Labels -->
+    <string name="smartbar_toggle_button">⚡</string>
+    <string name="language_vn_button">VN</string>
+    <string name="language_en_button">EN</string>
+    <string name="paste_and_read_button">Zwischenablage lesen</string>
+    <string name="stop_tts_button">Lesen stoppen</string>
+    <string name="translate_button">Übersetzen</string>
+    <string name="ask_button">Fragen</string>
+    <string name="gpt_ask_button">GPT Fragen</string>
+    <string name="gpt_translate_button">GPT Übersetzen</string>
+    <string name="deepseek_ask_button">Deepseek Fragen</string>
+    <string name="deepseek_translate_button">Deepseek Übersetzen</string>
+    <string name="switch_keyboard_button">⌨️</string>
+    <string name="mic_button">🎤</string>
+    <string name="calculator_button">Berechnen</string>
+    <string name="clear_history_button">Verlauf löschen</string>
+    
+    <!-- Smartbar Button Labels -->
+    <string name="voice_to_text_button">Sprache→Text</string>
+    <string name="stop_voice_button">Sprache stoppen</string>
+    <string name="gpt_ask_button_text">GPT Fragen</string>
+    <string name="assistants_gpt_button">GPT Assistenten</string>
+    <string name="olama_ask_button">Olama Fragen</string>
+    <string name="stop_generation_button">Gen stoppen</string>
+    <string name="gpt_translate_button_text">GPT Übersetzen</string>
+    <string name="gpt_continue_button">GPT Fortsetzen</string>
+    <string name="gpt_suggest_button">GPT Vorschlagen</string>
+    <string name="deepseek_suggest_button">DeepSeek Vorschlagen</string>
+    <string name="ask_button_text">Text konvertieren</string>
+    <string name="gpt_spell_check_button">GPT Rechtschreibung</string>
+    <string name="deepseek_spell_check_button">DeepSeek Rechtschreibung</string>
+    <string name="ask_deepseek_button">DeepSeek Fragen</string>
+    <string name="olama_translate_button">Olama Übersetzen</string>
+    
+    <!-- Voice-to-Text Status Texts -->
+    <string name="recording_text">Aufnahme...</string>
+    <string name="stop_recording_text">Aufnahme stoppen</string>
+    <string name="processing_text">Verarbeitung...</string>
+    <string name="transcribing_text">Transkription...</string>
+    
+    <!-- Language Codes -->
+    <string name="language_code_vn">VN</string>
+    <string name="language_code_en">EN</string>
+    
+    <!-- Olama Settings -->
+    <string name="olama_url_title">Olama URL</string>
+    <string name="olama_model_title">Modell</string>
+    <string name="check_olama_model_button">Modell prüfen</string>
+    <string name="save_olama_settings_button">Olama speichern</string>
+    
+    <!-- Toast Messages -->
+    <string name="please_enter_olama_url">Bitte geben Sie die Olama URL ein</string>
+    <string name="model_found">Modell: %s</string>
+    <string name="cannot_get_model">Modell kann nicht abgerufen werden: %s</string>
+    <string name="olama_saved">Olama URL und Modell gespeichert</string>
+</resources> 

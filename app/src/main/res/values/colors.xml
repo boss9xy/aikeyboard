@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="ic_launcher_background">#FFFFFFFF</color>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="key_preview_text">#FF000000</color>
+
+    <!-- Smartbar Colors -->
+    <color name="smartbar_button_background">#FF000000</color>
+    <color name="smartbar_button_text">#FFFFFFFF</color>
+
+    <!-- Keyboard Colors -->
+    <color name="key_special_background">#FF0c7a27</color>
+    <color name="key_special_background_pressed">#FF066a0d</color>
+    <color name="key_special_background_focused">#FF0a8a2f</color>
+    <color name="keyboard_background">#515151</color>
+    <color name="key_normal_background">#FFFFFFFF</color>
+    <color name="key_background">#FFFFFFFF</color>
+    <color name="key_text_normal">#FF000000</color>
+    <color name="key_text_special">#FFFFFFFF</color>
+    <color name="key_pressed">#FF066a0d</color>
+    <color name="mic_active_background">#FF0c7a27</color>
+
+    <color name="button_background_green">#FF066a0d</color>
+    <color name="button_text_black">#FF000000</color>
+    <color name="button_running_background">#FFFFA726</color> <!-- Màu cam nhạt -->
+    
+</resources>
