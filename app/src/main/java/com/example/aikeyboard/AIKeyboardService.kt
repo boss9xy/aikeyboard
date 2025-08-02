@@ -35,18 +35,8 @@ import android.widget.*
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import com.example.aikeyboard.text.TelexComposer
-import com.example.aikeyboard.text.PinyinComposer
-import com.example.aikeyboard.text.JapaneseComposer
-import com.example.aikeyboard.text.KoreanComposer
-import com.example.aikeyboard.text.FrenchComposer
-import com.example.aikeyboard.text.GermanComposer
-import com.example.aikeyboard.text.SpanishComposer
-import com.example.aikeyboard.text.ItalianComposer
-import com.example.aikeyboard.text.RussianComposer
-import com.example.aikeyboard.text.ArabicComposer
-import com.example.aikeyboard.text.ThaiComposer
-import com.example.aikeyboard.text.HindiComposer
-import com.example.aikeyboard.text.SmartVietnameseProcessor
+
+// SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
 import com.example.aikeyboard.text.TextProcessor
 import com.example.aikeyboard.models.Language
 import kotlinx.coroutines.*
@@ -88,27 +78,19 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     private var preferences: SharedPreferences? = null
 
     private var telexComposer = TelexComposer()
-    private var pinyinComposer = PinyinComposer()
-    private var japaneseComposer = JapaneseComposer()
-    private var koreanComposer = KoreanComposer()
-    private var frenchComposer = FrenchComposer()
-    private var germanComposer = GermanComposer()
-    private var spanishComposer = SpanishComposer()
-    private var italianComposer = ItalianComposer()
-    private var russianComposer = RussianComposer()
-    private var arabicComposer = ArabicComposer()
-    private var thaiComposer = ThaiComposer()
-    private var hindiComposer = HindiComposer()
+
+
     private var vietnameseInputBuffer = StringBuilder()
-    private var smartVietnameseProcessor: SmartVietnameseProcessor? = null
     private var assistantsAPI: AssistantsAPI? = null
     private var textProcessor: TextProcessor? = null
 
-    private var currentLanguage = "Vietnamese"
+    private var currentLanguage = Language.VIETNAMESE
+    private var currentDisplayLanguage = Language.VIETNAMESE
     private val supportedLanguages = listOf(
-        "Vietnamese", "English", "Chinese", "Japanese", "Korean",
-        "French", "German", "Spanish", "Russian", "Italian"
+        Language.VIETNAMESE, Language.ENGLISH
     )
+    
+    private val translationLanguages = Language.values().toList()
 
     private val gptModels = listOf(
         "gpt-3.5-turbo",
@@ -126,7 +108,6 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     private var textToSpeech: TextToSpeech? = null
     private var lastDetectedLanguage = "vi"
     private var isVietnameseMode = true
-    private var isSmartProcessorEnabled = true // Bật/tắt SmartVietnameseProcessor
     private val requestMutex = Mutex()
 
     private var gptAPI: GPTAPI? = null
@@ -294,16 +275,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         // textProcessor sẽ được khởi tạo trong onStartInputView
         
         // Initialize SmartVietnameseProcessor
-        try {
-            smartVietnameseProcessor = SmartVietnameseProcessor(this)
-    
-        } catch (e: Exception) {
-    
-            smartVietnameseProcessor = null
-        }
-        
-        // Load SmartVietnameseProcessor settings
-        isSmartProcessorEnabled = true // Luôn bật SmartVietnameseProcessor
+                // SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
         
         // Refresh UI when language changes
         try {
@@ -1007,7 +979,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                 clipboardManager.setPrimaryClip(ClipData.newPlainText("AI Keyboard Copy", textToProcess))
                 addTextToClipboardHistory(textToProcess)
-                val targetLanguage = languageSpinner?.selectedItem?.toString() ?: "English"
+                val selectedPosition = languageSpinner?.selectedItemPosition ?: 0
+                val targetLanguage = if (selectedPosition < translationLanguages.size) {
+                    translationLanguages[selectedPosition].englishName
+                } else "English"
                 val prompt = promptManager.getTranslatePrompt(textToProcess, targetLanguage)
                 
                 // Lưu vị trí con trỏ ban đầu (cuối văn bản đang có)
@@ -1162,14 +1137,16 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     private fun setupLanguageSpinner() {
         languageSpinner = keyboard?.findViewById(R.id.languageSpinner)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, supportedLanguages)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, translationLanguages)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         languageSpinner?.adapter = adapter
 
         languageSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                currentLanguage = supportedLanguages[position]
-                (view as? TextView)?.text = currentLanguage
+                // This spinner is for translation target language, not input language
+                // So we don't change currentLanguage here
+                val selectedLanguage = translationLanguages[position]
+                (view as? TextView)?.text = selectedLanguage.nativeName
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -1189,16 +1166,56 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     private fun setupLanguageToggleButton() {
         val languageButtonContainer = keyboard?.findViewById<View>(R.id.languageButtonContainer)
-        languageButtonContainer?.setOnClickListener { toggleLanguage() }
+        val displayLanguageButtonContainer = keyboard?.findViewById<View>(R.id.displayLanguageButtonContainer)
+        
+        languageButtonContainer?.setOnClickListener { toggleInputLanguage() }
+        displayLanguageButtonContainer?.setOnClickListener { toggleDisplayLanguage() }
+        
+        // Cập nhật hiển thị ban đầu
+        updateLanguageButtonDisplay()
+        updateDisplayLanguageButtonDisplay()
+        
+        // Load current display language from LanguageManager
+        currentDisplayLanguage = languageManager.getCurrentDisplayLanguage()
     }
 
-    private fun toggleLanguage() {
+    private fun toggleInputLanguage() {
         val languageButtonContainer = keyboard?.findViewById<View>(R.id.languageButtonContainer)
         val languageCodeText = languageButtonContainer?.findViewById<TextView>(R.id.languageCode)
-        val currentLanguage = languageManager.getCurrentLanguage()
         
-        // Cycle through languages
+        // Cycle through languages (only Vietnamese and English)
         val nextLanguage = when (currentLanguage) {
+            Language.VIETNAMESE -> Language.ENGLISH
+            Language.ENGLISH -> Language.VIETNAMESE
+            else -> Language.VIETNAMESE
+        }
+        
+        // Update input language
+        currentLanguage = nextLanguage
+        languageManager.setLanguage(nextLanguage)
+        
+        // Update composer in TextProcessor
+        textProcessor?.setLanguage(nextLanguage)
+        
+        // Update Vietnamese mode flag
+        isVietnameseMode = (nextLanguage == Language.VIETNAMESE)
+        
+        // Update button display
+        languageCodeText?.text = nextLanguage.displayCode
+        
+        // Show toast notification
+        showToast("Switched input language to ${nextLanguage.nativeName}")
+    }
+
+    private fun toggleDisplayLanguage() {
+        val displayLanguageButtonContainer = keyboard?.findViewById<View>(R.id.displayLanguageButtonContainer)
+        val displayLanguageCodeText = displayLanguageButtonContainer?.findViewById<TextView>(R.id.languageCode)
+        
+        // Get current display language from LanguageManager
+        val currentDisplayLang = languageManager.getCurrentDisplayLanguage()
+        
+        // Cycle through all available display languages
+        val nextDisplayLanguage = when (currentDisplayLang) {
             Language.VIETNAMESE -> Language.ENGLISH
             Language.ENGLISH -> Language.CHINESE
             Language.CHINESE -> Language.JAPANESE
@@ -1212,18 +1229,34 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             Language.ARABIC -> Language.THAI
             Language.THAI -> Language.HINDI
             Language.HINDI -> Language.VIETNAMESE
+            else -> Language.VIETNAMESE
         }
         
-        // Update language
-        languageManager.setLanguage(nextLanguage)
+        // Update display language
+        languageManager.setDisplayLanguage(nextDisplayLanguage)
+        currentDisplayLanguage = nextDisplayLanguage
         
-        // Refresh entire system for new language
-        refreshSystemForLanguage(nextLanguage)
+        // Refresh smartbar language
+        refreshSmartbarForLanguage(nextDisplayLanguage)
+        
+        // Update button display
+        displayLanguageCodeText?.text = nextDisplayLanguage.displayCode
         
         // Show toast notification
-        showToast("Switched to ${nextLanguage.nativeName}")
-        
+        showToast("Switched display language to ${nextDisplayLanguage.nativeName}")
+    }
 
+    private fun updateLanguageButtonDisplay() {
+        val languageButtonContainer = keyboard?.findViewById<View>(R.id.languageButtonContainer)
+        val languageCodeText = languageButtonContainer?.findViewById<TextView>(R.id.languageCode)
+        languageCodeText?.text = currentLanguage.displayCode
+    }
+
+    private fun updateDisplayLanguageButtonDisplay() {
+        val displayLanguageButtonContainer = keyboard?.findViewById<View>(R.id.displayLanguageButtonContainer)
+        val displayLanguageCodeText = displayLanguageButtonContainer?.findViewById<TextView>(R.id.languageCode)
+        val currentDisplayLang = languageManager.getCurrentDisplayLanguage()
+        displayLanguageCodeText?.text = currentDisplayLang.displayCode
     }
 
     private fun refreshSystemForLanguage(language: Language) {
@@ -1270,16 +1303,12 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             
             // Update keyboard layout if needed
             when (language) {
-                Language.ARABIC -> {
-                    // Arabic is right-to-left
-                    keyboardView.layoutDirection = View.LAYOUT_DIRECTION_RTL
-                }
-                Language.HINDI -> {
-                    // Hindi might need special layout
+                Language.VIETNAMESE, Language.ENGLISH -> {
+                    // Default left-to-right for Vietnamese and English
                     keyboardView.layoutDirection = View.LAYOUT_DIRECTION_LTR
                 }
                 else -> {
-                    // Default left-to-right
+                    // Default left-to-right for other languages
                     keyboardView.layoutDirection = View.LAYOUT_DIRECTION_LTR
                 }
             }
@@ -1326,8 +1355,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             assistantsGptButton?.text = getLocalizedString("assistants_gpt", language)
             btnGptSpellCheck?.text = getLocalizedString("gpt_spell_check", language)
             
-            // Toggle smartbar button
-            btnToggleSmartbar?.text = getLocalizedString("toggle_smartbar", language)
+            // Toggle smartbar button - chỉ sử dụng biểu tượng, không cần text
+            // btnToggleSmartbar?.text = getLocalizedString("toggle_smartbar", language)
             
     
             
@@ -1346,17 +1375,11 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 Language.VIETNAMESE -> {
                     // Vietnamese-specific prompts
                 }
-                Language.CHINESE -> {
-                    // Chinese-specific prompts
-                }
-                Language.JAPANESE -> {
-                    // Japanese-specific prompts
-                }
-                Language.KOREAN -> {
-                    // Korean-specific prompts
+                Language.ENGLISH -> {
+                    // English-specific prompts
                 }
                 else -> {
-                    // Default prompts
+                    // Default prompts for other languages
                 }
             }
             
@@ -1415,7 +1438,30 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Dừng tạo"
                 "assistants_gpt" -> "GPT Trợ lý"
                 "gpt_spell_check" -> "GPT Kiểm tra"
-                "toggle_smartbar" -> "Ẩn/Hiện"
+                // "toggle_smartbar" -> "Ẩn/Hiện" // Không sử dụng text cho nút toggle smartbar
+                else -> key
+            }
+            Language.ENGLISH -> when (key) {
+                "translate" -> "Translate"
+                "ask" -> "Format Text"
+                "calculator" -> "Calculator"
+                "gpt_translate" -> "GPT Translate"
+                "gpt_ask" -> "GPT Ask"
+                "gpt_suggest" -> "GPT Suggest"
+                "continue" -> "Continue"
+                "deepseek_suggest" -> "DeepSeek Suggest"
+                "ask_deepseek" -> "Ask DeepSeek"
+                "spell_check" -> "Spell Check"
+                "olama_ask" -> "Olama Ask"
+                "olama_translate" -> "Olama Translate"
+                "voice_to_text" -> "Voice→Text"
+                "stop_voice" -> "Stop Recording→Text"
+                "paste_and_read" -> "Paste & Read"
+                "stop_tts" -> "Stop TTS"
+                "stop_generation" -> "Stop Generation"
+                "assistants_gpt" -> "GPT Assistant"
+                "gpt_spell_check" -> "GPT Spell Check"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.CHINESE -> when (key) {
@@ -1438,7 +1484,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "停止生成"
                 "assistants_gpt" -> "GPT助手"
                 "gpt_spell_check" -> "GPT拼写检查"
-                "toggle_smartbar" -> "隐藏/显示"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.JAPANESE -> when (key) {
@@ -1461,7 +1507,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "生成停止"
                 "assistants_gpt" -> "GPTアシスタント"
                 "gpt_spell_check" -> "GPTスペルチェック"
-                "toggle_smartbar" -> "非表示/表示"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.KOREAN -> when (key) {
@@ -1484,7 +1530,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "생성중지"
                 "assistants_gpt" -> "GPT어시스턴트"
                 "gpt_spell_check" -> "GPT맞춤법검사"
-                "toggle_smartbar" -> "숨김/표시"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.FRENCH -> when (key) {
@@ -1507,7 +1553,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Arrêter la génération"
                 "assistants_gpt" -> "GPT Assistant"
                 "gpt_spell_check" -> "GPT Vérification"
-                "toggle_smartbar" -> "Masquer/Afficher"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.GERMAN -> when (key) {
@@ -1530,7 +1576,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Generierung stoppen"
                 "assistants_gpt" -> "GPT Assistent"
                 "gpt_spell_check" -> "GPT Rechtschreibprüfung"
-                "toggle_smartbar" -> "Ausblenden/Anzeigen"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.SPANISH -> when (key) {
@@ -1553,7 +1599,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Detener generación"
                 "assistants_gpt" -> "GPT Asistente"
                 "gpt_spell_check" -> "GPT Verificación"
-                "toggle_smartbar" -> "Ocultar/Mostrar"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.ITALIAN -> when (key) {
@@ -1576,7 +1622,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Fermare generazione"
                 "assistants_gpt" -> "GPT Assistente"
                 "gpt_spell_check" -> "GPT Controllo"
-                "toggle_smartbar" -> "Nascondi/Mostra"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.RUSSIAN -> when (key) {
@@ -1599,7 +1645,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Остановить генерацию"
                 "assistants_gpt" -> "GPT Ассистент"
                 "gpt_spell_check" -> "GPT Проверка"
-                "toggle_smartbar" -> "Скрыть/Показать"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.ARABIC -> when (key) {
@@ -1622,7 +1668,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "إيقاف التوليد"
                 "assistants_gpt" -> "GPT مساعد"
                 "gpt_spell_check" -> "GPT فحص"
-                "toggle_smartbar" -> "إخفاء/إظهار"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.THAI -> when (key) {
@@ -1645,7 +1691,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "หยุดการสร้าง"
                 "assistants_gpt" -> "GPT ผู้ช่วย"
                 "gpt_spell_check" -> "GPT ตรวจสอบ"
-                "toggle_smartbar" -> "ซ่อน/แสดง"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             Language.HINDI -> when (key) {
@@ -1668,7 +1714,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "जनरेशन रोकें"
                 "assistants_gpt" -> "GPT सहायक"
                 "gpt_spell_check" -> "GPT जांच"
-                "toggle_smartbar" -> "छिपाएं/दिखाएं"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
             else -> when (key) {
@@ -1691,7 +1737,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "stop_generation" -> "Stop Generation"
                 "assistants_gpt" -> "GPT Assistant"
                 "gpt_spell_check" -> "GPT Spell Check"
-                "toggle_smartbar" -> "Hide/Show"
+// "toggle_smartbar" -> "..." // Không sử dụng text cho nút toggle smartbar
                 else -> key
             }
         }
@@ -2063,7 +2109,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             return
         }
 
-        val targetLanguage = languageSpinner?.selectedItem?.toString() ?: "English"
+        val selectedPosition = languageSpinner?.selectedItemPosition ?: 0
+        val targetLanguage = if (selectedPosition < translationLanguages.size) {
+            translationLanguages[selectedPosition].englishName
+        } else "English"
         lastTranslateLanguage = targetLanguage
         lastGptFunction = "translate"
 
@@ -2502,36 +2551,46 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                             val currentLang = languageManager.getCurrentLanguage()
                             when (currentLang) {
                                 Language.VIETNAMESE -> processVietnameseInput(primaryCode.toChar())
-                                Language.CHINESE -> processChineseInput(primaryCode.toChar())
-                                Language.JAPANESE -> processJapaneseInput(primaryCode.toChar())
-                                Language.KOREAN -> processKoreanInput(primaryCode.toChar())
-                                Language.FRENCH -> processFrenchInput(primaryCode.toChar())
-                                Language.GERMAN -> processGermanInput(primaryCode.toChar())
-                                Language.SPANISH -> processSpanishInput(primaryCode.toChar())
-                                Language.ITALIAN -> processItalianInput(primaryCode.toChar())
-                                Language.RUSSIAN -> processRussianInput(primaryCode.toChar())
-                                Language.ARABIC -> processArabicInput(primaryCode.toChar())
-                                Language.THAI -> processThaiInput(primaryCode.toChar())
-                                Language.HINDI -> processHindiInput(primaryCode.toChar())
-                                else -> {
+                                Language.ENGLISH -> {
                                     // Default English processing
-                                val code = primaryCode.toChar()
-                                val text = when {
-                                    shiftMode == 2 -> code.uppercase()
-                                    shiftMode == 1 -> {
-                                        shiftMode = 0
-                                        updateShiftState()
-                                        code.uppercase()
+                                    val code = primaryCode.toChar()
+                                    val text = when {
+                                        shiftMode == 2 -> code.uppercase()
+                                        shiftMode == 1 -> {
+                                            shiftMode = 0
+                                            updateShiftState()
+                                            code.uppercase()
+                                        }
+                                        else -> code.toString()
                                     }
-                                    else -> code.toString()
-                                }
                                     
                                     currentInputConnection?.commitText(text, 1)
                                 
-                                // Không ẩn suggestions khi nhấn space
-                                if (code == ' ') {
-                                    // Cập nhật suggestions thay vì ẩn
-                                    updateSuggestionsAfterInput()
+                                    // Không ẩn suggestions khi nhấn space
+                                    if (code == ' ') {
+                                        // Cập nhật suggestions thay vì ẩn
+                                        updateSuggestionsAfterInput()
+                                    }
+                                }
+                                else -> {
+                                    // Default processing for other languages
+                                    val code = primaryCode.toChar()
+                                    val text = when {
+                                        shiftMode == 2 -> code.uppercase()
+                                        shiftMode == 1 -> {
+                                            shiftMode = 0
+                                            updateShiftState()
+                                            code.uppercase()
+                                        }
+                                        else -> code.toString()
+                                    }
+                                    
+                                    currentInputConnection?.commitText(text, 1)
+                                
+                                    // Không ẩn suggestions khi nhấn space
+                                    if (code == ' ') {
+                                        // Cập nhật suggestions thay vì ẩn
+                                        updateSuggestionsAfterInput()
                                     }
                                 }
                             }
@@ -2587,236 +2646,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         updateSuggestionsAfterInput()
     }
 
-    private fun processChineseInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = pinyinComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
 
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processJapaneseInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = japaneseComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processKoreanInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = koreanComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processFrenchInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = frenchComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processGermanInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = germanComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processSpanishInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = spanishComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processItalianInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = italianComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processRussianInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = russianComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processArabicInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = arabicComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processThaiInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = thaiComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
-
-    private fun processHindiInput(char: Char) {
-        val precedingText = currentInputConnection?.getTextBeforeCursor(10, 0)?.toString() ?: ""
-        val (deleteCount, newText) = hindiComposer.getActions(precedingText, char.lowercaseChar().toString())
-        if (deleteCount > 0) currentInputConnection?.deleteSurroundingText(deleteCount, 0)
-
-        val finalText = when {
-            shiftMode == 2 -> newText.uppercase()
-            shiftMode == 1 -> newText.replaceFirstChar { it.uppercase() }
-            else -> newText
-        }
-
-        currentInputConnection?.commitText(finalText, 1)
-
-        if (shiftMode == 1) {
-            shiftMode = 0
-            updateShiftState()
-        }
-        
-        updateSuggestionsAfterInput()
-    }
 
     suspend fun detectLanguage(text: String): String = withContext(Dispatchers.IO) {
         if (text.isEmpty()) return@withContext lastDetectedLanguage
@@ -3073,7 +2903,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             }
         }
 
-        val targetLanguage = languageSpinner?.selectedItem?.toString() ?: "English"
+        val selectedPosition = languageSpinner?.selectedItemPosition ?: 0
+        val targetLanguage = if (selectedPosition < translationLanguages.size) {
+            translationLanguages[selectedPosition].englishName
+        } else "English"
 
         // Lưu vị trí con trỏ ban đầu (cuối văn bản đang có)
         val originalTextBeforeCursor = currentInputConnection?.getTextBeforeCursor(1000, 0) ?: ""
@@ -3526,50 +3359,13 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     
             
             // Thêm các từ liên quan đến văn bản đang gõ
-            if (smartVietnameseProcessor != null && isSmartProcessorEnabled && query.isNotEmpty()) {
-                try {
-                    // Lấy các từ có liên quan đến query hiện tại
-                    val relatedWords = smartVietnameseProcessor!!.getSmartSuggestions(query, 3)
-                    for (suggestion in relatedWords) {
-                        if (!part1Suggestions.any { it.word == suggestion.word } && part1Suggestions.size < 10) {
-                            part1Suggestions.add(Suggestion(suggestion.word, null, Suggestion.SuggestionType.WORD_SUGGESTION))
-                        }
-                    }
-                } catch (e: Exception) {
+            // SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
             
-                }
-            }
-            
-            // Phần 2: Gợi ý từ đôi (phrase suggestions)
+            // Phần 2: Gợi ý từ đôi (phrase suggestions) - Đã loại bỏ SmartVietnameseProcessor
             val part2Suggestions = mutableListOf<Suggestion>()
-            if (smartVietnameseProcessor != null && isSmartProcessorEnabled) {
-                try {
-                    // Lấy gợi ý từ đôi từ smartVietnameseProcessor
-                    val phraseSuggestions = smartVietnameseProcessor!!.getSmartSuggestions(query, 10)
-                    for (suggestion in phraseSuggestions) {
-                        // Chỉ lấy các từ có khoảng trắng (từ đôi)
-                        if (suggestion.word.contains(" ")) {
-                            part2Suggestions.add(suggestion)
-                            if (part2Suggestions.size >= 8) break
-                        }
-                    }
-                } catch (e: Exception) {
             
-                }
-            }
-            
-            // Phần 3: Gợi ý từ tiếp theo
+            // Phần 3: Gợi ý từ tiếp theo - Đã loại bỏ SmartVietnameseProcessor
             val part3Suggestions = mutableListOf<Suggestion>()
-            if (smartVietnameseProcessor != null && isSmartProcessorEnabled) {
-                try {
-                    val nextWords = smartVietnameseProcessor!!.getNextWordSuggestions(query, 5)
-                    for (word in nextWords) {
-                        part3Suggestions.add(Suggestion(word, null, Suggestion.SuggestionType.WORD_SUGGESTION))
-                    }
-                } catch (e: Exception) {
-            
-                }
-            }
             
     
             showSuggestions(part1Suggestions, part2Suggestions, part3Suggestions)
@@ -3692,28 +3488,11 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     }
     
     /**
-     * Xử lý từ không dấu thành từ có dấu sử dụng SmartVietnameseProcessor
+     * Xử lý từ không dấu thành từ có dấu - Đã loại bỏ SmartVietnameseProcessor
      */
     private fun enhanceVietnameseWord(word: String): String {
-        return if (smartVietnameseProcessor != null && isSmartProcessorEnabled) {
-            try {
-                smartVietnameseProcessor!!.processNonAccentedWord(word)
-            } catch (e: Exception) {
-        
-                word
-            }
-        } else {
-            word
-        }
-    }
-    
-    /**
-     * Bật/tắt SmartVietnameseProcessor
-     */
-    fun setSmartProcessorEnabled(enabled: Boolean) {
-        isSmartProcessorEnabled = enabled
-        preferences?.edit()?.putBoolean("smart_processor_enabled", enabled)?.apply()
-
+        // SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
+        return word
     }
 
     override fun onDestroy() {
@@ -3747,5 +3526,15 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     }
 
+    private fun switchLanguage() {
+        currentLanguage = when (currentLanguage) {
+            Language.VIETNAMESE -> Language.ENGLISH
+            Language.ENGLISH -> Language.VIETNAMESE
+            else -> Language.VIETNAMESE
+        }
+        
+        languageManager.setLanguage(currentLanguage)
+        refreshPromptSystemForLanguage(currentLanguage)
+    }
 
 }

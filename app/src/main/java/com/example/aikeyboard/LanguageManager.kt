@@ -11,6 +11,7 @@ class LanguageManager(private val context: Context) {
     
     companion object {
         private const val LANGUAGE_PREF = "app_language"
+        private const val DISPLAY_LANGUAGE_PREF = "display_language"
         private const val DEFAULT_LANGUAGE = "vi" // Vietnamese as default
     }
     
@@ -24,6 +25,19 @@ class LanguageManager(private val context: Context) {
     fun setLanguage(language: Language) {
         sharedPreferences.edit().putString(LANGUAGE_PREF, language.code).apply()
         updateResources(language.code)
+    }
+    
+    fun setDisplayLanguage(language: Language) {
+        sharedPreferences.edit().putString(DISPLAY_LANGUAGE_PREF, language.code).apply()
+    }
+    
+    fun getCurrentDisplayLanguage(): Language {
+        val languageCode = sharedPreferences.getString(DISPLAY_LANGUAGE_PREF, DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
+        return Language.fromCode(languageCode)
+    }
+    
+    fun getAllDisplayLanguages(): List<Language> {
+        return Language.values().toList()
     }
     
     fun setLanguageByCode(languageCode: String) {
@@ -58,18 +72,17 @@ class LanguageManager(private val context: Context) {
     }
     
     fun getAllLanguages(): List<Language> {
+        return getAvailableLanguages()
+    }
+
+    fun getAvailableLanguages(): List<Language> {
         return Language.values().toList()
     }
-    
+
     fun getLanguageDisplayName(language: Language): String {
-        return when (getCurrentLanguage()) {
+        return when (language) {
             Language.VIETNAMESE -> language.nativeName
-            Language.CHINESE -> language.nativeName
-            Language.JAPANESE -> language.nativeName
-            Language.KOREAN -> language.nativeName
-            Language.ARABIC -> language.nativeName
-            Language.THAI -> language.nativeName
-            Language.HINDI -> language.nativeName
+            Language.ENGLISH -> language.englishName
             else -> language.englishName
         }
     }

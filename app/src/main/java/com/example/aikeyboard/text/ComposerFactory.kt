@@ -8,17 +8,6 @@ object ComposerFactory {
     private val composers = mapOf(
         Language.VIETNAMESE to TelexComposer(),
         Language.ENGLISH to TelexComposer(), // English uses default
-        Language.CHINESE to PinyinComposer(),
-        Language.JAPANESE to JapaneseComposer(),
-        Language.KOREAN to KoreanComposer(),
-        Language.FRENCH to FrenchComposer(),
-        Language.GERMAN to GermanComposer(),
-        Language.SPANISH to SpanishComposer(),
-        Language.ITALIAN to ItalianComposer(),
-        Language.RUSSIAN to RussianComposer(),
-        Language.ARABIC to ArabicComposer(),
-        Language.THAI to ThaiComposer(),
-        Language.HINDI to HindiComposer(),
     )
     
     fun getComposer(language: Language): Composer {

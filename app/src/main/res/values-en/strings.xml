@@ -146,6 +146,7 @@
     <string name="language_code_vn">VN</string>
     <string name="language_code_en">EN</string>
     <string name="language_switch_button">Switch Language</string>
+    <string name="display_language_switch_button">Switch Display Language</string>
     
     <!-- Olama Settings -->
     <string name="olama_url_title">Olama URL</string>

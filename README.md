@@ -1,1 +1,1 @@
-# ai-keyboard-pinyin-enhanced
+# ai_keyboard
