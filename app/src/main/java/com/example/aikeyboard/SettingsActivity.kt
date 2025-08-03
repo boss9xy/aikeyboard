@@ -188,13 +188,9 @@ class SettingsActivity : AppCompatActivity() {
 
         // Customize Prompts
         customizePromptsButton.setOnClickListener {
-            Log.d("SettingsActivity", "🔵 Bấm nút Tùy chỉnh Prompts")
             try {
-                Log.d("SettingsActivity", "🔵 Tạo Intent cho PromptCustomizationActivity")
                 val intent = Intent(this, PromptCustomizationActivity::class.java)
-                Log.d("SettingsActivity", "🔵 Intent tạo thành công, bắt đầu startActivity")
                 startActivity(intent)
-                Log.d("SettingsActivity", "🔵 startActivity thành công")
             } catch (e: Exception) {
                 Log.e("SettingsActivity", "❌ Lỗi trong startActivity: ${e.message}", e)
                 e.printStackTrace()

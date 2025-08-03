@@ -86,32 +86,19 @@ class PromptCustomizationActivity : AppCompatActivity() {
     private lateinit var languageManager: LanguageManager
     
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d("PromptCustomization", "🚀 onCreate() BẮT ĐẦU")
         super.onCreate(savedInstanceState)
-        Log.d("PromptCustomization", "✅ super.onCreate() hoàn thành")
         
         try {
-            Log.d("PromptCustomization", "🔵 Bước 1: setContentView() bắt đầu")
             setContentView(R.layout.activity_prompt_customization_test)
-            Log.d("PromptCustomization", "✅ setContentView() thành công")
             
-            Log.d("PromptCustomization", "🔵 Bước 2: initLanguageManager")
             languageManager = LanguageManager(this)
-            Log.d("PromptCustomization", "✅ initLanguageManager hoàn thành")
             
-            Log.d("PromptCustomization", "🔵 Bước 3: initViews")
             initViews()
-            Log.d("PromptCustomization", "✅ initViews hoàn thành")
             
-            Log.d("PromptCustomization", "🔵 Bước 4: loadSavedPrompts")
             loadSavedPrompts()
-            Log.d("PromptCustomization", "✅ loadSavedPrompts hoàn thành")
             
-            Log.d("PromptCustomization", "🔵 Bước 5: setupButtons")
             setupButtons()
-            Log.d("PromptCustomization", "✅ setupButtons hoàn thành")
             
-            Log.d("PromptCustomization", "🎉 onCreate() HOÀN THÀNH THÀNH CÔNG")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ LỖI CRITICAL trong onCreate: ${e.message}", e)
             e.printStackTrace()
@@ -125,7 +112,6 @@ class PromptCustomizationActivity : AppCompatActivity() {
                     putString("last_crash_stack", e.stackTraceToString())
                     apply()
                 }
-                Log.d("PromptCustomization", "✅ Đã lưu debug logs")
             } catch (debugError: Exception) {
                 Log.e("PromptCustomization", "❌ Không thể lưu debug logs: ${debugError.message}")
             }
@@ -150,106 +136,76 @@ class PromptCustomizationActivity : AppCompatActivity() {
     }
     
     private fun initViews() {
-        Log.d("PromptCustomization", "🔍 initViews() BẮT ĐẦU")
         try {
             // AI Assistant
-            Log.d("PromptCustomization", "🔵 Tìm AI Assistant views...")
             aiAssistantPromptEditText = findViewById<EditText>(R.id.aiAssistantPromptEditText)
             aiAssistantButtonNameEditText = findViewById<EditText>(R.id.aiAssistantButtonNameEditText)
             aiAssistantPromptSwitch = findViewById<SwitchCompat>(R.id.aiAssistantPromptSwitch)
-            Log.d("PromptCustomization", "✅ AI Assistant views tìm thấy thành công")
             
             // GPT Ask
-            Log.d("PromptCustomization", "🔵 Tìm GPT Ask views...")
             gptAskPromptEditText = findViewById<EditText>(R.id.gptAskPromptEditText)
             gptAskButtonNameEditText = findViewById<EditText>(R.id.gptAskButtonNameEditText)
             gptAskPromptSwitch = findViewById<SwitchCompat>(R.id.gptAskPromptSwitch)
-            Log.d("PromptCustomization", "✅ GPT Ask views tìm thấy thành công")
             
             // DeepSeek Ask
-            Log.d("PromptCustomization", "🔵 Tìm DeepSeek Ask views...")
             deepseekAskPromptEditText = findViewById<EditText>(R.id.deepseekAskPromptEditText)
             deepseekAskButtonNameEditText = findViewById<EditText>(R.id.deepseekAskButtonNameEditText)
             deepseekAskPromptSwitch = findViewById<SwitchCompat>(R.id.deepseekAskPromptSwitch)
-            Log.d("PromptCustomization", "✅ DeepSeek Ask views tìm thấy thành công")
             
             // Olama Ask
-            Log.d("PromptCustomization", "🔵 Tìm Olama Ask views...")
             olamaAskPromptEditText = findViewById<EditText>(R.id.olamaAskPromptEditText)
             olamaAskButtonNameEditText = findViewById<EditText>(R.id.olamaAskButtonNameEditText)
             olamaAskPromptSwitch = findViewById<SwitchCompat>(R.id.olamaAskPromptSwitch)
-            Log.d("PromptCustomization", "✅ Olama Ask views tìm thấy thành công")
             
             // GPT Continue
-            Log.d("PromptCustomization", "🔵 Tìm GPT Continue views...")
             gptContinuePromptEditText = findViewById<EditText>(R.id.gptContinuePromptEditText)
             gptContinueButtonNameEditText = findViewById<EditText>(R.id.gptContinueButtonNameEditText)
             gptContinuePromptSwitch = findViewById<SwitchCompat>(R.id.gptContinuePromptSwitch)
-            Log.d("PromptCustomization", "✅ GPT Continue views tìm thấy thành công")
             
             // DeepSeek Translate
-            Log.d("PromptCustomization", "🔵 Tìm DeepSeek Translate views...")
             deepseekTranslatePromptEditText = findViewById<EditText>(R.id.deepseekTranslatePromptEditText)
             deepseekTranslateButtonNameEditText = findViewById<EditText>(R.id.deepseekTranslateButtonNameEditText)
             deepseekTranslatePromptSwitch = findViewById<SwitchCompat>(R.id.deepseekTranslatePromptSwitch)
-            Log.d("PromptCustomization", "✅ DeepSeek Translate views tìm thấy thành công")
             
             // GPT Suggest
-            Log.d("PromptCustomization", "🔵 Tìm GPT Suggest views...")
             gptSuggestPromptEditText = findViewById<EditText>(R.id.gptSuggestPromptEditText)
             gptSuggestButtonNameEditText = findViewById<EditText>(R.id.gptSuggestButtonNameEditText)
             gptSuggestPromptSwitch = findViewById<SwitchCompat>(R.id.gptSuggestPromptSwitch)
-            Log.d("PromptCustomization", "✅ GPT Suggest views tìm thấy thành công")
             
             // DeepSeek Suggest
-            Log.d("PromptCustomization", "🔵 Tìm DeepSeek Suggest views...")
             deepseekSuggestPromptEditText = findViewById<EditText>(R.id.deepseekSuggestPromptEditText)
             deepseekSuggestButtonNameEditText = findViewById<EditText>(R.id.deepseekSuggestButtonNameEditText)
             deepseekSuggestPromptSwitch = findViewById<SwitchCompat>(R.id.deepseekSuggestPromptSwitch)
-            Log.d("PromptCustomization", "✅ DeepSeek Suggest views tìm thấy thành công")
             
             // Text Format Button (Convert văn bản)
-            Log.d("PromptCustomization", "🔵 Tìm Text Format Button views...")
             askButtonPromptEditText = findViewById<EditText>(R.id.askButtonPromptEditText)
             askButtonNameEditText = findViewById<EditText>(R.id.askButtonNameEditText)
             askButtonPromptSwitch = findViewById<SwitchCompat>(R.id.askButtonPromptSwitch)
-            Log.d("PromptCustomization", "✅ Text Format Button views tìm thấy thành công")
             
             // Olama Translate
-            Log.d("PromptCustomization", "🔵 Tìm Olama Translate views...")
             olamaTranslatePromptEditText = findViewById<EditText>(R.id.olamaTranslatePromptEditText)
             olamaTranslateButtonNameEditText = findViewById<EditText>(R.id.olamaTranslateButtonNameEditText)
             olamaTranslatePromptSwitch = findViewById<SwitchCompat>(R.id.olamaTranslatePromptSwitch)
-            Log.d("PromptCustomization", "✅ Olama Translate views tìm thấy thành công")
             
             // GPT Translate
-            Log.d("PromptCustomization", "🔵 Tìm GPT Translate views...")
             gptTranslatePromptEditText = findViewById<EditText>(R.id.gptTranslatePromptEditText)
             gptTranslateButtonNameEditText = findViewById<EditText>(R.id.gptTranslateButtonNameEditText)
             gptTranslatePromptSwitch = findViewById<SwitchCompat>(R.id.gptTranslatePromptSwitch)
-            Log.d("PromptCustomization", "✅ GPT Translate views tìm thấy thành công")
             
             // GPT Spell Check
-            Log.d("PromptCustomization", "🔵 Tìm GPT Spell Check views...")
             gptSpellCheckPromptEditText = findViewById<EditText>(R.id.gptSpellCheckPromptEditText)
             gptSpellCheckButtonNameEditText = findViewById<EditText>(R.id.gptSpellCheckButtonNameEditText)
             gptSpellCheckPromptSwitch = findViewById<SwitchCompat>(R.id.gptSpellCheckPromptSwitch)
-            Log.d("PromptCustomization", "✅ GPT Spell Check views tìm thấy thành công")
             
             // DeepSeek Spell Check
-            Log.d("PromptCustomization", "🔵 Tìm DeepSeek Spell Check views...")
             deepseekSpellCheckPromptEditText = findViewById<EditText>(R.id.deepseekSpellCheckPromptEditText)
             deepseekSpellCheckButtonNameEditText = findViewById<EditText>(R.id.deepseekSpellCheckButtonNameEditText)
             deepseekSpellCheckPromptSwitch = findViewById<SwitchCompat>(R.id.deepseekSpellCheckPromptSwitch)
-            Log.d("PromptCustomization", "✅ DeepSeek Spell Check views tìm thấy thành công")
             
             // Buttons
-            Log.d("PromptCustomization", "🔵 Tìm buttons...")
             savePromptsButton = findViewById<Button>(R.id.savePromptsButton)
             resetPromptsButton = findViewById<Button>(R.id.resetPromptsButton)
-            Log.d("PromptCustomization", "✅ Buttons tìm thấy thành công")
             
-            Log.d("PromptCustomization", "✅ initViews() HOÀN THÀNH")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ Lỗi trong initViews: ${e.message}", e)
             throw e
@@ -257,143 +213,113 @@ class PromptCustomizationActivity : AppCompatActivity() {
     }
     
     private fun loadSavedPrompts() {
-        Log.d("PromptCustomization", "🔍 loadSavedPrompts() BẮT ĐẦU")
         try {
-            Log.d("PromptCustomization", "🔵 Lấy SharedPreferences...")
             val prefs = getSharedPreferences("AIKeyboardPrefs", MODE_PRIVATE)
-            Log.d("PromptCustomization", "✅ SharedPreferences lấy thành công")
             
             // Load AI Assistant
-            Log.d("PromptCustomization", "🔵 Load AI Assistant...")
             val aiAssistantPrompt = prefs.getString("prompt_ai_assistant", getDefaultAIAssistantPrompt())
             aiAssistantPromptEditText.setText(aiAssistantPrompt)
             val aiAssistantButtonName = prefs.getString("button_name_ai_assistant", getDefaultAIAssistantButtonName())
             aiAssistantButtonNameEditText.setText(aiAssistantButtonName)
             val aiAssistantPromptEnabled = prefs.getBoolean("prompt_enabled_ai_assistant", false)
             aiAssistantPromptSwitch.isChecked = aiAssistantPromptEnabled
-            Log.d("PromptCustomization", "✅ AI Assistant loaded thành công")
             
             // Load GPT Ask
-            Log.d("PromptCustomization", "🔵 Load GPT Ask...")
             val gptAskPrompt = prefs.getString("prompt_gpt_ask", getDefaultGPTAskPrompt())
             gptAskPromptEditText.setText(gptAskPrompt)
             val gptAskButtonName = prefs.getString("button_name_gpt_ask", getDefaultGPTAskButtonName())
             gptAskButtonNameEditText.setText(gptAskButtonName)
             val gptAskPromptEnabled = prefs.getBoolean("prompt_enabled_gpt_ask", false)
             gptAskPromptSwitch.isChecked = gptAskPromptEnabled
-            Log.d("PromptCustomization", "✅ GPT Ask loaded thành công")
             
             // Load DeepSeek Ask
-            Log.d("PromptCustomization", "🔵 Load DeepSeek Ask...")
             val deepseekAskPrompt = prefs.getString("prompt_deepseek_ask", getDefaultDeepSeekAskPrompt())
             deepseekAskPromptEditText.setText(deepseekAskPrompt)
             val deepseekAskButtonName = prefs.getString("button_name_deepseek_ask", getDefaultDeepSeekAskButtonName())
             deepseekAskButtonNameEditText.setText(deepseekAskButtonName)
             val deepseekAskPromptEnabled = prefs.getBoolean("prompt_enabled_deepseek_ask", false)
             deepseekAskPromptSwitch.isChecked = deepseekAskPromptEnabled
-            Log.d("PromptCustomization", "✅ DeepSeek Ask loaded thành công")
             
             // Load Olama Ask
-            Log.d("PromptCustomization", "🔵 Load Olama Ask...")
             val olamaAskPrompt = prefs.getString("prompt_olama_ask", getDefaultOlamaAskPrompt())
             olamaAskPromptEditText.setText(olamaAskPrompt)
             val olamaAskButtonName = prefs.getString("button_name_olama_ask", getDefaultOlamaAskButtonName())
             olamaAskButtonNameEditText.setText(olamaAskButtonName)
             val olamaAskPromptEnabled = prefs.getBoolean("prompt_enabled_olama_ask", false)
             olamaAskPromptSwitch.isChecked = olamaAskPromptEnabled
-            Log.d("PromptCustomization", "✅ Olama Ask loaded thành công")
             
             // Load GPT Continue
-            Log.d("PromptCustomization", "🔵 Load GPT Continue...")
             val gptContinuePrompt = prefs.getString("prompt_gpt_continue", getDefaultGPTContinuePrompt())
             gptContinuePromptEditText.setText(gptContinuePrompt)
             val gptContinueButtonName = prefs.getString("button_name_gpt_continue", getDefaultGPTContinueButtonName())
             gptContinueButtonNameEditText.setText(gptContinueButtonName)
             val gptContinuePromptEnabled = prefs.getBoolean("prompt_enabled_gpt_continue", false)
             gptContinuePromptSwitch.isChecked = gptContinuePromptEnabled
-            Log.d("PromptCustomization", "✅ GPT Continue loaded thành công")
             
             // Load DeepSeek Translate
-            Log.d("PromptCustomization", "🔵 Load DeepSeek Translate...")
             val deepseekTranslatePrompt = prefs.getString("prompt_deepseek_translate", getDefaultDeepSeekTranslatePrompt())
             deepseekTranslatePromptEditText.setText(deepseekTranslatePrompt)
             val deepseekTranslateButtonName = prefs.getString("button_name_deepseek_translate", getDefaultDeepSeekTranslateButtonName())
             deepseekTranslateButtonNameEditText.setText(deepseekTranslateButtonName)
             val deepseekTranslatePromptEnabled = prefs.getBoolean("prompt_enabled_deepseek_translate", false)
             deepseekTranslatePromptSwitch.isChecked = deepseekTranslatePromptEnabled
-            Log.d("PromptCustomization", "✅ DeepSeek Translate loaded thành công")
             
             // Load GPT Suggest
-            Log.d("PromptCustomization", "🔵 Load GPT Suggest...")
             val gptSuggestPrompt = prefs.getString("prompt_gpt_suggest", getDefaultGPTSuggestPrompt())
             gptSuggestPromptEditText.setText(gptSuggestPrompt)
             val gptSuggestButtonName = prefs.getString("button_name_gpt_suggest", getDefaultGPTSuggestButtonName())
             gptSuggestButtonNameEditText.setText(gptSuggestButtonName)
             val gptSuggestPromptEnabled = prefs.getBoolean("prompt_enabled_gpt_suggest", false)
             gptSuggestPromptSwitch.isChecked = gptSuggestPromptEnabled
-            Log.d("PromptCustomization", "✅ GPT Suggest loaded thành công")
             
             // Load DeepSeek Suggest
-            Log.d("PromptCustomization", "🔵 Load DeepSeek Suggest...")
             val deepseekSuggestPrompt = prefs.getString("prompt_deepseek_suggest", getDefaultDeepSeekSuggestPrompt())
             deepseekSuggestPromptEditText.setText(deepseekSuggestPrompt)
             val deepseekSuggestButtonName = prefs.getString("button_name_deepseek_suggest", getDefaultDeepSeekSuggestButtonName())
             deepseekSuggestButtonNameEditText.setText(deepseekSuggestButtonName)
             val deepseekSuggestPromptEnabled = prefs.getBoolean("prompt_enabled_deepseek_suggest", false)
             deepseekSuggestPromptSwitch.isChecked = deepseekSuggestPromptEnabled
-            Log.d("PromptCustomization", "✅ DeepSeek Suggest loaded thành công")
             
             // Load Ask Button
-            Log.d("PromptCustomization", "🔵 Load Ask Button...")
             val askButtonPrompt = prefs.getString("prompt_ask_button", getDefaultAskButtonPrompt())
             askButtonPromptEditText.setText(askButtonPrompt)
             val askButtonName = prefs.getString("button_name_ask_button", getDefaultAskButtonName())
             askButtonNameEditText.setText(askButtonName)
             val askButtonPromptEnabled = prefs.getBoolean("prompt_enabled_ask_button", false)
             askButtonPromptSwitch.isChecked = askButtonPromptEnabled
-            Log.d("PromptCustomization", "✅ Ask Button loaded thành công")
             
             // Load Olama Translate
-            Log.d("PromptCustomization", "🔵 Load Olama Translate...")
             val olamaTranslatePrompt = prefs.getString("prompt_olama_translate", getDefaultOlamaTranslatePrompt())
             olamaTranslatePromptEditText.setText(olamaTranslatePrompt)
             val olamaTranslateButtonName = prefs.getString("button_name_olama_translate", getDefaultOlamaTranslateButtonName())
             olamaTranslateButtonNameEditText.setText(olamaTranslateButtonName)
             val olamaTranslatePromptEnabled = prefs.getBoolean("prompt_enabled_olama_translate", false)
             olamaTranslatePromptSwitch.isChecked = olamaTranslatePromptEnabled
-            Log.d("PromptCustomization", "✅ Olama Translate loaded thành công")
             
             // Load GPT Translate
-            Log.d("PromptCustomization", "🔵 Load GPT Translate...")
             val gptTranslatePrompt = prefs.getString("prompt_gpt_translate", getDefaultGPTTranslatePrompt())
             gptTranslatePromptEditText.setText(gptTranslatePrompt)
             val gptTranslateButtonName = prefs.getString("button_name_gpt_translate", getDefaultGPTTranslateButtonName())
             gptTranslateButtonNameEditText.setText(gptTranslateButtonName)
             val gptTranslatePromptEnabled = prefs.getBoolean("prompt_enabled_gpt_translate", false)
             gptTranslatePromptSwitch.isChecked = gptTranslatePromptEnabled
-            Log.d("PromptCustomization", "✅ GPT Translate loaded thành công")
             
             // Load GPT Spell Check
-            Log.d("PromptCustomization", "🔵 Load GPT Spell Check...")
             val gptSpellCheckPrompt = prefs.getString("prompt_gpt_spell_check", getDefaultGPTSpellCheckPrompt())
             gptSpellCheckPromptEditText.setText(gptSpellCheckPrompt)
             val gptSpellCheckButtonName = prefs.getString("button_name_gpt_spell_check", getDefaultGPTSpellCheckButtonName())
             gptSpellCheckButtonNameEditText.setText(gptSpellCheckButtonName)
             val gptSpellCheckPromptEnabled = prefs.getBoolean("prompt_enabled_gpt_spell_check", false)
             gptSpellCheckPromptSwitch.isChecked = gptSpellCheckPromptEnabled
-            Log.d("PromptCustomization", "✅ GPT Spell Check loaded thành công")
             
             // Load DeepSeek Spell Check
-            Log.d("PromptCustomization", "🔵 Load DeepSeek Spell Check...")
             val deepseekSpellCheckPrompt = prefs.getString("prompt_deepseek_spell_check", getDefaultDeepSeekSpellCheckPrompt())
             deepseekSpellCheckPromptEditText.setText(deepseekSpellCheckPrompt)
             val deepseekSpellCheckButtonName = prefs.getString("button_name_deepseek_spell_check", getDefaultDeepSeekSpellCheckButtonName())
             deepseekSpellCheckButtonNameEditText.setText(deepseekSpellCheckButtonName)
             val deepseekSpellCheckPromptEnabled = prefs.getBoolean("prompt_enabled_deepseek_spell_check", false)
             deepseekSpellCheckPromptSwitch.isChecked = deepseekSpellCheckPromptEnabled
-            Log.d("PromptCustomization", "✅ DeepSeek Spell Check loaded thành công")
             
-            Log.d("PromptCustomization", "✅ loadSavedPrompts() HOÀN THÀNH")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ Lỗi trong loadSavedPrompts: ${e.message}", e)
             throw e
@@ -401,23 +327,15 @@ class PromptCustomizationActivity : AppCompatActivity() {
     }
     
     private fun setupButtons() {
-        Log.d("PromptCustomization", "🔍 setupButtons() BẮT ĐẦU")
         try {
-            Log.d("PromptCustomization", "🔵 Setup savePromptsButton...")
             savePromptsButton.setOnClickListener {
-                Log.d("PromptCustomization", "🔵 Save button clicked")
                 savePrompts()
             }
-            Log.d("PromptCustomization", "✅ savePromptsButton setup thành công")
             
-            Log.d("PromptCustomization", "🔵 Setup resetPromptsButton...")
             resetPromptsButton.setOnClickListener {
-                Log.d("PromptCustomization", "🔵 Reset button clicked")
                 resetToDefaults()
             }
-            Log.d("PromptCustomization", "✅ resetPromptsButton setup thành công")
             
-            Log.d("PromptCustomization", "✅ setupButtons() HOÀN THÀNH")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ Lỗi trong setupButtons: ${e.message}", e)
             throw e
@@ -425,97 +343,78 @@ class PromptCustomizationActivity : AppCompatActivity() {
     }
     
     private fun savePrompts() {
-        Log.d("PromptCustomization", "🔍 savePrompts() BẮT ĐẦU")
         try {
-            Log.d("PromptCustomization", "🔵 Lấy SharedPreferences cho save...")
             val prefs = getSharedPreferences("AIKeyboardPrefs", MODE_PRIVATE)
             val editor = prefs.edit()
-            Log.d("PromptCustomization", "✅ SharedPreferences editor tạo thành công")
             
             // Save AI Assistant
-            Log.d("PromptCustomization", "🔵 Save AI Assistant...")
             editor.putString("prompt_ai_assistant", aiAssistantPromptEditText.text.toString())
             editor.putString("button_name_ai_assistant", aiAssistantButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_ai_assistant", aiAssistantPromptSwitch.isChecked)
             
             // Save GPT Ask
-            Log.d("PromptCustomization", "🔵 Save GPT Ask...")
             editor.putString("prompt_gpt_ask", gptAskPromptEditText.text.toString())
             editor.putString("button_name_gpt_ask", gptAskButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_gpt_ask", gptAskPromptSwitch.isChecked)
             
             // Save DeepSeek Ask
-            Log.d("PromptCustomization", "🔵 Save DeepSeek Ask...")
             editor.putString("prompt_deepseek_ask", deepseekAskPromptEditText.text.toString())
             editor.putString("button_name_deepseek_ask", deepseekAskButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_deepseek_ask", deepseekAskPromptSwitch.isChecked)
             
             // Save Olama Ask
-            Log.d("PromptCustomization", "🔵 Save Olama Ask...")
             editor.putString("prompt_olama_ask", olamaAskPromptEditText.text.toString())
             editor.putString("button_name_olama_ask", olamaAskButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_olama_ask", olamaAskPromptSwitch.isChecked)
             
             // Save GPT Continue
-            Log.d("PromptCustomization", "🔵 Save GPT Continue...")
             editor.putString("prompt_gpt_continue", gptContinuePromptEditText.text.toString())
             editor.putString("button_name_gpt_continue", gptContinueButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_gpt_continue", gptContinuePromptSwitch.isChecked)
             
             // Save DeepSeek Translate
-            Log.d("PromptCustomization", "🔵 Save DeepSeek Translate...")
             editor.putString("prompt_deepseek_translate", deepseekTranslatePromptEditText.text.toString())
             editor.putString("button_name_deepseek_translate", deepseekTranslateButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_deepseek_translate", deepseekTranslatePromptSwitch.isChecked)
             
             // Save GPT Suggest
-            Log.d("PromptCustomization", "🔵 Save GPT Suggest...")
             editor.putString("prompt_gpt_suggest", gptSuggestPromptEditText.text.toString())
             editor.putString("button_name_gpt_suggest", gptSuggestButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_gpt_suggest", gptSuggestPromptSwitch.isChecked)
             
             // Save DeepSeek Suggest
-            Log.d("PromptCustomization", "🔵 Save DeepSeek Suggest...")
             editor.putString("prompt_deepseek_suggest", deepseekSuggestPromptEditText.text.toString())
             editor.putString("button_name_deepseek_suggest", deepseekSuggestButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_deepseek_suggest", deepseekSuggestPromptSwitch.isChecked)
             
             // Save Ask Button
-            Log.d("PromptCustomization", "🔵 Save Ask Button...")
             editor.putString("prompt_ask_button", askButtonPromptEditText.text.toString())
             editor.putString("button_name_ask_button", askButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_ask_button", askButtonPromptSwitch.isChecked)
             
             // Save Olama Translate
-            Log.d("PromptCustomization", "🔵 Save Olama Translate...")
             editor.putString("prompt_olama_translate", olamaTranslatePromptEditText.text.toString())
             editor.putString("button_name_olama_translate", olamaTranslateButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_olama_translate", olamaTranslatePromptSwitch.isChecked)
             
             // Save GPT Translate
-            Log.d("PromptCustomization", "🔵 Save GPT Translate...")
             editor.putString("prompt_gpt_translate", gptTranslatePromptEditText.text.toString())
             editor.putString("button_name_gpt_translate", gptTranslateButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_gpt_translate", gptTranslatePromptSwitch.isChecked)
             
             // Save GPT Spell Check
-            Log.d("PromptCustomization", "🔵 Save GPT Spell Check...")
             editor.putString("prompt_gpt_spell_check", gptSpellCheckPromptEditText.text.toString())
             editor.putString("button_name_gpt_spell_check", gptSpellCheckButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_gpt_spell_check", gptSpellCheckPromptSwitch.isChecked)
             
             // Save DeepSeek Spell Check
-            Log.d("PromptCustomization", "🔵 Save DeepSeek Spell Check...")
             editor.putString("prompt_deepseek_spell_check", deepseekSpellCheckPromptEditText.text.toString())
             editor.putString("button_name_deepseek_spell_check", deepseekSpellCheckButtonNameEditText.text.toString())
             editor.putBoolean("prompt_enabled_deepseek_spell_check", deepseekSpellCheckPromptSwitch.isChecked)
             
-            Log.d("PromptCustomization", "🔵 Apply changes...")
             editor.apply()
-            Log.d("PromptCustomization", "✅ Changes applied thành công")
             
             Toast.makeText(this, "Đã lưu prompts thành công!", Toast.LENGTH_SHORT).show()
-            Log.d("PromptCustomization", "✅ savePrompts() HOÀN THÀNH")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ Lỗi trong savePrompts: ${e.message}", e)
             Toast.makeText(this, "Lỗi lưu prompts: ${e.message}", Toast.LENGTH_LONG).show()
@@ -523,88 +422,73 @@ class PromptCustomizationActivity : AppCompatActivity() {
     }
     
     private fun resetToDefaults() {
-        Log.d("PromptCustomization", "🔍 resetToDefaults() BẮT ĐẦU")
         try {
             // Reset AI Assistant
-            Log.d("PromptCustomization", "🔵 Reset AI Assistant...")
             aiAssistantPromptEditText.setText(getDefaultAIAssistantPrompt())
             aiAssistantButtonNameEditText.setText(getDefaultAIAssistantButtonName())
             aiAssistantPromptSwitch.isChecked = false
             
             // Reset GPT Ask
-            Log.d("PromptCustomization", "🔵 Reset GPT Ask...")
             gptAskPromptEditText.setText(getDefaultGPTAskPrompt())
             gptAskButtonNameEditText.setText(getDefaultGPTAskButtonName())
             gptAskPromptSwitch.isChecked = false
             
             // Reset DeepSeek Ask
-            Log.d("PromptCustomization", "🔵 Reset DeepSeek Ask...")
             deepseekAskPromptEditText.setText(getDefaultDeepSeekAskPrompt())
             deepseekAskButtonNameEditText.setText(getDefaultDeepSeekAskButtonName())
             deepseekAskPromptSwitch.isChecked = false
             
             // Reset Olama Ask
-            Log.d("PromptCustomization", "🔵 Reset Olama Ask...")
             olamaAskPromptEditText.setText(getDefaultOlamaAskPrompt())
             olamaAskButtonNameEditText.setText(getDefaultOlamaAskButtonName())
             olamaAskPromptSwitch.isChecked = false
             
             // Reset GPT Continue
-            Log.d("PromptCustomization", "🔵 Reset GPT Continue...")
             gptContinuePromptEditText.setText(getDefaultGPTContinuePrompt())
             gptContinueButtonNameEditText.setText(getDefaultGPTContinueButtonName())
             gptContinuePromptSwitch.isChecked = false
             
             // Reset DeepSeek Translate
-            Log.d("PromptCustomization", "🔵 Reset DeepSeek Translate...")
             deepseekTranslatePromptEditText.setText(getDefaultDeepSeekTranslatePrompt())
             deepseekTranslateButtonNameEditText.setText(getDefaultDeepSeekTranslateButtonName())
             deepseekTranslatePromptSwitch.isChecked = false
             
             // Reset GPT Suggest
-            Log.d("PromptCustomization", "🔵 Reset GPT Suggest...")
             gptSuggestPromptEditText.setText(getDefaultGPTSuggestPrompt())
             gptSuggestButtonNameEditText.setText(getDefaultGPTSuggestButtonName())
             gptSuggestPromptSwitch.isChecked = false
             
             // Reset DeepSeek Suggest
-            Log.d("PromptCustomization", "🔵 Reset DeepSeek Suggest...")
             deepseekSuggestPromptEditText.setText(getDefaultDeepSeekSuggestPrompt())
             deepseekSuggestButtonNameEditText.setText(getDefaultDeepSeekSuggestButtonName())
             deepseekSuggestPromptSwitch.isChecked = false
             
             // Reset Ask Button
-            Log.d("PromptCustomization", "🔵 Reset Ask Button...")
             askButtonPromptEditText.setText(getDefaultAskButtonPrompt())
             askButtonNameEditText.setText(getDefaultAskButtonName())
             askButtonPromptSwitch.isChecked = false
             
             // Reset Olama Translate
-            Log.d("PromptCustomization", "🔵 Reset Olama Translate...")
             olamaTranslatePromptEditText.setText(getDefaultOlamaTranslatePrompt())
             olamaTranslateButtonNameEditText.setText(getDefaultOlamaTranslateButtonName())
             olamaTranslatePromptSwitch.isChecked = false
             
             // Reset GPT Translate
-            Log.d("PromptCustomization", "🔵 Reset GPT Translate...")
             gptTranslatePromptEditText.setText(getDefaultGPTTranslatePrompt())
             gptTranslateButtonNameEditText.setText(getDefaultGPTTranslateButtonName())
             gptTranslatePromptSwitch.isChecked = false
             
             // Reset GPT Spell Check
-            Log.d("PromptCustomization", "🔵 Reset GPT Spell Check...")
             gptSpellCheckPromptEditText.setText(getDefaultGPTSpellCheckPrompt())
             gptSpellCheckButtonNameEditText.setText(getDefaultGPTSpellCheckButtonName())
             gptSpellCheckPromptSwitch.isChecked = false
             
             // Reset DeepSeek Spell Check
-            Log.d("PromptCustomization", "🔵 Reset DeepSeek Spell Check...")
             deepseekSpellCheckPromptEditText.setText(getDefaultDeepSeekSpellCheckPrompt())
             deepseekSpellCheckButtonNameEditText.setText(getDefaultDeepSeekSpellCheckButtonName())
             deepseekSpellCheckPromptSwitch.isChecked = false
             
             Toast.makeText(this, "Đã khôi phục mặc định!", Toast.LENGTH_SHORT).show()
-            Log.d("PromptCustomization", "✅ resetToDefaults() HOÀN THÀNH")
         } catch (e: Exception) {
             Log.e("PromptCustomization", "❌ Lỗi trong resetToDefaults: ${e.message}", e)
             Toast.makeText(this, "Lỗi khôi phục mặc định: ${e.message}", Toast.LENGTH_LONG).show()
