@@ -136,6 +136,15 @@
     <string name="ask_deepseek_button">DeepSeek 질문</string>
     <string name="olama_translate_button">Olama 번역</string>
     
+    <!-- New AI Button Names for Prompt Customization -->
+    <string name="spell_check_button">맞춤법 검사</string>
+    <string name="grammar_check_button">문법 검사</string>
+    <string name="summarize_button">요약</string>
+    <string name="rephrase_button">다시 작성</string>
+    <string name="expand_button">확장</string>
+    <string name="formal_button">격식체</string>
+    <string name="casual_button">친근체</string>
+    
     <!-- Voice-to-Text Status Texts -->
     <string name="recording_text">녹음 중...</string>
     <string name="stop_recording_text">녹음 중지</string>

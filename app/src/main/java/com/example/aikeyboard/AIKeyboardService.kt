@@ -67,7 +67,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     private var btnToggleSmartbar: Button? = null
     private var isSmartbarExpanded = false
     private var translateButton: Button? = null
-    private var askButton: Button? = null
+    private var textFormatButton: Button? = null
     private var gptTranslateButton: Button? = null
     private var gptAskButton: Button? = null
     private var gptContinueButton: Button? = null
@@ -297,6 +297,13 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         
         // Initialize SmartVietnameseProcessor
                 // SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
+        
+        // Khởi tạo từ điển tiếng Anh cho TelexComposer
+        try {
+            telexComposer.loadEnglishWords(this)
+        } catch (e: Exception) {
+            Log.e("AIKeyboard", "Failed to load English words: ${e.message}")
+        }
         
         // Refresh UI when language changes
         try {
@@ -616,6 +623,14 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             
             // Cleanup timeout
             handler.removeCallbacks(voiceChatTimeoutRunnable)
+            
+            // Đảm bảo mic hệ thống được giải phóng hoàn toàn
+            try {
+                voiceChatSpeechRecognizer?.destroy()
+                voiceChatSpeechRecognizer = null
+            } catch (e: Exception) {
+                // Ignore
+            }
             
             // Ẩn nút dừng, hiển thị nút bắt đầu
             btnVoiceChat?.visibility = View.VISIBLE
@@ -992,7 +1007,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     private fun initializeViews() {
         translateButton = keyboard?.findViewById(R.id.deepseekTranslateButton)
-        askButton = keyboard?.findViewById(R.id.askButton)
+        textFormatButton = keyboard?.findViewById(R.id.askButton)
         gptTranslateButton = keyboard?.findViewById(R.id.gptTranslateButton)
         gptAskButton = keyboard?.findViewById(R.id.gptAskButton)
         gptContinueButton = keyboard?.findViewById(R.id.gptContinueButton)
@@ -1041,7 +1056,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     private fun setupSmartbarButtons() {
         translateButton?.setOnClickListener { handleDeepSeekTranslate() }
-        askButton?.setOnClickListener { handleDeepSeekAsk() }
+        textFormatButton?.setOnClickListener { handleTextFormat() }
         gptTranslateButton?.setOnClickListener { handleGptTranslate() }
         gptAskButton?.setOnClickListener { processGPTAsk() }
         gptContinueButton?.setOnClickListener {
@@ -1580,7 +1595,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             
             // Basic buttons
             translateButton?.text = getLocalizedString("translate", language)
-            askButton?.text = getLocalizedString("ask", language)
+            textFormatButton?.text = getLocalizedString("ask", language)
             btnTinhToan?.text = getLocalizedString("calculator", language)
             
             // GPT buttons
@@ -1671,6 +1686,12 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     }
 
     private fun getLocalizedString(key: String, language: Language): String {
+        // Check for custom button names first
+        val customName = getCustomButtonName(key)
+        if (customName.isNotEmpty()) {
+            return customName
+        }
+        
         return when (language) {
             Language.VIETNAMESE -> when (key) {
                 "translate" -> "Dịch"
@@ -1995,6 +2016,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 else -> key
             }
         }
+    }
+    
+    private fun getCustomButtonName(buttonType: String): String {
+        return PromptCustomizationActivity.getButtonName(this, buttonType)
     }
 
     private fun setupClipboardHistorySpinner() {
@@ -2553,7 +2578,9 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 lastGptFunction = "ask"
 
                 val ic = currentInputConnection
-                gptAPI?.streamAskQuestion(clipboardText, currentInputConnection)?.collect { chunk ->
+                // Use custom prompt for GPT Ask
+                val customPrompt = promptManager.getGPTAskPrompt(clipboardText)
+                gptAPI?.streamAskQuestion(customPrompt, currentInputConnection)?.collect { chunk ->
                     ic?.commitText(chunk, 1)
                     fullResponse.append(chunk)
                 }
@@ -3202,7 +3229,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         gptContinueButton?.text = getLocalizedString("continue", languageManager.getCurrentLanguage())
         gptSuggestButton?.text = getLocalizedString("gpt_suggest", languageManager.getCurrentLanguage())
         deepseekSuggestButton?.text = getLocalizedString("deepseek_suggest", languageManager.getCurrentLanguage())
-        askButton?.text = getLocalizedString("ask", languageManager.getCurrentLanguage())
+        textFormatButton?.text = getLocalizedString("ask", languageManager.getCurrentLanguage())
         btnGptSpellCheck?.text = getLocalizedString("gpt_spell_check", languageManager.getCurrentLanguage())
         btnDeepSeekSpellCheck?.text = getLocalizedString("spell_check", languageManager.getCurrentLanguage())
         btnAskDeepSeek?.text = getLocalizedString("ask_deepseek", languageManager.getCurrentLanguage())
@@ -3289,19 +3316,19 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         }
     }
 
-    private fun handleDeepSeekAsk() {
+    private fun handleTextFormat() {
 
-        setButtonRunningState(askButton, true)
+        setButtonRunningState(textFormatButton, true)
         val clipboardText = getClipboardText()
         if (clipboardText.isNullOrEmpty()) {
-            setButtonRunningState(askButton, false)
+            setButtonRunningState(textFormatButton, false)
             return
         }
 
         val deepSeekApiKey = preferences?.getString("deepseek_api_key", "") ?: ""
         if (deepSeekApiKey.isEmpty()) {
             showToast("Please set your DeepSeek API key in settings")
-            setButtonRunningState(askButton, false)
+            setButtonRunningState(textFormatButton, false)
             return
         }
 
@@ -3310,7 +3337,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 deepSeekAPI = DeepSeekAPI(deepSeekApiKey)
             } catch (e: Exception) {
                 showToast("Error initializing DeepSeek API")
-                setButtonRunningState(askButton, false)
+                setButtonRunningState(textFormatButton, false)
                 return
             }
         }
@@ -3331,8 +3358,11 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         
                 deleteThinkingText()
                 var fullResponse = StringBuilder()
+                
+                // Use custom prompt for Text Format Button
+                val customPrompt = promptManager.getAskButtonPrompt(clipboardText)
 
-                deepSeekAPI?.streamAskQuestion(clipboardText, currentInputConnection!!, thinkingTextLength)?.collect { chunk ->
+                deepSeekAPI?.streamAskQuestion(customPrompt, currentInputConnection!!, thinkingTextLength)?.collect { chunk ->
                     currentInputConnection?.commitText(chunk, 1)
                     fullResponse.append(chunk)
                 }
@@ -3347,7 +3377,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 }
             } finally {
                 stopGenerationButton?.visibility = View.GONE
-                setButtonRunningState(askButton, false)
+                setButtonRunningState(textFormatButton, false)
             }
         }
     }
@@ -3386,7 +3416,9 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 val ic = currentInputConnection
                 var isFirstChunk = true
                 if (ic != null) {
-                    olama.streamAskQuestion(clipboardText, currentInputConnection!!, thinkingTextLength)?.collect { chunk ->
+                    // Use custom prompt for Olama Ask
+                    val customPrompt = promptManager.getOlamaAskPrompt(clipboardText)
+                    olama.streamAskQuestion(customPrompt, currentInputConnection!!, thinkingTextLength)?.collect { chunk ->
                         ic.commitText(chunk, 1)
                     }
                 }

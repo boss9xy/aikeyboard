@@ -104,12 +104,4 @@ logs/
 
 # Build outputs
 app/build/
-build/
-
-# Large model files
-log/
-*.data-00000-of-00001
-*.ckpt
-*.pb
-*.h5
-*.pkl 
+build/ 

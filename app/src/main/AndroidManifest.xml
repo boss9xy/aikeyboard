@@ -57,7 +57,14 @@
         <activity
             android:name=".VoiceToTextActivity"
             android:exported="false"
-            android:label="Chuyển đổi âm thanh thành văn bản"
+            android:label="Audio to Text"
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
+
+        <!-- Prompt Customization Activity -->
+        <activity
+            android:name=".PromptCustomizationActivity"
+            android:exported="false"
+            android:label="Custom Prompts"
             android:theme="@style/Theme.AppCompat.Light.DarkActionBar" />
 
 

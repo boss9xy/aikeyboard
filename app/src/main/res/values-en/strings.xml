@@ -159,4 +159,13 @@
     <string name="model_found">Model: %s</string>
     <string name="cannot_get_model">Cannot get model: %s</string>
     <string name="olama_saved">Olama URL and model saved</string>
+    
+    <!-- New AI Button Names for Prompt Customization -->
+    <string name="spell_check_button">Spell Check</string>
+    <string name="grammar_check_button">Grammar Check</string>
+    <string name="summarize_button">Summarize</string>
+    <string name="rephrase_button">Rephrase</string>
+    <string name="expand_button">Expand</string>
+    <string name="formal_button">Formal</string>
+    <string name="casual_button">Casual</string>
 </resources> 

@@ -30,6 +30,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var appLanguageSpinner: Spinner
     private lateinit var languageManager: LanguageManager
     private lateinit var voiceToTextButton: Button
+    private lateinit var customizePromptsButton: Button
 
     companion object {
         private const val PERMISSION_REQUEST_CODE = 100
@@ -97,6 +98,7 @@ class SettingsActivity : AppCompatActivity() {
 
         appLanguageSpinner = findViewById(R.id.appLanguageSpinner)
         voiceToTextButton = findViewById(R.id.voiceToTextButton)
+        customizePromptsButton = findViewById(R.id.customizePromptsButton)
         
         // Initialize LanguageManager
         languageManager = LanguageManager(this)
@@ -182,6 +184,22 @@ class SettingsActivity : AppCompatActivity() {
         voiceToTextButton.setOnClickListener {
             val intent = Intent(this, VoiceToTextActivity::class.java)
             startActivity(intent)
+        }
+
+        // Customize Prompts
+        customizePromptsButton.setOnClickListener {
+            Log.d("SettingsActivity", "🔵 Bấm nút Tùy chỉnh Prompts")
+            try {
+                Log.d("SettingsActivity", "🔵 Tạo Intent cho PromptCustomizationActivity")
+                val intent = Intent(this, PromptCustomizationActivity::class.java)
+                Log.d("SettingsActivity", "🔵 Intent tạo thành công, bắt đầu startActivity")
+                startActivity(intent)
+                Log.d("SettingsActivity", "🔵 startActivity thành công")
+            } catch (e: Exception) {
+                Log.e("SettingsActivity", "❌ Lỗi trong startActivity: ${e.message}", e)
+                e.printStackTrace()
+                Toast.makeText(this, "Lỗi mở tùy chỉnh prompts: ${e.message}", Toast.LENGTH_LONG).show()
+            }
         }
 
 

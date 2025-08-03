@@ -7,7 +7,22 @@ class PromptManager(private val context: Context) {
     
     private val languageManager = LanguageManager(context)
     
+    // Get custom prompt or fallback to default
+    private fun getCustomPrompt(promptType: String): String {
+        val prefs = context.getSharedPreferences("AIKeyboardPrefs", Context.MODE_PRIVATE)
+        val isEnabled = prefs.getBoolean("prompt_enabled_$promptType", false)
+        if (!isEnabled) return ""
+        return prefs.getString("prompt_$promptType", "") ?: ""
+    }
+    
     fun getSuggestPrompt(text: String): String {
+        // Try to get custom prompt first
+        val customPrompt = getCustomPrompt("gpt_suggest")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần gợi ý: '$text'"
+        }
+        
+        // Fallback to default
         val currentLanguage = languageManager.getCurrentLanguage()
         return when (currentLanguage) {
             Language.VIETNAMESE -> "Dựa trên cuộc trò chuyện này: '$text'\n\nTạo 3 đề xuất phản hồi khác nhau cho kiểu sau:\n1. Hài hước mix với styles Thế hệ Z\nLàm cho mỗi đề xuất trở nên độc đáo và phù hợp với ngữ cảnh, phong cách ngôn ngữ của văn bản đề xuất nên tương tự với nội dung cuộc trò chuyện. Khi trả lời chỉ in văn bản đã chỉnh sửa không in chú thích hoặc các tag không liên quan khác, đây là nội dung:"
@@ -27,6 +42,13 @@ class PromptManager(private val context: Context) {
     }
     
     fun getSpellCheckPrompt(text: String): String {
+        // Try to get custom prompt first
+        val customPrompt = getCustomPrompt("gpt_spell_check")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần kiểm tra: '$text'"
+        }
+        
+        // Fallback to default
         val currentLanguage = languageManager.getCurrentLanguage()
         return when (currentLanguage) {
             Language.VIETNAMESE -> "Hãy sửa lỗi chính tả cho văn bản sau (giữ nguyên ý nghĩa, ngôn ngữ văn bản gốc, chỉ sửa lỗi chính tả, thêm dấu câu phù hợp), khi trả lời chỉ in văn bản đã sửa đổi không in chú thích hoặc các tag không liên quan khác, đây là nội dung cần sửa: '$text'"
@@ -46,6 +68,13 @@ class PromptManager(private val context: Context) {
     }
     
     fun getTranslatePrompt(text: String, targetLanguage: String): String {
+        // Try to get custom prompt first
+        val customPrompt = getCustomPrompt("gpt_translate")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần dịch: '$text'"
+        }
+        
+        // Fallback to default
         val currentLanguage = languageManager.getCurrentLanguage()
         return when (currentLanguage) {
             Language.VIETNAMESE -> "Dịch đoạn văn sau sang $targetLanguage: '$text'"
@@ -61,6 +90,179 @@ class PromptManager(private val context: Context) {
             Language.ARABIC -> "ترجم الفقرة التالية إلى $targetLanguage: '$text'"
             Language.THAI -> "แปลย่อหน้าต่อไปนี้เป็น $targetLanguage: '$text'"
             Language.HINDI -> "निम्नलिखित अनुच्छेद को $targetLanguage में अनुवाद करें: '$text'"
+        }
+    }
+    
+    fun getAIAssistantPrompt(text: String): String {
+        // Try to get custom prompt first
+        val customPrompt = getCustomPrompt("ai_assistant")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nCâu hỏi của người dùng: '$text'"
+        }
+        
+        // Fallback to default
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một trợ lý AI thông minh và hữu ích. Hãy trả lời câu hỏi của người dùng một cách ngắn gọn, chính xác và dễ hiểu. Nếu câu hỏi không rõ ràng, hãy yêu cầu làm rõ thêm.\n\nCâu hỏi: '$text'"
+            Language.ENGLISH -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably. If the question is unclear, please ask for clarification.\n\nQuestion: '$text'"
+            else -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably. If the question is unclear, please ask for clarification.\n\nQuestion: '$text'"
+        }
+    }
+    
+    fun getVoiceToTextPrompt(audioText: String): String {
+        // Try to get custom prompt first
+        val customPrompt = getCustomPrompt("voice_to_text")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản âm thanh: '$audioText'"
+        }
+        
+        // Fallback to default
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Hãy chuyển đổi giọng nói thành văn bản chính xác. Giữ nguyên dấu câu, ngữ điệu và cấu trúc câu. Nếu có từ không rõ, hãy đánh dấu [không rõ].\n\nVăn bản âm thanh: '$audioText'"
+            Language.ENGLISH -> "Please convert speech to text accurately. Maintain punctuation, intonation and sentence structure. If there are unclear words, mark them as [unclear].\n\nAudio text: '$audioText'"
+            else -> "Please convert speech to text accurately. Maintain punctuation, intonation and sentence structure. If there are unclear words, mark them as [unclear].\n\nAudio text: '$audioText'"
+        }
+    }
+    
+    // New methods for all AI buttons
+    fun getGPTAskPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("gpt_ask")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nCâu hỏi: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một trợ lý AI thông minh và hữu ích. Hãy trả lời câu hỏi của người dùng một cách ngắn gọn, chính xác và dễ hiểu.\n\nCâu hỏi: '$text'"
+            Language.ENGLISH -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+            else -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+        }
+    }
+    
+    fun getOlamaAskPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("olama_ask")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nCâu hỏi: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một trợ lý AI thông minh và hữu ích. Hãy trả lời câu hỏi của người dùng một cách ngắn gọn, chính xác và dễ hiểu.\n\nCâu hỏi: '$text'"
+            Language.ENGLISH -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+            else -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+        }
+    }
+    
+    fun getDeepSeekTranslatePrompt(text: String, targetLanguage: String): String {
+        val customPrompt = getCustomPrompt("deepseek_translate")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần dịch: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Dịch đoạn văn sau sang $targetLanguage: '$text'"
+            Language.ENGLISH -> "Translate the following paragraph to $targetLanguage: '$text'"
+            else -> "Translate the following paragraph to $targetLanguage: '$text'"
+        }
+    }
+    
+    fun getAskDeepSeekPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("ask_deepseek")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nCâu hỏi: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một trợ lý AI thông minh và hữu ích. Hãy trả lời câu hỏi của người dùng một cách ngắn gọn, chính xác và dễ hiểu.\n\nCâu hỏi: '$text'"
+            Language.ENGLISH -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+            else -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+        }
+    }
+
+    fun getAskButtonPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("ask_button")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần chuyển đổi: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một AI chuyển đổi văn bản. Chuyển đổi văn bản được cung cấp sang kiểu chữ 𝒃𝒐𝒍𝒅 𝒊𝒕𝒂𝒍𝒊𝒄. Chỉ trả về văn bản đã chuyển đổi mà không có giải thích hoặc ngữ cảnh bổ sung.\n\nVăn bản: '$text'"
+            Language.ENGLISH -> "You are a text converter. Convert the provided text to 𝒃𝒐𝒍𝒅 𝒊𝒕𝒂𝒍𝒊𝒄 font style. Only output the converted text without any additional explanation or context.\n\nText: '$text'"
+            else -> "You are a text converter. Convert the provided text to 𝒃𝒐𝒍𝒅 𝒊𝒕𝒂𝒍𝒊𝒄 font style. Only output the converted text without any additional explanation or context.\n\nText: '$text'"
+        }
+    }
+    
+    fun getGPTSpellCheckPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("gpt_spell_check")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần kiểm tra: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Hãy sửa lỗi chính tả cho văn bản sau (giữ nguyên ý nghĩa, ngôn ngữ văn bản gốc, chỉ sửa lỗi chính tả, thêm dấu câu phù hợp), khi trả lời chỉ in văn bản đã sửa đổi không in chú thích hoặc các tag không liên quan khác, đây là nội dung cần sửa: '$text'"
+            Language.ENGLISH -> "Please correct the spelling errors in the following text (maintain the original meaning, maintain the original text language, only correct spelling errors, add appropriate punctuation), when answering only print the modified text, do not print comments or other unrelated tags, this is the content that needs to be corrected: '$text'"
+            else -> "Please correct the spelling errors in the following text (maintain the original meaning, maintain the original text language, only correct spelling errors, add appropriate punctuation), when answering only print the modified text, do not print comments or other unrelated tags, this is the content that needs to be corrected: '$text'"
+        }
+    }
+    
+    fun getDeepSeekSpellCheckPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("deepseek_spell_check")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần kiểm tra: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Hãy sửa lỗi chính tả cho văn bản sau (giữ nguyên ý nghĩa, ngôn ngữ văn bản gốc, chỉ sửa lỗi chính tả, thêm dấu câu phù hợp), khi trả lời chỉ in văn bản đã sửa đổi không in chú thích hoặc các tag không liên quan khác, đây là nội dung cần sửa: '$text'"
+            Language.ENGLISH -> "Please correct the spelling errors in the following text (maintain the original meaning, maintain the original text language, only correct spelling errors, add appropriate punctuation), when answering only print the modified text, do not print comments or other unrelated tags, this is the content that needs to be corrected: '$text'"
+            else -> "Please correct the spelling errors in the following text (maintain the original meaning, maintain the original text language, only correct spelling errors, add appropriate punctuation), when answering only print the modified text, do not print comments or other unrelated tags, this is the content that needs to be corrected: '$text'"
+        }
+    }
+    
+    fun getDeepSeekSuggestPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("deepseek_suggest")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần gợi ý: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Dựa trên cuộc trò chuyện này: '$text'\n\nTạo 3 đề xuất phản hồi khác nhau cho kiểu sau:\n1. Hài hước mix với styles Thế hệ Z\nLàm cho mỗi đề xuất trở nên độc đáo và phù hợp với ngữ cảnh, phong cách ngôn ngữ của văn bản đề xuất nên tương tự với nội dung cuộc trò chuyện. Khi trả lời chỉ in văn bản đã chỉnh sửa không in chú thích hoặc các tag không liên quan khác, đây là nội dung:"
+            Language.ENGLISH -> "Based on this conversation: '$text'\n\nCreate 3 different response suggestions for the following type:\n1. Humorous mixed with Gen Z styles\nMake each suggestion unique and appropriate for the context, the language style of the suggestion text should be similar to the conversation content. When answering, only print the modified text, do not print comments or other unrelated tags, this is the content:"
+            else -> "Based on this conversation: '$text'\n\nCreate 3 different response suggestions for the following type:\n1. Humorous mixed with Gen Z styles\nMake each suggestion unique and appropriate for the context, the language style of the suggestion text should be similar to the conversation content. When answering, only print the modified text, do not print comments or other unrelated tags, this is the content:"
+        }
+    }
+    
+    fun getAskPrompt(text: String): String {
+        val customPrompt = getCustomPrompt("ask")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nCâu hỏi: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Bạn là một trợ lý AI thông minh và hữu ích. Hãy trả lời câu hỏi của người dùng một cách ngắn gọn, chính xác và dễ hiểu.\n\nCâu hỏi: '$text'"
+            Language.ENGLISH -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+            else -> "You are a smart and helpful AI assistant. Please answer the user's question concisely, accurately and understandably.\n\nQuestion: '$text'"
+        }
+    }
+    
+    fun getOlamaTranslatePrompt(text: String, targetLanguage: String): String {
+        val customPrompt = getCustomPrompt("olama_translate")
+        if (customPrompt.isNotEmpty()) {
+            return "$customPrompt\n\nVăn bản cần dịch: '$text'"
+        }
+        
+        val currentLanguage = languageManager.getCurrentLanguage()
+        return when (currentLanguage) {
+            Language.VIETNAMESE -> "Dịch đoạn văn sau sang $targetLanguage: '$text'"
+            Language.ENGLISH -> "Translate the following paragraph to $targetLanguage: '$text'"
+            else -> "Translate the following paragraph to $targetLanguage: '$text'"
         }
     }
     

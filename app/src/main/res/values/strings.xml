@@ -143,6 +143,15 @@
     <string name="ask_deepseek_button">Hỏi DeepSeek</string>
     <string name="olama_translate_button">Olama Dịch</string>
     
+    <!-- New AI Button Names for Prompt Customization -->
+    <string name="spell_check_button">Kiểm tra chính tả</string>
+    <string name="grammar_check_button">Kiểm tra ngữ pháp</string>
+    <string name="summarize_button">Tóm tắt</string>
+    <string name="rephrase_button">Viết lại</string>
+    <string name="expand_button">Mở rộng</string>
+    <string name="formal_button">Trang trọng</string>
+    <string name="casual_button">Thân thiện</string>
+    
     <!-- Voice-to-Text Status Texts -->
     <string name="recording_text">Đang ghi âm...</string>
     <string name="stop_recording_text">Dừng ghi âm</string>

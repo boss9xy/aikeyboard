@@ -174,11 +174,8 @@ class DeepSeekAPI(private val apiKey: String) {
         // Don't add "Thinking..." here since it's already added by AIKeyboardService
         var currentThinkingTextLength = thinkingTextLength
         
+        // Parse the question parameter which contains the full prompt from PromptManager
         val messages = JSONArray().apply {
-            put(JSONObject().apply {
-                put("role", "system")
-                put("content", "You are a text formatter. Convert the provided text to 𝒃𝒐𝒍𝒅 𝒊𝒕𝒂𝒍𝒊𝒄 font style. Only output the converted text without any additional explanation or context.")
-            })
             put(JSONObject().apply {
                 put("role", "user")
                 put("content", question)

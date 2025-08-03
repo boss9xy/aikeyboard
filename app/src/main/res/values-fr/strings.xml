@@ -136,6 +136,15 @@
     <string name="ask_deepseek_button">Demander DeepSeek</string>
     <string name="olama_translate_button">Olama Traduire</string>
     
+    <!-- New AI Button Names for Prompt Customization -->
+    <string name="spell_check_button">Vérification orthographique</string>
+    <string name="grammar_check_button">Vérification grammaticale</string>
+    <string name="summarize_button">Résumer</string>
+    <string name="rephrase_button">Reformuler</string>
+    <string name="expand_button">Développer</string>
+    <string name="formal_button">Formel</string>
+    <string name="casual_button">Décontracté</string>
+    
     <!-- Voice-to-Text Status Texts -->
     <string name="recording_text">Enregistrement...</string>
     <string name="stop_recording_text">Arrêter l\'enregistrement</string>

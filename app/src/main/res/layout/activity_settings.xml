@@ -413,6 +413,18 @@
                     app:rippleColor="@color/teal_200"
                     android:layout_marginBottom="8dp" />
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/customizePromptsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tùy chỉnh Prompts"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:textColor="@color/colorPrimary"
+                    app:cornerRadius="24dp"
+                    app:iconPadding="8dp"
+                    app:rippleColor="@color/teal_200"
+                    android:layout_marginBottom="8dp" />
+
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

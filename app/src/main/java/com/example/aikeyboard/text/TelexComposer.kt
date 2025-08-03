@@ -1,6 +1,9 @@
 package com.example.aikeyboard.text
 
 import com.example.aikeyboard.text.composing.Composer
+import android.content.Context
+import org.json.JSONObject
+import java.io.IOException
 
 class TelexComposer : Composer {
     override val id = "telex"
@@ -9,6 +12,42 @@ class TelexComposer : Composer {
 
     private val vowels = setOf('a', 'e', 'i', 'o', 'u', 'y')
     private val consonants = setOf('b', 'c', 'd', 'g', 'h', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'x')
+    
+    // English words dictionary to avoid Telex conflicts
+    private var englishWords: Set<String> = emptySet()
+    
+    fun loadEnglishWords(context: Context) {
+        try {
+            val inputStream = context.assets.open("dictionaries/english_words.json")
+            val jsonString = inputStream.bufferedReader().use { it.readText() }
+            val jsonObject = JSONObject(jsonString)
+            val wordsArray = jsonObject.getJSONArray("english_words")
+            englishWords = mutableSetOf<String>().apply {
+                for (i in 0 until wordsArray.length()) {
+                    add(wordsArray.getString(i))
+                }
+            }
+        } catch (e: IOException) {
+            // Fallback to empty set if file not found
+            englishWords = emptySet()
+        }
+    }
+    
+    /**
+     * Kiểm tra xem từ hiện tại có phải là tiếng Anh không
+     */
+    private fun isEnglishWord(text: String): Boolean {
+        // Tách từ cuối cùng (sau dấu cách cuối cùng)
+        val lastWord = text.split(" ").lastOrNull() ?: return false
+        
+        // Chỉ kiểm tra từ hoàn chỉnh (3 ký tự trở lên) để tránh làm hỏng Telex
+        if (lastWord.length < 3) {
+            return false
+        }
+        
+        // Kiểm tra trong từ điển tiếng Anh
+        return englishWords.contains(lastWord.lowercase())
+    }
 
     // Telex rules for Vietnamese diacritics
     private val diacriticRules = mapOf(
@@ -848,323 +887,24 @@ class TelexComposer : Composer {
         "xoá" to "xóa", "ásk" to "ask",
         "nghx" to "nghĩ",
         "Ásk" to "Ask",
-        "cuả" to "của",
-        // Thêm quy tắc đặc biệt cho các từ tiếng Việt phổ biến - chỉ áp dụng khi có dấu
-        "xoa" to "xóa", // Đảm bảo xóa đúng dấu khi gõ s
-        "choa" to "choá", // choá khi gõ s
-        "toa" to "toá", // toá khi gõ s
-        "hoa" to "hoá", // hoá khi gõ s
-        "loa" to "loá", // loá khi gõ s
-        "moa" to "moá", // moá khi gõ s
-        "noa" to "noá", // noá khi gõ s
-        "poa" to "poá", // poá khi gõ s
-        "qoa" to "qoá", // qoá khi gõ s
-        "roa" to "roá", // roá khi gõ s
-        "soa" to "soá", // soá khi gõ s
-        "uoa" to "uoá", // uoá khi gõ s
-        "voa" to "voá", // voá khi gõ s
-        "woa" to "woá", // woá khi gõ s
-        "yoa" to "yoá", // yoá khi gõ s
-        "zoa" to "zoá"  // zoá khi gõ s
+        "cuả" to "của"
     )
 
     override fun getActions(precedingText: String, toInsert: String): Pair<Int, String> {
+        // Kiểm tra nếu là tiếng Anh thì không áp dụng Telex
+        if (isEnglishWord(precedingText + toInsert)) {
+            return Pair(0, toInsert)
+        }
+        
+        // Check if we have a rule that matches the combination of precedingText and toInsert
         val input = precedingText + toInsert
-        
-        // Bước 1: Kiểm tra quy tắc nguyên âm cơ bản (aa→â, aw→ă, etc.)
-        val vowelResult = checkVowelRules(input, toInsert)
-        if (vowelResult != null) {
-            return vowelResult
-        }
-        
-        // Bước 2: Kiểm tra xem có phải đang gõ chữ x, s, f, r, j không
-        if (toInsert == "x") {
-            // Kiểm tra xem x có phải là dấu ngã không
-            val lastChar = precedingText.lastOrNull()
-            if (lastChar != null && (lastChar in vowels || lastChar in "ăâêôơư")) {
-                // Nếu x sau nguyên âm, coi như dấu ngã
-                // Chỉ xem xét text hiện tại, không phụ thuộc vào context trước đó
-                val currentText = precedingText.takeLastWhile { it.isLetterOrDigit() }
-                val mainVowelIndex = findMainVowelIndex(currentText)
-                if (mainVowelIndex >= 0) {
-                    val vowel = currentText[mainVowelIndex]
-                    return when (vowel) {
-                        'a' -> Pair(1, "ã")
-                        'e' -> Pair(1, "ẽ")
-                        'i' -> Pair(1, "ĩ")
-                        'o' -> Pair(1, "õ")
-                        'u' -> Pair(1, "ũ")
-                        'y' -> Pair(1, "ỹ")
-                        'â' -> Pair(1, "ẫ")
-                        'ă' -> Pair(1, "ẵ")
-                        'ê' -> Pair(1, "ễ")
-                        'ô' -> Pair(1, "ỗ")
-                        'ơ' -> Pair(1, "ỡ")
-                        'ư' -> Pair(1, "ữ")
-                        else -> Pair(0, "x")
-                    }
-                }
+        for ((pattern, replacement) in diacriticRules) {
+            if (input.endsWith(pattern)) {
+                // Return the number of characters to delete from precedingText and the replacement
+                return Pair(pattern.length - toInsert.length, replacement)
             }
-            // Nếu không phải sau nguyên âm, coi như chữ x
-            return Pair(0, "x")
         }
-        
-        if (toInsert == "f") {
-            // Kiểm tra xem f có phải là dấu huyền không
-            val lastChar = precedingText.lastOrNull()
-            if (lastChar != null && (lastChar in vowels || lastChar in "ăâêôơư")) {
-                // Nếu f sau nguyên âm, coi như dấu huyền
-                // Chỉ xem xét text hiện tại, không phụ thuộc vào context trước đó
-                val currentText = precedingText.takeLastWhile { it.isLetterOrDigit() }
-                val mainVowelIndex = findMainVowelIndex(currentText)
-                if (mainVowelIndex >= 0) {
-                    val vowel = currentText[mainVowelIndex]
-                    return when (vowel) {
-                        'a' -> Pair(1, "à")
-                        'e' -> Pair(1, "è")
-                        'i' -> Pair(1, "ì")
-                        'o' -> Pair(1, "ò")
-                        'u' -> Pair(1, "ù")
-                        'y' -> Pair(1, "ỳ")
-                        'â' -> Pair(1, "ầ")
-                        'ă' -> Pair(1, "ằ")
-                        'ê' -> Pair(1, "ề")
-                        'ô' -> Pair(1, "ồ")
-                        'ơ' -> Pair(1, "ờ")
-                        'ư' -> Pair(1, "ừ")
-                        else -> Pair(0, "f")
-                    }
-                }
-            }
-            // Nếu không phải sau nguyên âm, coi như chữ f
-            return Pair(0, "f")
-        }
-        
-        if (toInsert == "r") {
-            // Kiểm tra xem r có phải là dấu hỏi không
-            val lastChar = precedingText.lastOrNull()
-            if (lastChar != null && (lastChar in vowels || lastChar in "ăâêôơư")) {
-                // Nếu r sau nguyên âm, coi như dấu hỏi
-                // Chỉ xem xét text hiện tại, không phụ thuộc vào context trước đó
-                val currentText = precedingText.takeLastWhile { it.isLetterOrDigit() }
-                val mainVowelIndex = findMainVowelIndex(currentText)
-                if (mainVowelIndex >= 0) {
-                    val vowel = currentText[mainVowelIndex]
-                    return when (vowel) {
-                        'a' -> Pair(1, "ả")
-                        'e' -> Pair(1, "ẻ")
-                        'i' -> Pair(1, "ỉ")
-                        'o' -> Pair(1, "ỏ")
-                        'u' -> Pair(1, "ủ")
-                        'y' -> Pair(1, "ỷ")
-                        'â' -> Pair(1, "ẩ")
-                        'ă' -> Pair(1, "ẳ")
-                        'ê' -> Pair(1, "ể")
-                        'ô' -> Pair(1, "ổ")
-                        'ơ' -> Pair(1, "ở")
-                        'ư' -> Pair(1, "ử")
-                        else -> Pair(0, "r")
-                    }
-                }
-            }
-            // Nếu không phải sau nguyên âm, coi như chữ r
-            return Pair(0, "r")
-        }
-        
-        if (toInsert == "j") {
-            // Kiểm tra xem j có phải là dấu nặng không
-            val lastChar = precedingText.lastOrNull()
-            if (lastChar != null && (lastChar in vowels || lastChar in "ăâêôơư")) {
-                // Nếu j sau nguyên âm, coi như dấu nặng
-                // Chỉ xem xét text hiện tại, không phụ thuộc vào context trước đó
-                val currentText = precedingText.takeLastWhile { it.isLetterOrDigit() }
-                val mainVowelIndex = findMainVowelIndex(currentText)
-                if (mainVowelIndex >= 0) {
-                    val vowel = currentText[mainVowelIndex]
-                    return when (vowel) {
-                        'a' -> Pair(1, "ạ")
-                        'e' -> Pair(1, "ẹ")
-                        'i' -> Pair(1, "ị")
-                        'o' -> Pair(1, "ọ")
-                        'u' -> Pair(1, "ụ")
-                        'y' -> Pair(1, "ỵ")
-                        'â' -> Pair(1, "ậ")
-                        'ă' -> Pair(1, "ặ")
-                        'ê' -> Pair(1, "ệ")
-                        'ô' -> Pair(1, "ộ")
-                        'ơ' -> Pair(1, "ợ")
-                        'ư' -> Pair(1, "ự")
-                        else -> Pair(0, "j")
-                    }
-                }
-            }
-            // Nếu không phải sau nguyên âm, coi như chữ j
-            return Pair(0, "j")
-        }
-        
-        if (toInsert == "s") {
-            // Kiểm tra xem s có phải là dấu không
-            val lastChar = precedingText.lastOrNull()
-            if (lastChar != null && (lastChar in vowels || lastChar in "ăâêôơư")) {
-                // Nếu s sau nguyên âm, coi như dấu sắc
-                // Chỉ xem xét text hiện tại, không phụ thuộc vào context trước đó
-                val currentText = precedingText.takeLastWhile { it.isLetterOrDigit() }
-                val mainVowelIndex = findMainVowelIndex(currentText)
-                if (mainVowelIndex >= 0) {
-                    val vowel = currentText[mainVowelIndex]
-                    return when (vowel) {
-                        'a' -> Pair(1, "á")
-                        'e' -> Pair(1, "é")
-                        'i' -> Pair(1, "í")
-                        'o' -> Pair(1, "ó")
-                        'u' -> Pair(1, "ú")
-                        'y' -> Pair(1, "ý")
-                        'â' -> Pair(1, "ấ")
-                        'ă' -> Pair(1, "ắ")
-                        'ê' -> Pair(1, "ế")
-                        'ô' -> Pair(1, "ố")
-                        'ơ' -> Pair(1, "ớ")
-                        'ư' -> Pair(1, "ứ")
-                        else -> Pair(0, "s")
-                    }
-                }
-            }
-            // Nếu không phải sau nguyên âm, coi như chữ s
-            return Pair(0, "s")
-        }
-        
-        // Bước 3: Kiểm tra quy tắc dấu thanh (đã được xử lý ở trên cho f, r, j, x, s)
-        // Logic cũ checkDiacriticRules đã được thay thế bằng xử lý riêng cho từng ký tự
-        
-        // Bước 4: Không có quy tắc nào, thêm ký tự bình thường
+        // No rule matches, just append the character
         return Pair(0, toInsert)
-    }
-    
-    /**
-     * Kiểm tra quy tắc nguyên âm cơ bản
-     */
-    private fun checkVowelRules(input: String, toInsert: String): Pair<Int, String>? {
-        // Kiểm tra quy tắc dd -> đ
-        if (toInsert == "d") {
-            val lastChar = input.dropLast(1).lastOrNull()
-            if (lastChar == 'd') {
-                return Pair(1, "đ")
-            }
-        }
-        
-        // Chỉ áp dụng khi gõ nguyên âm thứ 2
-        if (toInsert in "aeiouwy") {
-            val lastChar = input.dropLast(1).lastOrNull()
-            if (lastChar != null && lastChar in "aeiouwy") {
-                val vowelPair = "$lastChar$toInsert"
-                return when (vowelPair) {
-                    "aa" -> Pair(1, "â")
-                    "aw" -> Pair(1, "ă")
-                    "ee" -> Pair(1, "ê")
-                    "oo" -> Pair(1, "ô")
-                    "ow" -> Pair(1, "ơ")
-                    "uw" -> Pair(1, "ư")
-                    else -> null
-                }
-            }
-        }
-        return null
-    }
-    
-    /**
-     * Kiểm tra quy tắc dấu thanh
-     */
-    private fun checkDiacriticRules(input: String, toInsert: String): Pair<Int, String>? {
-        // Chỉ áp dụng khi gõ dấu thanh (loại bỏ x và s)
-        if (toInsert in "frj") {
-            // Tìm nguyên âm chính để đặt dấu
-            val mainVowelIndex = findMainVowelIndex(input.dropLast(1))
-            if (mainVowelIndex >= 0) {
-                val vowel = input[mainVowelIndex]
-                val diacriticKey = "$vowel$toInsert"
-                
-                return when (diacriticKey) {
-                    "af" -> Pair(1, "à")
-                    "ar" -> Pair(1, "ả")
-                    "aj" -> Pair(1, "ạ")
-                    "ef" -> Pair(1, "è")
-                    "er" -> Pair(1, "ẻ")
-                    "ej" -> Pair(1, "ẹ")
-                    "if" -> Pair(1, "ì")
-                    "ir" -> Pair(1, "ỉ")
-                    "ij" -> Pair(1, "ị")
-                    "of" -> Pair(1, "ò")
-                    "or" -> Pair(1, "ỏ")
-                    "oj" -> Pair(1, "ọ")
-                    "uf" -> Pair(1, "ù")
-                    "ur" -> Pair(1, "ủ")
-                    "uj" -> Pair(1, "ụ")
-                    "yf" -> Pair(1, "ỳ")
-                    "yr" -> Pair(1, "ỷ")
-                    "yj" -> Pair(1, "ỵ")
-                    // Dấu cho nguyên âm có dấu
-                    "âf" -> Pair(1, "ầ")
-                    "âr" -> Pair(1, "ẩ")
-                    "âj" -> Pair(1, "ậ")
-                    "ăf" -> Pair(1, "ằ")
-                    "ăr" -> Pair(1, "ẳ")
-                    "ăj" -> Pair(1, "ặ")
-                    "êf" -> Pair(1, "ề")
-                    "êr" -> Pair(1, "ể")
-                    "êj" -> Pair(1, "ệ")
-                    "ôf" -> Pair(1, "ồ")
-                    "ôr" -> Pair(1, "ổ")
-                    "ôj" -> Pair(1, "ộ")
-                    "ơf" -> Pair(1, "ờ")
-                    "ơr" -> Pair(1, "ở")
-                    "ơj" -> Pair(1, "ợ")
-                    "ưf" -> Pair(1, "ừ")
-                    "ưr" -> Pair(1, "ử")
-                    "ưj" -> Pair(1, "ự")
-                    else -> null
-                }
-            }
-        }
-        return null
-    }
-    
-    // Method cũ đã được thay thế bằng checkDiacriticRules
-    
-    /**
-     * Tìm vị trí nguyên âm chính để đặt dấu
-     */
-    private fun findMainVowelIndex(text: String): Int {
-        // Quy tắc đặt dấu tiếng Việt: ưu tiên nguyên âm chính
-        // Thứ tự ưu tiên: nguyên âm đôi (ô, ơ, â, ă, ê) > a, e, o, u > ư > i, y (ở cuối) > i, y (ở giữa)
-        
-        // Bước 1: Kiểm tra nguyên âm đôi trước (ô, ơ, â, ă, ê) - ưu tiên cao nhất
-        for (i in text.indices) {
-            val char = text[i]
-            if (char in "ôơâăê") {
-                return i
-            }
-        }
-        
-        // Bước 2: Kiểm tra nguyên âm đơn theo thứ tự ưu tiên (ưu tiên u hơn ư)
-        val vowelPriority = mapOf(
-            'a' to 1, 'e' to 2, 'o' to 3, 'u' to 4,
-            'ư' to 5, 'i' to 6, 'y' to 7
-        )
-        
-        var mainVowelIndex = -1
-        var highestPriority = 8 // Số lớn hơn tất cả priority
-        
-        for (i in text.indices) {
-            val char = text[i]
-            if (char in vowels || char == 'ư') {
-                val priority = vowelPriority[char] ?: 8
-                if (priority < highestPriority) {
-                    highestPriority = priority
-                    mainVowelIndex = i
-                }
-            }
-        }
-        
-        return mainVowelIndex
     }
 }

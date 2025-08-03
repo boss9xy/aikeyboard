@@ -136,6 +136,15 @@
     <string name="ask_deepseek_button">DeepSeek質問</string>
     <string name="olama_translate_button">Olama翻訳</string>
     
+    <!-- New AI Button Names for Prompt Customization -->
+    <string name="spell_check_button">スペルチェック</string>
+    <string name="grammar_check_button">文法チェック</string>
+    <string name="summarize_button">要約</string>
+    <string name="rephrase_button">言い換え</string>
+    <string name="expand_button">拡張</string>
+    <string name="formal_button">フォーマル</string>
+    <string name="casual_button">カジュアル</string>
+    
     <!-- Voice-to-Text Status Texts -->
     <string name="recording_text">録音中...</string>
     <string name="stop_recording_text">録音停止</string>
