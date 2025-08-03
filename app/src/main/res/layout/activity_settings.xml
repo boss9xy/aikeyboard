@@ -425,6 +425,39 @@
                     app:rippleColor="@color/teal_200"
                     android:layout_marginBottom="8dp" />
 
+                <!-- Tốc độ đọc văn bản -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tốc độ đọc văn bản"
+                        android:textSize="14sp"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_marginBottom="4dp" />
+
+                    <SeekBar
+                        android:id="@+id/speechRateSeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="200"
+                        android:progress="150"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:id="@+id/speechRateText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1.5x"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/darker_gray"
+                        android:layout_gravity="center_horizontal" />
+
+                </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

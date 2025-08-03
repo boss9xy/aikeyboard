@@ -2311,6 +2311,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
                         withContext(Dispatchers.Main) {
                             tts?.language = locale
+                            // Lấy tốc độ đọc từ Settings
+                            val speechRate = preferences?.getInt("speech_rate", 150) ?: 150
+                            val rate = speechRate / 100f
+                            tts?.setSpeechRate(rate)
                             tts?.setOnUtteranceCompletedListener {
                         
                                 speakCompleted.complete(Unit)
@@ -2380,6 +2384,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                             }
 
                             tts?.language = locale
+                            // Lấy tốc độ đọc từ Settings
+                            val speechRate = preferences?.getInt("speech_rate", 150) ?: 150
+                            val rate = speechRate / 100f
+                            tts?.setSpeechRate(rate)
                             tts?.setOnUtteranceCompletedListener {
                                 currentSegmentIndex++
                                 if (currentSegmentIndex < segments.size) {
@@ -2712,7 +2720,15 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
             isTtsInitialized = true
-    
+            
+            // Lấy tốc độ đọc từ Settings
+            val speechRate = preferences?.getInt("speech_rate", 150) ?: 150
+            val rate = speechRate / 100f
+            
+            // Cài đặt tốc độ đọc từ Settings
+            tts?.setSpeechRate(rate)
+            textToSpeech?.setSpeechRate(rate)
+            
         } else {
             Log.e("AIKeyboard", "TTS initialization failed with status: $status")
         }

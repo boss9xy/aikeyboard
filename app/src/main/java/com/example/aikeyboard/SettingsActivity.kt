@@ -31,6 +31,8 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var languageManager: LanguageManager
     private lateinit var voiceToTextButton: Button
     private lateinit var customizePromptsButton: Button
+    private lateinit var speechRateSeekBar: SeekBar
+    private lateinit var speechRateText: TextView
 
     companion object {
         private const val PERMISSION_REQUEST_CODE = 100
@@ -98,6 +100,8 @@ class SettingsActivity : AppCompatActivity() {
 
         appLanguageSpinner = findViewById(R.id.appLanguageSpinner)
         voiceToTextButton = findViewById(R.id.voiceToTextButton)
+        speechRateSeekBar = findViewById(R.id.speechRateSeekBar)
+        speechRateText = findViewById(R.id.speechRateText)
         customizePromptsButton = findViewById(R.id.customizePromptsButton)
         
         // Initialize LanguageManager
@@ -185,6 +189,25 @@ class SettingsActivity : AppCompatActivity() {
             val intent = Intent(this, VoiceToTextActivity::class.java)
             startActivity(intent)
         }
+
+        // Speech Rate SeekBar
+        val savedSpeechRate = prefs.getInt("speech_rate", 150) // Default 1.5x
+        speechRateSeekBar.progress = savedSpeechRate
+        updateSpeechRateText(savedSpeechRate)
+        
+        speechRateSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                updateSpeechRateText(progress)
+            }
+            
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                val speechRate = seekBar?.progress ?: 150
+                prefs.edit().putInt("speech_rate", speechRate).apply()
+                Toast.makeText(this@SettingsActivity, "Tốc độ đọc đã được lưu", Toast.LENGTH_SHORT).show()
+            }
+        })
 
         // Customize Prompts
         customizePromptsButton.setOnClickListener {
@@ -403,6 +426,11 @@ class SettingsActivity : AppCompatActivity() {
             }
             .setCancelable(false)
             .show()
+    }
+
+    private fun updateSpeechRateText(progress: Int) {
+        val rate = progress / 100f
+        speechRateText.text = "${rate}x"
     }
 
     private fun requestCurrentPermission() {
