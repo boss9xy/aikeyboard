@@ -179,4 +179,51 @@ class GPTAPI(private val apiKey: String, private val model: String = "gpt-3.5-tu
     suspend fun streamContinueGeneration(ic: InputConnection): Flow<String> {
         return streamChatCompletion("Please continue.", isContinue = true, ic = ic)
     }
+
+    // Function for simple askGPT (non-streaming)
+    suspend fun askGPT(prompt: String): String {
+        return withContext(Dispatchers.IO) {
+            addUserMessage(prompt)
+            
+            val requestBody = JSONObject().apply {
+                put("model", model)
+                put("messages", JSONArray(conversationHistory))
+                put("stream", false)
+                put("max_tokens", calculateMaxTokens(model))
+            }
+
+            val request = Request.Builder()
+                .url("https://api.openai.com/v1/chat/completions")
+                .addHeader("Authorization", "Bearer $apiKey")
+                .addHeader("Content-Type", "application/json")
+                .post(requestBody.toString().toRequestBody("application/json".toMediaType()))
+                .build()
+
+            val call = client.newCall(request)
+            var response = ""
+            
+            try {
+                val responseBody = call.execute()
+                if (responseBody.isSuccessful) {
+                    val responseJson = JSONObject(responseBody.body?.string() ?: "")
+                    val choices = responseJson.getJSONArray("choices")
+                    if (choices.length() > 0) {
+                        val choice = choices.getJSONObject(0)
+                        val message = choice.getJSONObject("message")
+                        response = message.getString("content")
+                        
+                        // Add assistant's response to history
+                        addAssistantMessage(response)
+                    }
+                } else {
+                    throw IOException("API request failed: ${responseBody.code}")
+                }
+            } catch (e: Exception) {
+                Log.e("GPTAPI", "askGPT failed", e)
+                throw e
+            }
+            
+            response
+        }
+    }
 }

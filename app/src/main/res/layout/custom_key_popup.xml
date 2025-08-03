@@ -8,4 +8,10 @@
     android:textColor="@color/key_preview_text"
     android:textSize="@dimen/key_preview_text_size"
     android:maxLines="1"
-    android:elevation="4dp" /> 
+    android:elevation="4dp"
+    android:minWidth="@dimen/key_preview_width"
+    android:minHeight="@dimen/key_preview_height"
+    android:maxWidth="@dimen/key_preview_width"
+    android:maxHeight="@dimen/key_preview_height"
+    android:textStyle="bold"
+    android:textAlignment="center" /> 

@@ -13,6 +13,11 @@ class SmartKeyboardView @JvmOverloads constructor(
 
     // Bán kính mở rộng vùng nhận diện (pixel)
     private val proximityRadius = 60 // Có thể điều chỉnh cho phù hợp
+    
+    init {
+        // Sử dụng popup tùy chỉnh thay vì popup mặc định
+        isPreviewEnabled = true
+    }
 
     override fun onTouchEvent(me: MotionEvent): Boolean {
         if (keyboard == null) return super.onTouchEvent(me)

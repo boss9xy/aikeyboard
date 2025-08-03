@@ -66,12 +66,15 @@
 
 
 
+
+
         <!-- Dịch vụ bàn phím AI -->
         <service
             android:name=".AIKeyboardService"
             android:label="AI Keyboard"
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.AIKeyboard.KeyboardService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.view.InputMethod" />

@@ -10,4 +10,12 @@
     android:ellipsize="end"
     android:visibility="gone"
     android:keyPreviewLayout="@null"
-    android:keyPreviewHeight="0dp" />
+    android:keyPreviewHeight="0dp"
+    android:elevation="12dp"
+    android:padding="12dp"
+    android:textStyle="bold"
+    android:minWidth="@dimen/key_preview_width"
+    android:minHeight="@dimen/key_preview_height"
+    android:maxWidth="@dimen/key_preview_width"
+    android:maxHeight="@dimen/key_preview_height"
+    android:textAlignment="center" />

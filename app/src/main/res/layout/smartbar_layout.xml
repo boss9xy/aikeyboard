@@ -312,6 +312,27 @@
                 android:backgroundTint="@color/key_special_background"
                 android:tint="@color/key_text_special"/>
 
+            <ImageButton
+                android:id="@+id/btnVoiceChat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_voice_chat"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:tint="@color/key_text_special"
+                android:contentDescription="Voice Chat với AI"/>
+
+            <ImageButton
+                android:id="@+id/btnStopVoiceChat"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_stop"
+                android:layout_marginEnd="2dp"
+                android:backgroundTint="@color/key_special_background"
+                android:tint="@color/key_text_special"
+                android:contentDescription="Dừng Voice Chat"
+                android:visibility="gone"/>
+
             <Button
                 android:id="@+id/deepseekTranslateButton"
                 android:layout_width="wrap_content"

@@ -34,6 +34,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import android.os.Build
 import com.example.aikeyboard.text.TelexComposer
 
 // SmartVietnameseProcessor đã được loại bỏ để tối ưu hiệu suất
@@ -196,7 +198,26 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     private var btnVoiceToText: Button? = null
     private var btnStopVoiceToText: Button? = null
     private var voiceToTextManager: VoiceToTextManager? = null
+    // Voice Chat Variables - Copy từ mic cũ
+    private var btnVoiceChat: ImageButton? = null
+    private var btnStopVoiceChat: ImageButton? = null
+    private var isVoiceChatActive = false
+    private var voiceChatSpeechRecognizer: SpeechRecognizer? = null
+    private var voiceChatLastRecognizedText: String? = null
+    private var voiceChatTemporarySpeechText = ""
+    private var voiceChatLastCursorPosition = 0
+    private var isTTSReading = false
     private var isVoiceRecording = false
+    private val voiceChatTimeoutRunnable = Runnable { 
+        if (isVoiceChatActive) {
+            // Khi timeout, lấy văn bản cuối cùng và gửi API trước khi dừng
+            val finalText = voiceChatLastRecognizedText
+            if (!finalText.isNullOrEmpty()) {
+                processVoiceChatTranscription(finalText)
+            }
+            stopVoiceChat() // Sau đó dừng như mic cũ
+        }
+    }
     private var isVoiceProcessing = false
     private lateinit var promptManager: PromptManager
     private lateinit var languageManager: LanguageManager
@@ -487,6 +508,11 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             return
         }
 
+        // Đảm bảo voice chat đã dừng trước khi bắt đầu mic cũ
+        if (isVoiceChatActive) {
+            stopVoiceChat()
+        }
+
         if (!isListening) {
     
             startListeningMic()
@@ -548,6 +574,226 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         }
         
         voiceToTextManager?.stopRecording()
+    }
+
+    private fun onVoiceChatButtonClick(view: View) {
+        if (!checkMicrophonePermission()) {
+            requestMicrophonePermission()
+            return
+        }
+
+        // Đảm bảo mic cũ đã dừng trước khi bắt đầu voice chat
+        if (isListening) {
+            stopListening()
+        }
+
+        if (!isVoiceChatActive) {
+            startVoiceChat()
+        } else {
+            stopVoiceChat()
+        }
+    }
+
+    private fun startVoiceChat() {
+        if (!isVoiceChatActive) {
+            isVoiceChatActive = true
+            voiceChatLastRecognizedText = null
+            voiceChatLastCursorPosition = currentInputConnection?.getTextBeforeCursor(1000, 0)?.length ?: 0
+            initializeVoiceChatSpeechRecognizer()
+            startVoiceChatListening()
+            
+            btnVoiceChat?.visibility = View.GONE
+            btnStopVoiceChat?.visibility = View.VISIBLE
+        }
+    }
+
+    private fun stopVoiceChat() {
+        if (isVoiceChatActive) {
+            isVoiceChatActive = false
+            voiceChatSpeechRecognizer?.stopListening()
+            cleanupVoiceChatSpeechRecognizer()
+            resetVoiceChatState()
+            
+            // Cleanup timeout
+            handler.removeCallbacks(voiceChatTimeoutRunnable)
+            
+            // Ẩn nút dừng, hiển thị nút bắt đầu
+            btnVoiceChat?.visibility = View.VISIBLE
+            btnStopVoiceChat?.visibility = View.GONE
+        }
+    }
+
+    private fun initializeVoiceChatSpeechRecognizer() {
+        try {
+            voiceChatSpeechRecognizer = SpeechRecognizer.createSpeechRecognizer(this)
+            voiceChatSpeechRecognizer?.setRecognitionListener(object : RecognitionListener {
+                override fun onReadyForSpeech(params: Bundle?) {
+                    // Bắt đầu lắng nghe
+                }
+
+                override fun onBeginningOfSpeech() {
+                    // Bắt đầu nói
+                }
+
+                override fun onRmsChanged(rmsdB: Float) {}
+
+                override fun onBufferReceived(buffer: ByteArray?) {}
+
+                override fun onEndOfSpeech() {
+                    if (isVoiceChatActive) {
+                        startVoiceChatListening()
+                    }
+                }
+
+                override fun onError(error: Int) {
+                    if (isVoiceChatActive) {
+                        startVoiceChatListening()
+                    }
+                }
+
+                override fun onResults(results: Bundle) {
+                    val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    if (!matches.isNullOrEmpty()) {
+                        currentInputConnection?.finishComposingText()
+                        // Thêm code gửi API
+                        val transcription = matches[0]
+                        processVoiceChatTranscription(transcription)
+                    } else {
+                        Toast.makeText(this@AIKeyboardService, "No speech recognized.", Toast.LENGTH_SHORT).show()
+                    }
+                    stopVoiceChat()
+                    voiceChatLastRecognizedText = null
+                    voiceChatTemporarySpeechText = ""
+                    voiceChatLastCursorPosition = 0
+                }
+
+                override fun onPartialResults(partialResults: Bundle) {
+                    val matches = partialResults.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    if (matches != null && matches.isNotEmpty()) {
+                        val currentText = matches[0]
+                        if (currentText != voiceChatLastRecognizedText) {
+                            val textBeforeCursorBeforeUpdate = currentInputConnection?.getTextBeforeCursor(1000, 0)?.toString() ?: ""
+                            val userEditedText = voiceChatLastRecognizedText != null && textBeforeCursorBeforeUpdate != (currentInputConnection?.getTextBeforeCursor(1000, 0)?.toString() ?: "")
+
+                            if (voiceChatLastRecognizedText == null) {
+                                currentInputConnection?.commitText(" ", 1)
+                                currentInputConnection?.commitText(currentText, 1)
+                            } else if (!userEditedText) {
+                                if (voiceChatTemporarySpeechText.isNotEmpty()) {
+                                    currentInputConnection?.deleteSurroundingText(voiceChatTemporarySpeechText.length, 0)
+                                }
+                                currentInputConnection?.commitText(currentText, 1)
+                            } else {
+                                currentInputConnection?.commitText(" $currentText", 1)
+                                voiceChatLastRecognizedText = textBeforeCursorBeforeUpdate + " $currentText"
+                                voiceChatTemporarySpeechText = " $currentText"
+                            }
+
+                            voiceChatLastRecognizedText = currentText
+                            voiceChatTemporarySpeechText = currentText
+                            voiceChatLastCursorPosition = textBeforeCursorBeforeUpdate.length
+                        }
+                    }
+                    handler.removeCallbacks(voiceChatTimeoutRunnable)
+                    handler.postDelayed(voiceChatTimeoutRunnable, 2000)
+                }
+
+                override fun onEvent(eventType: Int, params: Bundle?) {}
+            })
+        } catch (e: Exception) {
+            showToast("Failed to initialize voice chat speech recognition")
+        }
+    }
+
+    private fun startVoiceChatListening() {
+        if (isVoiceChatActive && voiceChatSpeechRecognizer != null) {
+            voiceChatLastCursorPosition = currentInputConnection?.getTextBeforeCursor(1000, 0)?.length ?: 0
+            val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE, "vi-VN")
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_PREFERENCE, "vi-VN")
+                putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, packageName)
+                putExtra(RecognizerIntent.EXTRA_PARTIAL_RESULTS, true)
+                putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+            }
+            voiceChatSpeechRecognizer?.startListening(intent)
+        }
+    }
+
+    private fun processVoiceChatTranscription(transcription: String) {
+        // Không in lại transcription vì đã hiển thị real-time rồi
+        // Chỉ gửi đến GPT API
+        processVoiceChatWithGPT(transcription)
+    }
+
+    private fun processVoiceChatWithGPT(transcription: String) {
+        generationJob?.cancel()
+        generationJob = CoroutineScope(Dispatchers.Main).launch {
+            try {
+                currentInputConnection?.commitText("\n🤖 AI: ", 1)
+                
+                gptAPI?.let { api ->
+                    val response = api.askGPT(transcription)
+                    currentInputConnection?.commitText("$response\n", 1)
+                    
+                    speakTextWithCallback(response) {
+                        if (isVoiceChatActive) {
+                            startVoiceChatListening()
+                        }
+                    }
+                } ?: run {
+                    currentInputConnection?.commitText("Lỗi: GPT API chưa được khởi tạo\n", 1)
+                    if (isVoiceChatActive) {
+                        startVoiceChatListening()
+                    }
+                }
+            } catch (e: Exception) {
+                if (e.message?.contains("cancelled", ignoreCase = true) != true) {
+                    currentInputConnection?.commitText("Lỗi: ${e.message}\n", 1)
+                }
+                if (isVoiceChatActive) {
+                    startVoiceChatListening()
+                }
+            }
+        }
+    }
+
+    private fun cleanupVoiceChatSpeechRecognizer() {
+        try {
+            voiceChatSpeechRecognizer?.destroy()
+            voiceChatSpeechRecognizer = null
+        } catch (e: Exception) {
+            // Ignore
+        }
+    }
+
+    private fun resetVoiceChatState() {
+        isVoiceChatActive = false
+        voiceChatLastRecognizedText = null
+        voiceChatTemporarySpeechText = ""
+        voiceChatLastCursorPosition = 0
+        
+        btnVoiceChat?.setImageResource(R.drawable.ic_voice_chat)
+        btnVoiceChat?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
+        
+        handler.removeCallbacks(voiceChatTimeoutRunnable)
+        
+        btnVoiceChat?.visibility = View.VISIBLE
+        btnStopVoiceChat?.visibility = View.GONE
+    }
+
+    private fun resetVoiceChatButtonState() {
+        // Reset trạng thái nút về bình thường
+        btnVoiceChat?.setImageResource(R.drawable.ic_voice_chat)
+        btnVoiceChat?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
+        btnStopVoiceChat?.setImageResource(R.drawable.ic_stop)
+        btnStopVoiceChat?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
+    }
+
+
+
+    private fun onStopVoiceChatButtonClick(view: View) {
+        stopVoiceChat()
     }
 
     private fun initializeAPIs() {
@@ -761,6 +1007,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         btnOlamaTrans = keyboard?.findViewById(R.id.btnOlamaTrans)
         btnVoiceToText = keyboard?.findViewById(R.id.btnVoiceToText)
         btnStopVoiceToText = keyboard?.findViewById(R.id.btnStopVoiceToText)
+        btnVoiceChat = keyboard?.findViewById(R.id.btnVoiceChat)
+        btnStopVoiceChat = keyboard?.findViewById(R.id.btnStopVoiceChat)
 
         // Khởi tạo smartbar container và toggle button
         smartbarContainer = keyboard?.findViewById(R.id.smartbarContainer)
@@ -813,6 +1061,12 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         }
         btnStopVoiceToText?.setOnClickListener {
             onStopVoiceToTextButtonClick(it)
+        }
+        btnVoiceChat?.setOnClickListener {
+            onVoiceChatButtonClick(it)
+        }
+        btnStopVoiceChat?.setOnClickListener {
+            onStopVoiceChatButtonClick(it)
         }
         olamaAskButton?.setOnClickListener { handleOlamaAsk() }
         btnGptSpellCheck?.setOnClickListener {
@@ -2059,6 +2313,95 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         }
     }
 
+    private fun speakTextWithCallback(text: String, onComplete: () -> Unit) {
+        if (!isTtsInitialized) {
+            showToast("Text-to-Speech not initialized")
+            onComplete()
+            return
+        }
+
+        // Tạm dừng lắng nghe khi bắt đầu đọc
+        voiceChatSpeechRecognizer?.stopListening()
+        isTTSReading = true
+        isSpeaking = true
+        
+        try {
+            val segments = mutableListOf<String>()
+            var remainingText = text
+            while (remainingText.isNotEmpty()) {
+                if (remainingText.length <= MAX_TTS_LENGTH) {
+                    segments.add(remainingText)
+                    break
+                } else {
+                    var cutIndex = remainingText.lastIndexOf(' ', MAX_TTS_LENGTH - 1)
+                    if (cutIndex == -1) cutIndex = MAX_TTS_LENGTH
+                    segments.add(remainingText.substring(0, cutIndex))
+                    remainingText = remainingText.substring(cutIndex).trim()
+                }
+            }
+
+            var currentSegmentIndex = 0
+            fun speakNextSegment() {
+                if (currentSegmentIndex < segments.size) {
+                    val segment = segments[currentSegmentIndex]
+                    if (segment.isNotEmpty()) {
+                        CoroutineScope(Dispatchers.Main).launch {
+                            val detectedLanguage = withContext(Dispatchers.IO) {
+                                detectLanguage(segment)
+                            }
+                        
+                            val locale = withContext(Dispatchers.IO) {
+                                getLocaleForLanguage(detectedLanguage)
+                            }
+
+                            tts?.language = locale
+                            tts?.setOnUtteranceCompletedListener {
+                                currentSegmentIndex++
+                                if (currentSegmentIndex < segments.size) {
+                                    speakNextSegment()
+                                } else {
+                                    // Đã đọc xong tất cả segments
+                                    isTTSReading = false
+                                    isSpeaking = false
+                                    // Reset trạng thái nút về bình thường
+                                    resetVoiceChatButtonState()
+                                    onComplete()
+                                }
+                            }
+                            tts?.speak(
+                                segment,
+                                TextToSpeech.QUEUE_FLUSH,
+                                Bundle().apply {
+                                    putString(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "segment")
+                                },
+                                "segment"
+                            )
+                        }
+                    } else {
+                        currentSegmentIndex++
+                        speakNextSegment()
+                    }
+                } else {
+                    // Đã đọc xong tất cả segments
+                    isTTSReading = false
+                    isSpeaking = false
+                    // Reset trạng thái nút về bình thường
+                    resetVoiceChatButtonState()
+                    onComplete()
+                }
+            }
+            
+            speakNextSegment()
+        } catch (e: Exception) {
+            showToast("Error speaking text")
+            isTTSReading = false
+            isSpeaking = false
+            // Reset trạng thái nút về bình thường
+            resetVoiceChatButtonState()
+            onComplete()
+        }
+    }
+
     private fun stopTts() {
 
         try {
@@ -2308,6 +2651,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
 
     override fun onStartInputView(info: EditorInfo?, restarting: Boolean) {
         super.onStartInputView(info, restarting)
+        
         if (restarting) {
             currentThreadId = null
         }

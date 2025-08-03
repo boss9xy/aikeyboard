@@ -98,6 +98,14 @@
     <string name="enable_keyboard_button">Bật bàn phím</string>
     <string name="select_keyboard_button">Chọn bàn phím</string>
     <string name="check_model_button">Kiểm tra Model</string>
+    
+    <!-- Voice Chat -->
+    <string name="voice_chat_button">Voice Chat</string>
+    <string name="voice_chat_title">Voice Chat với AI</string>
+    <string name="voice_chat_listening">Đang lắng nghe...</string>
+    <string name="voice_chat_ready">Nhấn nút mic để bắt đầu trò chuyện</string>
+    <string name="voice_chat_clear">Xóa</string>
+    <string name="voice_chat_close">Đóng</string>
     <string name="save_olama_button">Lưu Olama</string>
     <string name="checking_model_text">Đang kiểm tra...</string>
     

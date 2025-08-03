@@ -11,7 +11,27 @@
         <item name="colorSecondaryVariant">@color/colorAccent</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/black</item>
+        <!-- Navigation bar color - cùng màu với keyboard -->
+        <item name="android:navigationBarColor">@color/black</item>
+        <!-- Navigation bar icons - sáng vì nền tối -->
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Force navigation bar color -->
+        <item name="android:windowTranslucentNavigation">false</item>
         <!-- Customize your theme here. -->
+    </style>
+    
+    <!-- Theme specifically for keyboard service -->
+    <style name="Theme.AIKeyboard.KeyboardService" parent="Theme.AIKeyboard">
+        <!-- Navigation bar color - cùng màu với keyboard -->
+        <item name="android:navigationBarColor">@color/keyboard_background</item>
+        <!-- Navigation bar icons - sáng vì nền tối -->
+        <item name="android:windowLightNavigationBar">false</item>
+        <!-- Status bar color -->
+        <item name="android:statusBarColor">@color/keyboard_background</item>
+        <!-- Force navigation bar color -->
+        <item name="android:windowTranslucentNavigation">false</item>
+        <!-- Force status bar color -->
+        <item name="android:windowTranslucentStatus">false</item>
     </style>
 </resources>

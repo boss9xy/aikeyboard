@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Keyboard xmlns:android="http://schemas.android.com/apk/res/android"
-    android:keyWidth="7.500005%p"
-    android:keyHeight="40dp"
-    android:horizontalGap="2.199996%p"
+    android:keyWidth="8.4%p"
+    android:keyHeight="36dp"
+    android:horizontalGap="1.5%p"
     android:verticalGap="9dp"
     android:keyBackground="@drawable/key_background">
     <Row>
@@ -42,7 +42,7 @@
     <Row android:rowEdgeFlags="bottom">
         <Key android:codes="-2" android:keyLabel="ABC" android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" android:keyWidth="15.699995%p" android:keyEdgeFlags="left" />
         <Key android:codes="44" android:keyLabel="," android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" />
-        <Key android:codes="32" android:keyLabel="Space" android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" android:keyWidth="39.999996%p" />
+        <Key android:codes="32" android:keyLabel="Space" android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" android:keyWidth="42%p" />
         <Key android:codes="8230" android:keyLabel="…" android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" />
         <Key android:codes="-4" android:keyLabel="⏎" android:keyBackground="@drawable/key_special_background" android:textColor="@color/key_text_special" android:keyWidth="17.999994%p" android:keyEdgeFlags="right" />
     </Row>
