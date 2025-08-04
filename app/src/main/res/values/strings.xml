@@ -117,8 +117,8 @@
     <string name="stop_tts_button">Dừng đọc</string>
     <string name="translate_button">Dịch</string>
     <string name="ask_button">Hỏi</string>
-    <string name="gpt_ask_button">GPT Hỏi</string>
-    <string name="gpt_translate_button">GPT Dịch</string>
+    <string name="gpt_ask_button_text">GPT Hỏi</string>
+    <string name="gpt_translate_button_text">GPT Dịch</string>
     <string name="deepseek_ask_button">Deepseek Hỏi</string>
     <string name="deepseek_translate_button">Deepseek Dịch</string>
     <string name="switch_keyboard_button">⌨️</string>
@@ -129,11 +129,9 @@
     <!-- Smartbar Button Labels -->
     <string name="voice_to_text_button">Giọng nói→Văn bản</string>
     <string name="stop_voice_button">Dừng giọng nói</string>
-    <string name="gpt_ask_button_text">GPT Hỏi</string>
     <string name="assistants_gpt_button">GPT Trợ lý</string>
     <string name="olama_ask_button">Olama Hỏi</string>
     <string name="stop_generation_button">Dừng tạo</string>
-    <string name="gpt_translate_button_text">GPT Dịch</string>
     <string name="gpt_continue_button">GPT Tiếp tục</string>
     <string name="gpt_suggest_button">GPT Gợi ý</string>
     <string name="deepseek_suggest_button">DeepSeek Gợi ý</string>
@@ -197,7 +195,7 @@
     <string name="stop_tts">Stop reading</string>
     <string name="translate">Translate</string>
     <string name="ask">Ask</string>
-    <string name="gpt_ask">GPT Ask</string>
+
     <string name="gpt_translate">GPT Trans</string>
     <string name="deepseek_ask">Deepseek Ask</string>
     <string name="deepseek_translate">Deepseek Trans</string>

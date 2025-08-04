@@ -112,7 +112,7 @@ class GPTAPI(private val apiKey: String, private val model: String = "gpt-3.5-tu
 
         call.enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                Log.e("GPTAPI", "Chat completion failed", e)
+                // Chat completion failed
                 close(e)
             }
 
@@ -155,7 +155,7 @@ class GPTAPI(private val apiKey: String, private val model: String = "gpt-3.5-tu
                         close()
                     }
                 } catch (e: Exception) {
-                    Log.e("GPTAPI", "Chat completion response error", e)
+                    // Chat completion response error
                     close(e)
                 }
             }
@@ -219,7 +219,7 @@ class GPTAPI(private val apiKey: String, private val model: String = "gpt-3.5-tu
                     throw IOException("API request failed: ${responseBody.code}")
                 }
             } catch (e: Exception) {
-                Log.e("GPTAPI", "askGPT failed", e)
+                // askGPT failed
                 throw e
             }
             

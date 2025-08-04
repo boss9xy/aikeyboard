@@ -215,8 +215,7 @@ class SettingsActivity : AppCompatActivity() {
                 val intent = Intent(this, PromptCustomizationActivity::class.java)
                 startActivity(intent)
             } catch (e: Exception) {
-                Log.e("SettingsActivity", "❌ Lỗi trong startActivity: ${e.message}", e)
-                e.printStackTrace()
+                // Error in startActivity
                 Toast.makeText(this, "Lỗi mở tùy chỉnh prompts: ${e.message}", Toast.LENGTH_LONG).show()
             }
         }

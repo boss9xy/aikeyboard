@@ -110,8 +110,8 @@
     <string name="stop_tts_button">停止朗读</string>
     <string name="translate_button">翻译</string>
     <string name="ask_button">提问</string>
-    <string name="gpt_ask_button">GPT提问</string>
-    <string name="gpt_translate_button">GPT翻译</string>
+    <string name="gpt_ask_button_text">GPT提问</string>
+    <string name="gpt_translate_button_text">GPT翻译</string>
     <string name="deepseek_ask_button">Deepseek提问</string>
     <string name="deepseek_translate_button">Deepseek翻译</string>
     <string name="switch_keyboard_button">⌨️</string>
@@ -122,11 +122,9 @@
     <!-- Smartbar Button Labels -->
     <string name="voice_to_text_button">语音→文字</string>
     <string name="stop_voice_button">停止语音</string>
-    <string name="gpt_ask_button_text">GPT提问</string>
     <string name="assistants_gpt_button">GPT助手</string>
     <string name="olama_ask_button">Olama提问</string>
     <string name="stop_generation_button">停止生成</string>
-    <string name="gpt_translate_button_text">GPT翻译</string>
     <string name="gpt_continue_button">GPT继续</string>
     <string name="gpt_suggest_button">GPT建议</string>
     <string name="deepseek_suggest_button">DeepSeek建议</string>

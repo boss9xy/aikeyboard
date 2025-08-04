@@ -127,7 +127,7 @@ class PromptManager(private val context: Context) {
     
     // New methods for all AI buttons
     fun getGPTAskPrompt(text: String): String {
-        val customPrompt = getCustomPrompt("gpt_ask")
+        val customPrompt = getCustomPrompt("gpt_ask_button_text")
         if (customPrompt.isNotEmpty()) {
             return "$customPrompt\n\nCâu hỏi: '$text'"
         }

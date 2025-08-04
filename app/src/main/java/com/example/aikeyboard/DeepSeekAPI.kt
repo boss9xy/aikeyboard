@@ -67,11 +67,11 @@ class DeepSeekAPI(private val apiKey: String) {
                 } else {
                     val errorStream = connection.errorStream
                     val errorResponse = errorStream?.bufferedReader()?.readText() ?: "Unknown error"
-                    Log.e("AIKeyboard", "API error: $errorResponse")
+                    // API error
                     throw Exception("API request failed with code: $responseCode - $errorResponse")
                 }
             } catch (e: Exception) {
-                Log.e("AIKeyboard", "API request failed", e)
+                // API request failed
                 throw Exception("API request failed: ${e.message}")
             } finally {
                 connection.disconnect()
@@ -152,7 +152,7 @@ class DeepSeekAPI(private val apiKey: String) {
                                         }
                                     }
                                 } catch (e: Exception) {
-                                    Log.e("DeepSeekAPI", "Error parsing JSON: $e")
+                                    // Error parsing JSON
                                 }
                             }
                         }
@@ -331,7 +331,7 @@ class DeepSeekAPI(private val apiKey: String) {
 
     suspend fun translate(text: String, targetLang: String, ic: InputConnection): String {
         if (isRequestPending) {
-            Log.w("AIKeyboard", "Translate request ignored: Another request is already pending.")
+            // Translate request ignored: Another request is already pending
             return "Request Ignored"
         }
 
@@ -370,7 +370,7 @@ class DeepSeekAPI(private val apiKey: String) {
 
     suspend fun askQuestion(question: String, ic: InputConnection): String {
         if (isRequestPending) {
-            Log.w("AIKeyboard", "AskQuestion request ignored: Another request is already pending.")
+            // AskQuestion request ignored: Another request is already pending
             return "Request Ignored"
         }
 
@@ -424,8 +424,7 @@ class DeepSeekAPI(private val apiKey: String) {
             ic.commitText("\n$content", 1)
         } catch (e: Exception) {
             ic.commitText("\nError parsing response", 1)
-            Log.e("AIKeyboard", "Error parsing API response", e)
-            Log.e("AIKeyboard", "Full API response: $response", e)
+            // Error parsing API response
     
         }
     }

@@ -197,6 +197,9 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     private var btnOlamaTrans: Button? = null
     private var btnVoiceToText: Button? = null
     private var btnStopVoiceToText: Button? = null
+    
+    // Các nút mới cho tầng 1
+    private var btnQuickPaste: ImageButton? = null
     private var voiceToTextManager: VoiceToTextManager? = null
     // Voice Chat Variables - Copy từ mic cũ
     private var btnVoiceChat: ImageButton? = null
@@ -232,7 +235,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         Logger.initialize(this)
 
         } catch (e: Exception) {
-            Log.e("AIKeyboard", "Failed to initialize Logger: ${e.message}")
+            // Logger initialization failed
         }
         try {
         initializeAPIs()
@@ -302,7 +305,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         try {
             telexComposer.loadEnglishWords(this)
         } catch (e: Exception) {
-            Log.e("AIKeyboard", "Failed to load English words: ${e.message}")
+            // Failed to load English words
         }
         
         // Refresh UI when language changes
@@ -801,8 +804,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         // Reset trạng thái nút về bình thường
         btnVoiceChat?.setImageResource(R.drawable.ic_voice_chat)
         btnVoiceChat?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
-        btnStopVoiceChat?.setImageResource(R.drawable.ic_stop)
-        btnStopVoiceChat?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
+        btnStopVoiceToText?.backgroundTintList = ColorStateList.valueOf(resources.getColor(R.color.key_special_background, theme))
     }
 
 
@@ -1024,6 +1026,9 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         btnStopVoiceToText = keyboard?.findViewById(R.id.btnStopVoiceToText)
         btnVoiceChat = keyboard?.findViewById(R.id.btnVoiceChat)
         btnStopVoiceChat = keyboard?.findViewById(R.id.btnStopVoiceChat)
+        
+        // Khởi tạo các nút mới cho tầng 1
+        btnQuickPaste = keyboard?.findViewById(R.id.btnQuickPaste)
 
         // Khởi tạo smartbar container và toggle button
         smartbarContainer = keyboard?.findViewById(R.id.smartbarContainer)
@@ -1052,6 +1057,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         setupCalculatorButton()
         setupSwitchKeyboardButton()
         setupSmartbarToggle()
+        
+        // Refresh smartbar for current display language
+        val currentDisplayLanguage = languageManager.getCurrentDisplayLanguage()
+        refreshSmartbarForLanguage(currentDisplayLanguage)
     }
 
     private fun setupSmartbarButtons() {
@@ -1083,6 +1092,10 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         btnStopVoiceChat?.setOnClickListener {
             onStopVoiceChatButtonClick(it)
         }
+        
+        // Xử lý các nút mới cho tầng 1
+        btnQuickPaste?.setOnClickListener { handleQuickPaste() }
+        
         olamaAskButton?.setOnClickListener { handleOlamaAsk() }
         btnGptSpellCheck?.setOnClickListener {
             setButtonRunningState(btnGptSpellCheck, true)
@@ -1546,8 +1559,9 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             // 4. Refresh keyboard layout
             refreshKeyboardForLanguage(language)
             
-            // 5. Refresh smartbar language
-            refreshSmartbarForLanguage(language)
+            // 5. Refresh smartbar language (use display language, not input language)
+            val currentDisplayLang = languageManager.getCurrentDisplayLanguage()
+            refreshSmartbarForLanguage(currentDisplayLang)
             
             // 6. Refresh prompt system
             refreshPromptSystemForLanguage(language)
@@ -1599,8 +1613,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             btnTinhToan?.text = getLocalizedString("calculator", language)
             
             // GPT buttons
-            gptTranslateButton?.text = getLocalizedString("gpt_translate", language)
-            gptAskButton?.text = getLocalizedString("gpt_ask", language)
+            gptTranslateButton?.text = getLocalizedString("gpt_translate_button_text", language)
+            gptAskButton?.text = getLocalizedString("gpt_ask_button_text", language)
             gptSuggestButton?.text = getLocalizedString("gpt_suggest", language)
             gptContinueButton?.text = getLocalizedString("continue", language)
             
@@ -1618,7 +1632,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             btnStopVoiceToText?.text = getLocalizedString("stop_voice", language)
             
             // Other buttons
-            btnPasteAndRead?.text = getLocalizedString("paste_and_read", language)
+            btnPasteAndRead?.text = getLocalizedString("paste_and_read_button", language)
             btnStopTts?.text = getLocalizedString("stop_tts", language)
             stopGenerationButton?.text = getLocalizedString("stop_generation", language)
             assistantsGptButton?.text = getLocalizedString("assistants_gpt", language)
@@ -1686,19 +1700,13 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     }
 
     private fun getLocalizedString(key: String, language: Language): String {
-        // Check for custom button names first
-        val customName = getCustomButtonName(key)
-        if (customName.isNotEmpty()) {
-            return customName
-        }
-        
         return when (language) {
             Language.VIETNAMESE -> when (key) {
                 "translate" -> "Dịch"
                 "ask" -> "Định dạng văn bản"
                 "calculator" -> "Máy tính"
-                "gpt_translate" -> "GPT Dịch"
-                "gpt_ask" -> "GPT Hỏi"
+                "gpt_translate_button_text" -> "GPT Dịch"
+                "gpt_ask_button_text" -> "GPT Hỏi"
                 "gpt_suggest" -> "GPT Gợi ý"
                 "continue" -> "Tiếp tục"
                 "deepseek_suggest" -> "DeepSeek Gợi ý"
@@ -1708,7 +1716,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Dịch"
                 "voice_to_text" -> "Giọng nói → Văn bản"
                 "stop_voice" -> "Dừng ghi âm → Văn bản"
-                "paste_and_read" -> "Dán & Đọc"
+                "paste_and_read_button" -> "Đọc clipboard"
                 "stop_tts" -> "Dừng TTS"
                 "stop_generation" -> "Dừng tạo"
                 "assistants_gpt" -> "GPT Trợ lý"
@@ -1720,8 +1728,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Translate"
                 "ask" -> "Format Text"
                 "calculator" -> "Calculator"
-                "gpt_translate" -> "GPT Translate"
-                "gpt_ask" -> "GPT Ask"
+                "gpt_translate_button_text" -> "GPT Translate"
+                "gpt_ask_button_text" -> "GPT Ask"
                 "gpt_suggest" -> "GPT Suggest"
                 "continue" -> "Continue"
                 "deepseek_suggest" -> "DeepSeek Suggest"
@@ -1731,7 +1739,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Translate"
                 "voice_to_text" -> "Voice→Text"
                 "stop_voice" -> "Stop Recording→Text"
-                "paste_and_read" -> "Paste & Read"
+                "paste_and_read_button" -> "Read clipboard"
                 "stop_tts" -> "Stop TTS"
                 "stop_generation" -> "Stop Generation"
                 "assistants_gpt" -> "GPT Assistant"
@@ -1743,8 +1751,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "翻译"
                 "ask" -> "格式化文本"
                 "calculator" -> "计算器"
-                "gpt_translate" -> "GPT翻译"
-                "gpt_ask" -> "GPT询问"
+                "gpt_translate_button_text" -> "GPT翻译"
+                "gpt_ask_button_text" -> "GPT询问"
                 "gpt_suggest" -> "GPT建议"
                 "continue" -> "继续"
                 "deepseek_suggest" -> "DeepSeek建议"
@@ -1754,7 +1762,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama翻译"
                 "voice_to_text" -> "语音→文字"
                 "stop_voice" -> "停止录音→文字"
-                "paste_and_read" -> "粘贴并朗读"
+                "paste_and_read_button" -> "读取剪贴板"
                 "stop_tts" -> "停止TTS"
                 "stop_generation" -> "停止生成"
                 "assistants_gpt" -> "GPT助手"
@@ -1766,8 +1774,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "翻訳"
                 "ask" -> "テキストフォーマット"
                 "calculator" -> "計算機"
-                "gpt_translate" -> "GPT翻訳"
-                "gpt_ask" -> "GPT質問"
+                "gpt_translate_button_text" -> "GPT翻訳"
+                "gpt_ask_button_text" -> "GPT質問"
                 "gpt_suggest" -> "GPT提案"
                 "continue" -> "続行"
                 "deepseek_suggest" -> "DeepSeek提案"
@@ -1777,7 +1785,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama翻訳"
                 "voice_to_text" -> "音声→文字"
                 "stop_voice" -> "録音停止→文字"
-                "paste_and_read" -> "貼付・読み上げ"
+                "paste_and_read_button" -> "クリップボードを読み取り"
                 "stop_tts" -> "TTS停止"
                 "stop_generation" -> "生成停止"
                 "assistants_gpt" -> "GPTアシスタント"
@@ -1789,8 +1797,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "번역"
                 "ask" -> "텍스트 포맷"
                 "calculator" -> "계산기"
-                "gpt_translate" -> "GPT번역"
-                "gpt_ask" -> "GPT질문"
+                "gpt_translate_button_text" -> "GPT번역"
+                "gpt_ask_button_text" -> "GPT질문"
                 "gpt_suggest" -> "GPT제안"
                 "continue" -> "계속"
                 "deepseek_suggest" -> "DeepSeek제안"
@@ -1800,7 +1808,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama번역"
                 "voice_to_text" -> "음성→텍스트"
                 "stop_voice" -> "녹음중지→텍스트"
-                "paste_and_read" -> "붙여넣기&읽기"
+                "paste_and_read_button" -> "클립보드 읽기"
                 "stop_tts" -> "TTS중지"
                 "stop_generation" -> "생성중지"
                 "assistants_gpt" -> "GPT어시스턴트"
@@ -1812,8 +1820,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Traduire"
                 "ask" -> "Formater le texte"
                 "calculator" -> "Calculatrice"
-                "gpt_translate" -> "GPT Traduire"
-                "gpt_ask" -> "GPT Demander"
+                "gpt_translate_button_text" -> "GPT Traduire"
+                "gpt_ask_button_text" -> "GPT Demander"
                 "gpt_suggest" -> "GPT Suggérer"
                 "continue" -> "Continuer"
                 "deepseek_suggest" -> "DeepSeek Suggérer"
@@ -1823,7 +1831,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Traduire"
                 "voice_to_text" -> "Voix→Texte"
                 "stop_voice" -> "Arrêter enregistrement→Texte"
-                "paste_and_read" -> "Coller et Lire"
+                "paste_and_read_button" -> "Lire le presse-papiers"
                 "stop_tts" -> "Arrêter TTS"
                 "stop_generation" -> "Arrêter la génération"
                 "assistants_gpt" -> "GPT Assistant"
@@ -1835,8 +1843,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Übersetzen"
                 "ask" -> "Text formatieren"
                 "calculator" -> "Taschenrechner"
-                "gpt_translate" -> "GPT Übersetzen"
-                "gpt_ask" -> "GPT Fragen"
+                "gpt_translate_button_text" -> "GPT Übersetzen"
+                "gpt_ask_button_text" -> "GPT Fragen"
                 "gpt_suggest" -> "GPT Vorschlagen"
                 "continue" -> "Fortsetzen"
                 "deepseek_suggest" -> "DeepSeek Vorschlagen"
@@ -1846,7 +1854,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Übersetzen"
                 "voice_to_text" -> "Sprache→Text"
                 "stop_voice" -> "Aufnahme stoppen→Text"
-                "paste_and_read" -> "Einfügen & Lesen"
+                "paste_and_read_button" -> "Zwischenablage lesen"
                 "stop_tts" -> "TTS stoppen"
                 "stop_generation" -> "Generierung stoppen"
                 "assistants_gpt" -> "GPT Assistent"
@@ -1858,8 +1866,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Traducir"
                 "ask" -> "Formatear texto"
                 "calculator" -> "Calculadora"
-                "gpt_translate" -> "GPT Traducir"
-                "gpt_ask" -> "GPT Preguntar"
+                "gpt_translate_button_text" -> "GPT Traducir"
+                "gpt_ask_button_text" -> "GPT Preguntar"
                 "gpt_suggest" -> "GPT Sugerir"
                 "continue" -> "Continuar"
                 "deepseek_suggest" -> "DeepSeek Sugerir"
@@ -1869,7 +1877,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Traducir"
                 "voice_to_text" -> "Voz→Texto"
                 "stop_voice" -> "Detener grabación→Texto"
-                "paste_and_read" -> "Pegar y Leer"
+                "paste_and_read_button" -> "Leer portapapeles"
                 "stop_tts" -> "Detener TTS"
                 "stop_generation" -> "Detener generación"
                 "assistants_gpt" -> "GPT Asistente"
@@ -1881,8 +1889,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Tradurre"
                 "ask" -> "Formatta testo"
                 "calculator" -> "Calcolatrice"
-                "gpt_translate" -> "GPT Tradurre"
-                "gpt_ask" -> "GPT Chiedere"
+                "gpt_translate_button_text" -> "GPT Tradurre"
+                "gpt_ask_button_text" -> "GPT Chiedere"
                 "gpt_suggest" -> "GPT Suggerire"
                 "continue" -> "Continuare"
                 "deepseek_suggest" -> "DeepSeek Suggerire"
@@ -1892,7 +1900,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Tradurre"
                 "voice_to_text" -> "Voce→Testo"
                 "stop_voice" -> "Fermare registrazione→Testo"
-                "paste_and_read" -> "Incolla e Leggi"
+                "paste_and_read_button" -> "Leggi appunti"
                 "stop_tts" -> "Fermare TTS"
                 "stop_generation" -> "Fermare generazione"
                 "assistants_gpt" -> "GPT Assistente"
@@ -1904,8 +1912,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Перевести"
                 "ask" -> "Форматировать текст"
                 "calculator" -> "Калькулятор"
-                "gpt_translate" -> "GPT Перевести"
-                "gpt_ask" -> "GPT Спросить"
+                "gpt_translate_button_text" -> "GPT Перевести"
+                "gpt_ask_button_text" -> "GPT Спросить"
                 "gpt_suggest" -> "GPT Предложить"
                 "continue" -> "Продолжить"
                 "deepseek_suggest" -> "DeepSeek Предложить"
@@ -1915,7 +1923,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Перевести"
                 "voice_to_text" -> "Голос→Текст"
                 "stop_voice" -> "Остановить запись→Текст"
-                "paste_and_read" -> "Вставить и Читать"
+                "paste_and_read_button" -> "Читать буфер обмена"
                 "stop_tts" -> "Остановить TTS"
                 "stop_generation" -> "Остановить генерацию"
                 "assistants_gpt" -> "GPT Ассистент"
@@ -1927,8 +1935,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "ترجمة"
                 "ask" -> "تنسيق النص"
                 "calculator" -> "حاسبة"
-                "gpt_translate" -> "GPT ترجمة"
-                "gpt_ask" -> "GPT سؤال"
+                "gpt_translate_button_text" -> "GPT ترجمة"
+                "gpt_ask_button_text" -> "GPT سؤال"
                 "gpt_suggest" -> "GPT اقتراح"
                 "continue" -> "متابعة"
                 "deepseek_suggest" -> "DeepSeek اقتراح"
@@ -1938,7 +1946,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama ترجمة"
                 "voice_to_text" -> "صوت→نص"
                 "stop_voice" -> "إيقاف التسجيل→نص"
-                "paste_and_read" -> "لصق وقراءة"
+                "paste_and_read_button" -> "قراءة الحافظة"
                 "stop_tts" -> "إيقاف TTS"
                 "stop_generation" -> "إيقاف التوليد"
                 "assistants_gpt" -> "GPT مساعد"
@@ -1950,8 +1958,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "แปล"
                 "ask" -> "จัดรูปแบบข้อความ"
                 "calculator" -> "เครื่องคิดเลข"
-                "gpt_translate" -> "GPT แปล"
-                "gpt_ask" -> "GPT ถาม"
+                "gpt_translate_button_text" -> "GPT แปล"
+                "gpt_ask_button_text" -> "GPT ถาม"
                 "gpt_suggest" -> "GPT แนะนำ"
                 "continue" -> "ต่อ"
                 "deepseek_suggest" -> "DeepSeek แนะนำ"
@@ -1961,7 +1969,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama แปล"
                 "voice_to_text" -> "เสียง→ข้อความ"
                 "stop_voice" -> "หยุดบันทึก→ข้อความ"
-                "paste_and_read" -> "วางและอ่าน"
+                "paste_and_read_button" -> "อ่านคลิปบอร์ด"
                 "stop_tts" -> "หยุด TTS"
                 "stop_generation" -> "หยุดการสร้าง"
                 "assistants_gpt" -> "GPT ผู้ช่วย"
@@ -1973,8 +1981,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "अनुवाद"
                 "ask" -> "टेक्स्ट फॉर्मेट"
                 "calculator" -> "कैलकुलेटर"
-                "gpt_translate" -> "GPT अनुवाद"
-                "gpt_ask" -> "GPT पूछें"
+                "gpt_translate_button_text" -> "GPT अनुवाद"
+                "gpt_ask_button_text" -> "GPT पूछें"
                 "gpt_suggest" -> "GPT सुझाव"
                 "continue" -> "जारी रखें"
                 "deepseek_suggest" -> "DeepSeek सुझाव"
@@ -1984,7 +1992,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama अनुवाद"
                 "voice_to_text" -> "आवाज→टेक्स्ट"
                 "stop_voice" -> "रिकॉर्डिंग रोकें→टेक्स्ट"
-                "paste_and_read" -> "पेस्ट और पढ़ें"
+                "paste_and_read_button" -> "क्लिपबोर्ड पढ़ें"
                 "stop_tts" -> "TTS रोकें"
                 "stop_generation" -> "जनरेशन रोकें"
                 "assistants_gpt" -> "GPT सहायक"
@@ -1996,8 +2004,8 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "translate" -> "Translate"
                 "ask" -> "Format Text"
                 "calculator" -> "Calculator"
-                "gpt_translate" -> "GPT Translate"
-                "gpt_ask" -> "GPT Ask"
+                "gpt_translate_button_text" -> "GPT Translate"
+                "gpt_ask_button_text" -> "GPT Ask"
                 "gpt_suggest" -> "GPT Suggest"
                 "continue" -> "Continue"
                 "deepseek_suggest" -> "DeepSeek Suggest"
@@ -2007,7 +2015,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 "olama_translate" -> "Olama Translate"
                 "voice_to_text" -> "Voice→Text"
                 "stop_voice" -> "Stop Recording→Text"
-                "paste_and_read" -> "Paste & Read"
+                "paste_and_read_button" -> "Read clipboard"
                 "stop_tts" -> "Stop TTS"
                 "stop_generation" -> "Stop Generation"
                 "assistants_gpt" -> "GPT Assistant"
@@ -2020,6 +2028,91 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     
     private fun getCustomButtonName(buttonType: String): String {
         return PromptCustomizationActivity.getButtonName(this, buttonType)
+    }
+
+    private fun getLocalizedStringFromResources(stringName: String, language: Language): String {
+        return try {
+            val locale = Locale(language.code)
+            val config = Configuration(resources.configuration)
+            config.setLocale(locale)
+            val context = createConfigurationContext(config)
+            val resourceId = resources.getIdentifier(stringName, "string", packageName)
+            if (resourceId != 0) {
+                context.resources.getString(resourceId)
+            } else {
+                // Fallback to hardcoded strings
+                when (language) {
+                    Language.VIETNAMESE -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Dịch"
+                        "gpt_ask_button_text" -> "GPT Hỏi"
+                        else -> stringName
+                    }
+                    Language.ENGLISH -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Trans"
+                        "gpt_ask_button_text" -> "GPT Ask"
+                        else -> stringName
+                    }
+                    Language.CHINESE -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT翻译"
+                        "gpt_ask_button_text" -> "GPT提问"
+                        else -> stringName
+                    }
+                    Language.JAPANESE -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT翻訳"
+                        "gpt_ask_button_text" -> "GPT質問"
+                        else -> stringName
+                    }
+                    Language.KOREAN -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT번역"
+                        "gpt_ask_button_text" -> "GPT질문"
+                        else -> stringName
+                    }
+                    Language.FRENCH -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Traduire"
+                        "gpt_ask_button_text" -> "GPT Demander"
+                        else -> stringName
+                    }
+                    Language.GERMAN -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Übersetzen"
+                        "gpt_ask_button_text" -> "GPT Fragen"
+                        else -> stringName
+                    }
+                    Language.SPANISH -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Traducir"
+                        "gpt_ask_button_text" -> "GPT Preguntar"
+                        else -> stringName
+                    }
+                    Language.ITALIAN -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Tradurre"
+                        "gpt_ask_button_text" -> "GPT Chiedere"
+                        else -> stringName
+                    }
+                    Language.RUSSIAN -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT Перевести"
+                        "gpt_ask_button_text" -> "GPT Спросить"
+                        else -> stringName
+                    }
+                    Language.ARABIC -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT ترجمة"
+                        "gpt_ask_button_text" -> "GPT سؤال"
+                        else -> stringName
+                    }
+                    Language.THAI -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT แปล"
+                        "gpt_ask_button_text" -> "GPT ถาม"
+                        else -> stringName
+                    }
+                    Language.HINDI -> when (stringName) {
+                        "gpt_translate_button_text" -> "GPT अनुवाद"
+                        "gpt_ask_button_text" -> "GPT पूछें"
+                        else -> stringName
+                    }
+                    else -> stringName
+                }
+            }
+        } catch (e: Exception) {
+            stringName
+        }
     }
 
     private fun setupClipboardHistorySpinner() {
@@ -2677,7 +2770,6 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
     }
 
     private fun showError(message: String) {
-        Log.e("AIKeyboard", "Error: $message")
         currentInputConnection?.commitText("\nError: $message\n", 1)
         Handler(Looper.getMainLooper()).post {
             Toast.makeText(this, "AIKeyboard Error: $message", Toast.LENGTH_SHORT).show()
@@ -2708,11 +2800,23 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         
         // Refresh entire system for current language on startup
         val currentLanguage = languageManager.getCurrentLanguage()
+        val currentDisplayLanguage = languageManager.getCurrentDisplayLanguage()
 
         refreshSystemForLanguage(currentLanguage)
         
+        // Refresh smartbar for current display language
+        refreshSmartbarForLanguage(currentDisplayLanguage)
+        
         // Refresh UI when keyboard is shown
         refreshUIForLanguage()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        
+        // Refresh smartbar when configuration changes (e.g., language change)
+        val currentDisplayLanguage = languageManager.getCurrentDisplayLanguage()
+        refreshSmartbarForLanguage(currentDisplayLanguage)
     }
 
 
@@ -2730,7 +2834,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
             textToSpeech?.setSpeechRate(rate)
             
         } else {
-            Log.e("AIKeyboard", "TTS initialization failed with status: $status")
+            // TTS initialization failed
         }
     }
 
@@ -3225,7 +3329,7 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         resources.updateConfiguration(config, resources.displayMetrics)
         
         // Refresh all button texts in smartbar
-        btnPasteAndRead?.text = getLocalizedString("paste_and_read", languageManager.getCurrentLanguage())
+        btnPasteAndRead?.text = getLocalizedString("paste_and_read_button", languageManager.getCurrentLanguage())
         btnStopTts?.text = getLocalizedString("stop_tts", languageManager.getCurrentLanguage())
         btnVoiceToText?.text = getLocalizedString("voice_to_text", languageManager.getCurrentLanguage())
         btnStopVoiceToText?.text = getLocalizedString("stop_voice", languageManager.getCurrentLanguage())
@@ -3236,20 +3340,20 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
         val languageCodeText = languageButtonContainer?.findViewById<TextView>(R.id.languageCode)
         languageCodeText?.text = getString(R.string.language_code_vn)
         
-        gptAskButton?.text = getLocalizedString("gpt_ask", languageManager.getCurrentLanguage())
-        assistantsGptButton?.text = getLocalizedString("assistants_gpt", languageManager.getCurrentLanguage())
-        olamaAskButton?.text = getLocalizedString("olama_ask", languageManager.getCurrentLanguage())
-        stopGenerationButton?.text = getLocalizedString("stop_generation", languageManager.getCurrentLanguage())
-        gptTranslateButton?.text = getLocalizedString("gpt_translate", languageManager.getCurrentLanguage())
-        translateButton?.text = getLocalizedString("translate", languageManager.getCurrentLanguage())
-        gptContinueButton?.text = getLocalizedString("continue", languageManager.getCurrentLanguage())
-        gptSuggestButton?.text = getLocalizedString("gpt_suggest", languageManager.getCurrentLanguage())
-        deepseekSuggestButton?.text = getLocalizedString("deepseek_suggest", languageManager.getCurrentLanguage())
-        textFormatButton?.text = getLocalizedString("ask", languageManager.getCurrentLanguage())
-        btnGptSpellCheck?.text = getLocalizedString("gpt_spell_check", languageManager.getCurrentLanguage())
-        btnDeepSeekSpellCheck?.text = getLocalizedString("spell_check", languageManager.getCurrentLanguage())
-        btnAskDeepSeek?.text = getLocalizedString("ask_deepseek", languageManager.getCurrentLanguage())
-        btnOlamaTrans?.text = getLocalizedString("olama_translate", languageManager.getCurrentLanguage())
+        gptAskButton?.text = getLocalizedString("gpt_ask_button_text", currentDisplayLanguage)
+        assistantsGptButton?.text = getLocalizedString("assistants_gpt", currentDisplayLanguage)
+        olamaAskButton?.text = getLocalizedString("olama_ask", currentDisplayLanguage)
+        stopGenerationButton?.text = getLocalizedString("stop_generation", currentDisplayLanguage)
+        gptTranslateButton?.text = getLocalizedString("gpt_translate_button_text", currentDisplayLanguage)
+        translateButton?.text = getLocalizedString("translate", currentDisplayLanguage)
+        gptContinueButton?.text = getLocalizedString("continue", currentDisplayLanguage)
+        gptSuggestButton?.text = getLocalizedString("gpt_suggest", currentDisplayLanguage)
+        deepseekSuggestButton?.text = getLocalizedString("deepseek_suggest", currentDisplayLanguage)
+        textFormatButton?.text = getLocalizedString("ask", currentDisplayLanguage)
+        btnGptSpellCheck?.text = getLocalizedString("gpt_spell_check", currentDisplayLanguage)
+        btnDeepSeekSpellCheck?.text = getLocalizedString("spell_check", currentDisplayLanguage)
+        btnAskDeepSeek?.text = getLocalizedString("ask_deepseek", currentDisplayLanguage)
+        btnOlamaTrans?.text = getLocalizedString("olama_translate", currentDisplayLanguage)
         
 
     }
@@ -3448,6 +3552,21 @@ class AIKeyboardService : InputMethodService(), TextToSpeech.OnInitListener,
                 stopGenerationButton?.visibility = View.GONE
                 setButtonRunningState(olamaAskButton, false)
             }
+        }
+    }
+
+    // Xử lý nút dán nhanh
+    private fun handleQuickPaste() {
+        try {
+            val clipboardText = getClipboardText()
+            if (clipboardText?.isNotEmpty() == true) {
+                currentInputConnection?.commitText(clipboardText, 1)
+                showToast("Đã dán văn bản")
+            } else {
+                showToast("Không có văn bản để dán")
+            }
+        } catch (e: Exception) {
+            showToast("Lỗi khi dán văn bản: ${e.message}")
         }
     }
 

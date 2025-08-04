@@ -110,10 +110,10 @@
     <string name="stop_tts_button">Stop reading</string>
     <string name="translate_button">Translate</string>
     <string name="ask_button">Ask</string>
-    <string name="gpt_ask_button">GPT Ask</string>
-    <string name="gpt_translate_button">GPT Trans</string>
+    <string name="gpt_ask_button_text">GPT Ask</string>
+    <string name="gpt_translate_button_text">GPT Trans</string>
     <string name="deepseek_ask_button">Deepseek Ask</string>
-    <string name="deepseek_translate_button">Deepseek Trans</string>
+    <string name="deepseek_translate_button_text">Deepseek Trans</string>
     <string name="switch_keyboard_button">⌨️</string>
     <string name="mic_button">🎤</string>
     <string name="calculator_button">Calculate</string>
@@ -122,11 +122,9 @@
     <!-- Smartbar Button Labels -->
     <string name="voice_to_text_button">Voice→Text</string>
     <string name="stop_voice_button">Stop Voice</string>
-    <string name="gpt_ask_button_text">GPT Ask</string>
     <string name="assistants_gpt_button">Assistants GPT</string>
     <string name="olama_ask_button">Olama Ask</string>
     <string name="stop_generation_button">Stop Gen</string>
-    <string name="gpt_translate_button_text">GPT Trans</string>
     <string name="gpt_continue_button">GPT Continue</string>
     <string name="gpt_suggest_button">GPT Suggest</string>
     <string name="deepseek_suggest_button">DeepSeek Suggest</string>

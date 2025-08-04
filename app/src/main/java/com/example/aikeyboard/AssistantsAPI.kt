@@ -182,7 +182,7 @@ class AssistantsAPI(private val apiKey: String, private val assistantId: String)
             lastRunStatus = "completed"
             close()
         } catch (e: Exception) {
-            Log.e("AssistantsAPI", "Error in sendMessage", e)
+            // Error in sendMessage
             trySend("Error: ${e.message}")
             close(e)
         }

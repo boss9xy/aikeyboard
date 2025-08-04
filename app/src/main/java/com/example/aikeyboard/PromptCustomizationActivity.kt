@@ -100,38 +100,8 @@ class PromptCustomizationActivity : AppCompatActivity() {
             setupButtons()
             
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ LỖI CRITICAL trong onCreate: ${e.message}", e)
-            e.printStackTrace()
-            
-            // Ghi lỗi vào SharedPreferences để debug
-            try {
-                val prefs = getSharedPreferences("DebugLogs", MODE_PRIVATE)
-                prefs.edit().apply {
-                    putString("last_crash_time", System.currentTimeMillis().toString())
-                    putString("last_crash_error", e.message ?: "Unknown error")
-                    putString("last_crash_stack", e.stackTraceToString())
-                    apply()
-                }
-            } catch (debugError: Exception) {
-                Log.e("PromptCustomization", "❌ Không thể lưu debug logs: ${debugError.message}")
-            }
-            
-            // Hiển thị cảnh báo chi tiết
-            try {
-                val errorMessage = "Lỗi khởi tạo: ${e.message}"
-                Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
-                
-                // Hiển thị AlertDialog với thông tin chi tiết
-                AlertDialog.Builder(this)
-                    .setTitle("❌ Lỗi Khởi tạo")
-                    .setMessage("Lỗi: ${e.message}\n\nStack trace:\n${e.stackTraceToString()}")
-                    .setPositiveButton("OK") { _, _ -> finish() }
-                    .setCancelable(false)
-                    .show()
-            } catch (uiError: Exception) {
-                Log.e("PromptCustomization", "❌ Không thể hiển thị UI error: ${uiError.message}")
-                finish()
-            }
+            // Critical error in onCreate
+            finish()
         }
     }
     
@@ -207,7 +177,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             resetPromptsButton = findViewById<Button>(R.id.resetPromptsButton)
             
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ Lỗi trong initViews: ${e.message}", e)
+            // Error in initViews
             throw e
         }
     }
@@ -225,11 +195,11 @@ class PromptCustomizationActivity : AppCompatActivity() {
             aiAssistantPromptSwitch.isChecked = aiAssistantPromptEnabled
             
             // Load GPT Ask
-            val gptAskPrompt = prefs.getString("prompt_gpt_ask", getDefaultGPTAskPrompt())
+            val gptAskPrompt = prefs.getString("prompt_gpt_ask_button_text", getDefaultGPTAskPrompt())
             gptAskPromptEditText.setText(gptAskPrompt)
-            val gptAskButtonName = prefs.getString("button_name_gpt_ask", getDefaultGPTAskButtonName())
+            val gptAskButtonName = prefs.getString("button_name_gpt_ask_button_text", getDefaultGPTAskButtonName())
             gptAskButtonNameEditText.setText(gptAskButtonName)
-            val gptAskPromptEnabled = prefs.getBoolean("prompt_enabled_gpt_ask", false)
+            val gptAskPromptEnabled = prefs.getBoolean("prompt_enabled_gpt_ask_button_text", false)
             gptAskPromptSwitch.isChecked = gptAskPromptEnabled
             
             // Load DeepSeek Ask
@@ -321,7 +291,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             deepseekSpellCheckPromptSwitch.isChecked = deepseekSpellCheckPromptEnabled
             
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ Lỗi trong loadSavedPrompts: ${e.message}", e)
+            // Error in loadSavedPrompts
             throw e
         }
     }
@@ -337,7 +307,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             }
             
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ Lỗi trong setupButtons: ${e.message}", e)
+            // Error in setupButtons
             throw e
         }
     }
@@ -353,9 +323,9 @@ class PromptCustomizationActivity : AppCompatActivity() {
             editor.putBoolean("prompt_enabled_ai_assistant", aiAssistantPromptSwitch.isChecked)
             
             // Save GPT Ask
-            editor.putString("prompt_gpt_ask", gptAskPromptEditText.text.toString())
-            editor.putString("button_name_gpt_ask", gptAskButtonNameEditText.text.toString())
-            editor.putBoolean("prompt_enabled_gpt_ask", gptAskPromptSwitch.isChecked)
+            editor.putString("prompt_gpt_ask_button_text", gptAskPromptEditText.text.toString())
+            editor.putString("button_name_gpt_ask_button_text", gptAskButtonNameEditText.text.toString())
+            editor.putBoolean("prompt_enabled_gpt_ask_button_text", gptAskPromptSwitch.isChecked)
             
             // Save DeepSeek Ask
             editor.putString("prompt_deepseek_ask", deepseekAskPromptEditText.text.toString())
@@ -416,7 +386,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             
             Toast.makeText(this, "Đã lưu prompts thành công!", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ Lỗi trong savePrompts: ${e.message}", e)
+            // Error in savePrompts
             Toast.makeText(this, "Lỗi lưu prompts: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
@@ -490,7 +460,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             
             Toast.makeText(this, "Đã khôi phục mặc định!", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Log.e("PromptCustomization", "❌ Lỗi trong resetToDefaults: ${e.message}", e)
+            // Error in resetToDefaults
             Toast.makeText(this, "Lỗi khôi phục mặc định: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
@@ -749,7 +719,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             
             return when (promptType) {
                 "ai_assistant" -> prefs.getString("prompt_ai_assistant", "") ?: ""
-                "gpt_ask" -> prefs.getString("prompt_gpt_ask", "") ?: ""
+                "gpt_ask_button_text" -> prefs.getString("prompt_gpt_ask_button_text", "") ?: ""
                 "deepseek_ask" -> prefs.getString("prompt_deepseek_ask", "") ?: ""
                 "olama_ask" -> prefs.getString("prompt_olama_ask", "") ?: ""
                 "gpt_continue" -> prefs.getString("prompt_gpt_continue", "") ?: ""
@@ -769,7 +739,7 @@ class PromptCustomizationActivity : AppCompatActivity() {
             val prefs = context.getSharedPreferences("AIKeyboardPrefs", android.content.Context.MODE_PRIVATE)
             return when (buttonType) {
                 "ai_assistant" -> prefs.getString("button_name_ai_assistant", "AI Assistant") ?: "AI Assistant"
-                "gpt_ask" -> prefs.getString("button_name_gpt_ask", "GPT Ask") ?: "GPT Ask"
+                "gpt_ask_button_text" -> prefs.getString("button_name_gpt_ask_button_text", "GPT Ask") ?: "GPT Ask"
                 "deepseek_ask" -> prefs.getString("button_name_deepseek_ask", "DeepSeek Ask") ?: "DeepSeek Ask"
                 "olama_ask" -> prefs.getString("button_name_olama_ask", "Olama Ask") ?: "Olama Ask"
                 "gpt_continue" -> prefs.getString("button_name_gpt_continue", "GPT Continue") ?: "GPT Continue"

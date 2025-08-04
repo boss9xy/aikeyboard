@@ -57,7 +57,7 @@ class OlamaServe(private val baseUrl: String, private val model: String) {
                 }
                 return "No content: $body"
             } catch (e: Exception) {
-                Log.e("OlamaServe", "JSON parse error: ${e.message}")
+                // JSON parse error
                 return "JSON parse error: ${e.message}\nRaw: $body"
             }
         }

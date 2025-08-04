@@ -110,8 +110,8 @@
     <string name="stop_tts_button">읽기 중지</string>
     <string name="translate_button">번역</string>
     <string name="ask_button">질문</string>
-    <string name="gpt_ask_button">GPT 질문</string>
-    <string name="gpt_translate_button">GPT 번역</string>
+    <string name="gpt_ask_button_text">GPT 질문</string>
+    <string name="gpt_translate_button_text">GPT 번역</string>
     <string name="deepseek_ask_button">Deepseek 질문</string>
     <string name="deepseek_translate_button">Deepseek 번역</string>
     <string name="switch_keyboard_button">⌨️</string>
@@ -122,11 +122,9 @@
     <!-- Smartbar Button Labels -->
     <string name="voice_to_text_button">음성→텍스트</string>
     <string name="stop_voice_button">음성 중지</string>
-    <string name="gpt_ask_button_text">GPT 질문</string>
     <string name="assistants_gpt_button">GPT 어시스턴트</string>
     <string name="olama_ask_button">Olama 질문</string>
     <string name="stop_generation_button">생성 중지</string>
-    <string name="gpt_translate_button_text">GPT 번역</string>
     <string name="gpt_continue_button">GPT 계속</string>
     <string name="gpt_suggest_button">GPT 제안</string>
     <string name="deepseek_suggest_button">DeepSeek 제안</string>
