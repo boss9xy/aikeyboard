@@ -1,5 +1,5 @@
 # AI Keyboard - Bàn phím đính kèm ai
-Dùng API cá nhân, tuỳ chỉnh, tự túc, dùng bao nhiêu sài bấy nhiêu.
+Dùng API cá nhân, gpt, deepseek, olama local, tuỳ chỉnh, tự túc, dùng bao nhiêu trả bấy nhiêu.
 ## Tiếng Việt
 
 ### Tổng quan
