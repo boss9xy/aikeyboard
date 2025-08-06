@@ -1,58 +1,6 @@
-# AI Keyboard - Bàn phím thông minh với AI
+# AI Keyboard - Bàn phím đính kèm ai
 
-[English](#english) | [Tiếng Việt](#tiếng-việt)
-
-## English
-
-### Overview
-AI Keyboard is an intelligent Android keyboard application that integrates artificial intelligence to enhance typing experience. The app features advanced text processing, multilingual support, and AI-powered tools for improved productivity.
-
-### Key Features
-
-#### 🤖 AI-Powered Tools
-- **Smart Suggestions**: AI generates contextual response suggestions based on conversation history
-- **Spell Check**: Intelligent spell checking with AI-powered corrections
-- **Translation**: Real-time translation between multiple languages
-- **Voice-to-Text**: Advanced speech recognition for hands-free typing
-
-#### 🌍 Multilingual Support
-- **Input Languages**: Vietnamese and English typing support
-- **Display Languages**: Full multilingual interface for smartbar buttons and AI prompts
-- **Translation Languages**: Support for 13+ languages including Chinese, Japanese, Korean, French, German, Spanish, Italian, Russian, Arabic, Thai, and Hindi
-
-#### 🎯 Smart Features
-- **Dual Language Toggle**: Separate buttons for input language switching (Vietnamese/English) and display language switching (all supported languages)
-- **Context-Aware Processing**: Intelligent text processing that adapts to user input patterns
-- **Performance Optimized**: Streamlined Vietnamese text processing for smooth typing experience
-
-#### 🛠️ Technical Features
-- **Telex Input Method**: Advanced Vietnamese input method with optimized diacritic placement
-- **Modular Architecture**: Clean separation of input and display language logic
-- **Customizable Interface**: Modern UI with smartbar toggle and language selection
-- **Cross-Platform Ready**: Built for Android with extensible architecture
-
-### AI Tools Description
-
-#### Smart Suggestions
-The AI analyzes conversation context and generates 3 unique response suggestions, mixing humor with Gen Z style language patterns. Each suggestion is tailored to match the conversation's tone and context.
-
-#### Spell Check
-Advanced spell checking that goes beyond simple corrections, using AI to understand context and provide more accurate suggestions for improved writing quality.
-
-#### Translation
-Real-time translation service supporting 13+ languages, allowing seamless communication across different languages with high accuracy.
-
-#### Voice-to-Text
-Sophisticated speech recognition that converts spoken words to text with high accuracy, supporting multiple languages and dialects.
-
-### Installation & Usage
-1. Build the project using Android Studio
-2. Install the APK on your Android device
-3. Enable AI Keyboard in system settings
-4. Configure your preferred input and display languages
-5. Start typing with AI assistance!
-
----
+[Tiếng Việt]
 
 ## Tiếng Việt
 
@@ -62,14 +10,22 @@ AI Keyboard là ứng dụng bàn phím Android thông minh tích hợp trí tu�
 ### Tính năng chính
 
 #### 🤖 Công cụ AI
-- **Gợi ý thông minh**: AI tạo ra các gợi ý phản hồi theo ngữ cảnh dựa trên lịch sử trò chuyện
+-**Giọng nói thành văn bản**: Dùng api whisper gpt, ghi âm và gửi ghi âm vào api, trả về văn bản. Dùng trực tiếp trên nút Giọng nói- Văn Bản có trên bàn phím, bằng cách bấm nút đó, ghi âm xong thì bấm dừng ghi âm, sau khi dừng nó sẽ gửi vào api để chuyển đổi ra văn bản và trả về in lên màn hình hoặc có công cụ trong cài đặt, tuốt xuống dưới cùng, chọn tệp để chuyển đổi.
+- **Nút mic đầu tiên** là dùng chuyển lời nói thành văn bản, in trực tiếp, đó là tính năng chuyển lời nói thành văn bản của google.
+- **Nút mic thứ 2** là tương tự mic 1 nhưng khi nói xong đợi một lát nó sẽ gửi văn bản đó vào api gpt và trả về kết quả, ví dụ bạn muốn tính nhanh 223x233 bằng bao nhiêu, nó sẽ in kết quả liền.
+- **Các nút dịch thuật** chúng sử dụng văn bản đã sao chép để làm nguồn và lấy ngôn ngữ đầu ra từ danh sách, có trên thanh công cụ, vị trí bên phải nút dán, mặc định đang để là dịch ra việt nam, bấm vào đó và chọn ngôn ngữ đầu ra.
+- **Các nút dịch thuật hay nút liên quan đến gpt (trừ nút mic thứ 2)** chúng đều lấy model đầu vào tại danh sách model
+- Có một hộp chứa các văn bản đã sao chép, bấm vào dòng nào dòng đó sẽ in ra màn hình
+- Trong cài đặt có tuỳ chỉnh prompt cho mỗi nút, tuỳ chỉnh cần bạt nút bên cạnh và bấm lưu để xác nhận dùng prompt tuỳ chỉnh.
 - **Kiểm tra chính tả**: Kiểm tra chính tả thông minh với các sửa lỗi được hỗ trợ bởi AI
 - **Dịch thuật**: Dịch thuật thời gian thực giữa nhiều ngôn ngữ
 - **Chuyển giọng nói thành văn bản**: Nhận dạng giọng nói tiên tiến để gõ không cần tay
+- **Hỏi Đáp nhanh**: Hỏi đáp qua api gpt, Deepseek, Olama, rag trợ lý gpt,
+
 
 #### 🌍 Hỗ trợ đa ngôn ngữ
-- **Ngôn ngữ gõ**: Hỗ trợ gõ tiếng Việt và tiếng Anh
-- **Ngôn ngữ hiển thị**: Giao diện đa ngôn ngữ đầy đủ cho các nút smartbar và lệnh AI
+- **Ngôn ngữ gõ**: Hỗ trợ gõ Telex tiếng Việt và tiếng Anh
+- **Ngôn ngữ hiển thị**: Giao diện ngôn ngữ tiếng việt
 - **Ngôn ngữ dịch thuật**: Hỗ trợ 13+ ngôn ngữ bao gồm Trung Quốc, Nhật Bản, Hàn Quốc, Pháp, Đức, Tây Ban Nha, Ý, Nga, Ả Rập, Thái Lan và Hindi
 
 #### 🎯 Tính năng thông minh
