@@ -1,11 +1,9 @@
 # AI Keyboard - Bàn phím đính kèm ai
 
-[Tiếng Việt]
-
 ## Tiếng Việt
 
 ### Tổng quan
-AI Keyboard là ứng dụng bàn phím Android thông minh tích hợp trí tuệ nhân tạo để nâng cao trải nghiệm gõ phím. Ứng dụng có các tính năng xử lý văn bản tiên tiến, hỗ trợ đa ngôn ngữ và các công cụ AI để cải thiện năng suất.
+AI Keyboard là ứng dụng bàn phím Android thông minh tích hợp trí tuệ nhân tạo để nâng cao trải nghiệm gõ phím. Ứng dụng có các tính năng xử lý văn bản tiên tiến, mã nguồn đang sử dụng nhiều ngôn ngữ nhưng bản kết xuất apk demo đã loại bỏ chỉ có tiếng việt, chủ yếu giữ lại một ngôn ngữ duy nhất để mở rộng tính năng nhanh chóng, không cần phải biên dịch cho nhiều ngôn ngữ phức tạp, tiết kiệm thời gian đáng kể.
 
 ### Tính năng chính
 
@@ -23,7 +21,7 @@ AI Keyboard là ứng dụng bàn phím Android thông minh tích hợp trí tu�
 - **Hỏi Đáp nhanh**: Hỏi đáp qua api gpt, Deepseek, Olama, rag trợ lý gpt,
 
 
-#### 🌍 Hỗ trợ đa ngôn ngữ
+#### 🌍 Hỗ trợ ngôn ngữ
 - **Ngôn ngữ gõ**: Hỗ trợ gõ Telex tiếng Việt và tiếng Anh
 - **Ngôn ngữ hiển thị**: Giao diện ngôn ngữ tiếng việt
 - **Ngôn ngữ dịch thuật**: Hỗ trợ 13+ ngôn ngữ bao gồm Trung Quốc, Nhật Bản, Hàn Quốc, Pháp, Đức, Tây Ban Nha, Ý, Nga, Ả Rập, Thái Lan và Hindi
@@ -62,7 +60,7 @@ Nhận dạng giọng nói tinh vi chuyển đổi từ nói thành văn bản v
 
 ---
 
-## Contributing
+[## Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
@@ -70,3 +68,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Support
 For support and questions, please open an issue on GitHub.
+
+(https://buymeacoffee.com/boss9xy)
