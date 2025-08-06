@@ -3,7 +3,7 @@ Dùng API cá nhân, gpt, deepseek, olama local, tuỳ chỉnh, tự túc, dùng
 ## Tiếng Việt
 
 ### Tổng quan
-AI Keyboard là ứng dụng bàn phím Android thông minh tích hợp trí tuệ nhân tạo để nâng cao trải nghiệm gõ phím. Ứng dụng có các tính năng xử lý văn bản tiên tiến, mã nguồn đang sử dụng nhiều ngôn ngữ nhưng bản kết xuất apk demo đã loại bỏ chỉ có tiếng việt, chủ yếu giữ lại một ngôn ngữ duy nhất để mở rộng tính năng nhanh chóng, không cần phải biên dịch cho nhiều ngôn ngữ phức tạp, tiết kiệm thời gian đáng kể.
+AI Keyboard là ứng dụng bàn phím Android, ý tưởng là tích hợp trí tuệ nhân tạo để nâng cao trải nghiệm truy xuất nhanh thông tin hoặc nhanh chóng chuyển đổi âm thanh thành văn bản. Ứng dụng có các tính năng xử lý văn bản tuỳ chỉnh, mã nguồn đang sử dụng nhiều ngôn ngữ nhưng bản kết xuất apk demo đã loại bỏ chỉ có tiếng việt, chủ yếu giữ lại một ngôn ngữ duy nhất để mở rộng tính năng nhanh chóng, không cần phải biên dịch cho nhiều ngôn ngữ phức tạp, tiết kiệm thời gian đáng kể.
 
 ### Tính năng chính
 
