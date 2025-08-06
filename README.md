@@ -1,5 +1,5 @@
 # AI Keyboard - Bàn phím đính kèm ai
-
+Dùng API cá nhân, tuỳ chỉnh, tự túc, dùng bao nhiêu sài bấy nhiêu.
 ## Tiếng Việt
 
 ### Tổng quan
