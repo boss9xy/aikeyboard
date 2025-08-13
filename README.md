@@ -10,7 +10,7 @@ AI Keyboard là ứng dụng bàn phím Android, ý tưởng là tích hợp tr�
 #### 🤖 Công cụ AI
 -**Giọng nói thành văn bản**: Dùng api whisper gpt, ghi âm và gửi ghi âm vào api, trả về văn bản. Dùng trực tiếp trên nút Giọng nói- Văn Bản có trên bàn phím, bằng cách bấm nút đó, ghi âm xong thì bấm dừng ghi âm, sau khi dừng nó sẽ gửi vào api để chuyển đổi ra văn bản và trả về in lên màn hình hoặc có công cụ trong cài đặt, tuốt xuống dưới cùng, chọn tệp để chuyển đổi.
 - **Nút mic đầu tiên** là dùng chuyển lời nói thành văn bản, in trực tiếp, đó là tính năng chuyển lời nói thành văn bản của google.
-- **Nút mic thứ 2** là tương tự mic 1 nhưng khi nói xong đợi một lát nó sẽ gửi văn bản đó vào api gpt và trả về kết quả, ví dụ bạn muốn tính nhanh 223x233 bằng bao nhiêu, nó sẽ in kết quả liền.
+- **Nút mic thứ 2** là tương tự mic 1 nhưng khi nói xong đợi một lát nó sẽ gửi văn bản đó vào api gpt và trả về kết quả, ví dụ bạn muốn tính nhanh 223x233 bằng bao nhiêu, nó sẽ in kết quả liền. sau tiếng pip bạn có thể nói tiếp, nói xong 2 giây nó lại gửi tiếp vào api, cho đến khi bạn bấm nút mic đó thêm lần nữa nó dừng hẳn.
 - **Các nút dịch thuật** chúng sử dụng văn bản đã sao chép để làm nguồn và lấy ngôn ngữ đầu ra từ danh sách, có trên thanh công cụ, vị trí bên phải nút dán, mặc định đang để là dịch ra việt nam, bấm vào đó và chọn ngôn ngữ đầu ra.
 - **Các nút dịch thuật hay nút liên quan đến gpt (trừ nút mic thứ 2)** chúng đều lấy model đầu vào tại danh sách model
 - Có một hộp chứa các văn bản đã sao chép, bấm vào dòng nào dòng đó sẽ in ra màn hình
