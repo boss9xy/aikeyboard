@@ -1,3 +1,15 @@
+
+
+https://github.com/user-attachments/assets/486b2575-bb63-4147-a00d-07d44206bc7f
+
+
+
+https://github.com/user-attachments/assets/463dab07-10aa-4768-8d3d-a3ced988cfa8
+
+
+
+https://github.com/user-attachments/assets/b2c47c16-669c-42c3-9f05-ec96295117a4
+
 # AI Keyboard - Bàn phím đính kèm ai
 Dùng API cá nhân, gpt, deepseek, olama local, tuỳ chỉnh, tự túc, dùng bao nhiêu trả bấy nhiêu.
 ## Tiếng Việt
