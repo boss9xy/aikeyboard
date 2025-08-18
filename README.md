@@ -21,6 +21,7 @@ https://github.com/user-attachments/assets/b2c47c16-669c-42c3-9f05-ec96295117a4
 # AI Keyboard - Bàn phím đính kèm ai
 Dùng API cá nhân, gpt, deepseek, olama local, tuỳ chỉnh, tự túc, dùng bao nhiêu trả bấy nhiêu.
 ## Tiếng Việt
+https://t.me/+QQYJXXKotyg1NGQ1
 
 Bắt buộc cấp quyền mic mới sài được mic. Mic sử dụng ứng dụng moc mặc định cuả google.
 
